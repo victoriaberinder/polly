@@ -8,6 +8,9 @@
   <nav v-bind:class="{'hide': hideNav}">
     <button v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
     <router-link v-bind:to="'/create/'+lang">{{uiLabels.createPoll}}</router-link>
+    <a href="">Pricing</a>
+    <a href="">About</a>
+    <a href="">FAQ</a>
   </nav>
 
     <label>
@@ -59,12 +62,23 @@ export default {
   }
 
   nav {
-    background-color: gray;
+    background-color: lightgray;
     width:100%;
     height: 4em;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 10em);
+  }
+
+  nav a {
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    color: gray;
+    display: grid;
     align-items: center;
     justify-content: center;
+    border-left: 1px solid gray;
   }
   .logo {
     text-transform: uppercase;
@@ -79,14 +93,15 @@ export default {
     display: flex;
     align-items: center;
     justify-content: left;
-    padding:0.5em;
+    padding:0.5rem;
     top:0;
     left:0;
-    height: 2em;
+    height: 2rem;
     cursor: pointer;
+    font-size: 1.5rem;
   }
 
-@media screen and (max-width:800px) {
+@media screen and (max-width:50em) {
   nav {
     position: absolute;
     height:100vh;
@@ -96,6 +111,10 @@ export default {
     display: grid;
     grid-template-rows: repeat(auto-fit, 2em);
     transition: 0.5s;
+  }
+  nav a {
+    justify-content: left;
+    padding-left: 1em;
   }
   .logo {
     font-size: 5vw;
