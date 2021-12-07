@@ -23,7 +23,7 @@ export default {
     grid-template-columns: repeat(auto-fit, 10em);
   }
 
-  nav a {
+  nav ::v-slotted(a) {
     text-transform: uppercase;
     font-size: 0.8rem;
     letter-spacing: 0.1em;
@@ -46,7 +46,7 @@ export default {
     grid-template-rows: repeat(auto-fit, 2em);
     transition: 0.5s;
   }
-  nav a {
+  nav ::v-slotted(a) {
     justify-content: left;
     padding-left: 1em;
   }

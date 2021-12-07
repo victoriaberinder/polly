@@ -64,26 +64,6 @@ export default {
     display: grid;
     grid-template-columns: 2em auto;
   }
-
-  nav {
-    background-color: lightgray;
-    width:100%;
-    height: 4em;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 10em);
-  }
-
-  nav a {
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    letter-spacing: 0.1em;
-    text-decoration: none;
-    color: gray;
-    display: grid;
-    align-items: center;
-    justify-content: center;
-    border-left: 1px solid gray;
-  }
   .logo {
     text-transform: uppercase;
     letter-spacing: 0.3em;
@@ -106,20 +86,6 @@ export default {
   }
 
 @media screen and (max-width:50em) {
-  nav {
-    position: absolute;
-    height:100vh;
-    top: 3em;
-    left: 0;
-    width:12em;
-    display: grid;
-    grid-template-rows: repeat(auto-fit, 2em);
-    transition: 0.5s;
-  }
-  nav a {
-    justify-content: left;
-    padding-left: 1em;
-  }
   .logo {
     font-size: 5vw;
     display: flex;
@@ -129,7 +95,6 @@ export default {
   .hamburger::before {
     content: "☰";
   }
-
   .close::before {
     content: "✕";
   }
