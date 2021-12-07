@@ -1,13 +1,20 @@
 <template>
-  <div id="nav">
+  <header>
+    <div v-bind:class="['hamburger', {'close': !hideNav}]" 
+         v-on:click="toggleNav">
+    </div>
+    <div class="logo">Polly polling tool</div>
+  </header>
+  <nav v-bind:class="{'hide': hideNav}">
     <button v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
     <router-link v-bind:to="'/create/'+lang">{{uiLabels.createPoll}}</router-link>
+  </nav>
+
     <label>
       Write poll id: 
       <input type="text" v-model="id">
     </label>
     <router-link v-bind:to="'/poll/'+id" tag="button">{{uiLabels.participatePoll}}</router-link>
-  </div>
 </template>
 
 <script>
@@ -20,7 +27,8 @@ export default {
     return {
       uiLabels: {},
       id: "",
-      lang: "en"
+      lang: "en",
+      hideNav: true
     }
   },
   created: function () {
@@ -35,7 +43,75 @@ export default {
       else
         this.lang = "en"
       socket.emit("switchLanguage", this.lang)
+    },
+    toggleNav: function () {
+      this.hideNav = ! this.hideNav;
     }
   }
 }
 </script>
+<style scoped>
+  header {
+    background-color: gray;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2em auto;
+  }
+
+  nav {
+    background-color: gray;
+    width:100%;
+    height: 4em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo {
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    font-size: 2.5rem;
+    color: white;
+    padding-top:0.2em;
+  }
+  .hamburger {
+    color:white;
+    width:1em;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding:0.5em;
+    top:0;
+    left:0;
+    height: 2em;
+    cursor: pointer;
+  }
+
+@media screen and (max-width:800px) {
+  nav {
+    position: absolute;
+    height:100vh;
+    top: 3em;
+    left: 0;
+    width:12em;
+    display: grid;
+    grid-template-rows: repeat(auto-fit, 2em);
+    transition: 0.5s;
+  }
+  .logo {
+    font-size: 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hamburger::before {
+    content: "☰";
+  }
+
+  .close::before {
+    content: "✕";
+  }
+  .hide {
+    left:-12em;
+  }
+}
+</style>
