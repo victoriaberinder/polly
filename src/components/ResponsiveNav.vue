@@ -8,7 +8,7 @@
 <script>
 
 export default {
-  name: 'Chrome',
+  name: 'ResponsiveNav',
   props: {
       hideNav: Boolean
   }
