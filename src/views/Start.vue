@@ -3,7 +3,7 @@
     <div v-bind:class="['hamburger', {'close': !hideNav}]" 
          v-on:click="toggleNav">
     </div>
-    <div class="logo">Polly polling tool</div>
+    <div class="logo"><img src="/img/logo.png">Polly polling tool</div>
   </header>
   <ResponsiveNav v-bind:hideNav="hideNav">
     <button v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
@@ -12,7 +12,6 @@
     <a href="">About</a>
     <a href="">FAQ</a>
   </ResponsiveNav>
-
   <label>
     Write poll id: 
     <input type="text" v-model="id">
@@ -66,10 +65,15 @@ export default {
   }
   .logo {
     text-transform: uppercase;
-    letter-spacing: 0.3em;
+    letter-spacing: 0.25em;
     font-size: 2.5rem;
     color: white;
     padding-top:0.2em;
+  }
+  .logo img {
+    height:2.5rem;
+    vertical-align: bottom;
+    margin-right: 0.5rem; 
   }
   .hamburger {
     color:white;
