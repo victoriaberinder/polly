@@ -39,6 +39,13 @@ Data.prototype.addQuestion = function(pollId, q) {
   }
 }
 
+Data.prototype.editQuestion = function(pollId, index, newQuestion) {
+  const poll = this.polls[pollId];
+  if (typeof poll !== 'undefined') {
+    poll.questions[index] = newQuestion;
+  }
+}
+
 Data.prototype.getQuestion = function(pollId, qId=null) {
   const poll = this.polls[pollId];
   console.log("question requested for ", pollId, qId);

@@ -11,12 +11,12 @@
     <a href="">Pricing</a>
     <a href="">About</a>
     <a href="">FAQ</a>
-  </ResponsiveNav>
+  </ResponsiveNav>f
   <label>
     Write poll id: 
     <input type="text" v-model="id">
   </label>
-  <router-link v-bind:to="'/poll/'+id" tag="button">{{uiLabels.participatePoll}}</router-link>
+  <router-link v-bind:to="'/poll/'+id">{{uiLabels.participatePoll}}</router-link>
 </template>
 
 <script>
@@ -25,7 +25,7 @@ import io from 'socket.io-client';
 const socket = io();
 
 export default {
-  name: 'Start',
+  name: 'StartView',
   components: {
     ResponsiveNav
   },

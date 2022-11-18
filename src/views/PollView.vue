@@ -1,21 +1,24 @@
 <template>
   <div>
+    <ReorderQuestion />
     {{pollId}}
-    <Question v-bind:question="question"
+    <QuestionComponent v-bind:question="question"
               v-on:answer="submitAnswer"/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Question from '@/components/Question.vue';
+import QuestionComponent from '@/components/QuestionComponent.vue';
+import ReorderQuestion from '@/components/ReorderQuestion.vue';
 import io from 'socket.io-client';
 const socket = io();
 
 export default {
-  name: 'Poll',
+  name: 'PollView',
   components: {
-    Question
+    QuestionComponent,
+    ReorderQuestion
   },
   data: function () {
     return {

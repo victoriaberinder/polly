@@ -35,7 +35,7 @@ import io from 'socket.io-client';
 const socket = io();
 
 export default {
-  name: 'Create',
+  name: 'CreateView',
   data: function () {
     return {
       lang: "",

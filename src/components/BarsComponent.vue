@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: 'Bars',
+  name: 'BarsComponent',
   props: {
     data: Object
   }

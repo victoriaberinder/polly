@@ -2,19 +2,19 @@
   <div>
     {{question}}
   </div>
-  <Bars v-bind:data="data"/>
+  <BarsComponent v-bind:data="data"/>
 </template>
 
 <script>
 // @ is an alias to /src
-import Bars from '@/components/Bars.vue';
+import BarsComponent from '@/components/BarsComponent.vue';
 import io from 'socket.io-client';
 const socket = io();
 
 export default {
-  name: 'Result',
+  name: 'ResultView',
   components: {
-    Bars
+    BarsComponent
   },
   data: function () {
     return {

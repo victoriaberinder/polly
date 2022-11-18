@@ -6,10 +6,11 @@
 </template>
 <script>
 export default {
-  name: 'Bars',
+  name: 'QuestionComponent',
   props: {
     question: Object
   },
+  emits: ["answer"],
   methods: {
     answer: function (answer) {
       this.$emit("answer", answer);
