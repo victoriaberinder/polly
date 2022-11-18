@@ -11,7 +11,8 @@
     <a href="">Pricing</a>
     <a href="">About</a>
     <a href="">FAQ</a>
-  </ResponsiveNav>f
+  </ResponsiveNav>
+  <h1>Welcome!</h1>
   <label>
     Write poll id: 
     <input type="text" v-model="id">
