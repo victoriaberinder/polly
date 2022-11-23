@@ -1,24 +1,23 @@
 <template>
   <div>
-    <ReorderQuestion />
     {{pollId}}
     <QuestionComponent v-bind:question="question"
-              v-on:answer="submitAnswer"/>
+              v-on:answer="submitAnswer($event)"/>
+
+              <span>{{submittedAnswers}}</span>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import QuestionComponent from '@/components/QuestionComponent.vue';
-import ReorderQuestion from '@/components/ReorderQuestion.vue';
 import io from 'socket.io-client';
 const socket = io();
 
 export default {
   name: 'PollView',
   components: {
-    QuestionComponent,
-    ReorderQuestion
+    QuestionComponent
   },
   data: function () {
     return {
@@ -26,7 +25,8 @@ export default {
         q: "",
         a: []
       },
-      pollId: "inactive poll"
+      pollId: "inactive poll",
+      submittedAnswers: {}
     }
   },
   created: function () {
@@ -34,6 +34,9 @@ export default {
     socket.emit('joinPoll', this.pollId)
     socket.on("newQuestion", q =>
       this.question = q
+    )
+    socket.on("dataUpdate", answers =>
+      this.submittedAnswers = answers
     )
   },
   methods: {

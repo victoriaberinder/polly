@@ -22,6 +22,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+span {
+  color:var(--background-color);
+}
 .bar {
   display: inline-block;
   width: 50px;
