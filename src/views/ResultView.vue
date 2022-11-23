@@ -2,7 +2,9 @@
   <div>
     {{question}}
   </div>
-  <BarsComponent v-bind:data="data"/>
+  <BarsComponent v-bind:data="submittedAnswers"/>
+
+  <span>{{submittedAnswers}}</span>
 </template>
 
 <script>
@@ -19,7 +21,7 @@ export default {
   data: function () {
     return {
       question: "",
-      data: {
+      submittedAnswers: {
       }
     }
   },
@@ -27,7 +29,7 @@ export default {
     this.pollId = this.$route.params.id
     socket.emit('joinPoll', this.pollId)
     socket.on("dataUpdate", (update) => {
-      this.data = update.a;
+      this.submittedAnswers = update.a;
       this.question = update.q;
     });
     socket.on("newQuestion", update => {
