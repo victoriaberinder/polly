@@ -59,7 +59,7 @@ export default {
 </script>
 <style scoped>
   header {
-    background-color: gray;
+    background-color: rgb(157, 219, 255);
     width: 100%;
     display: grid;
     grid-template-columns: 2em auto;
