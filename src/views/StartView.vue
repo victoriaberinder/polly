@@ -32,7 +32,7 @@
   </div>
 
   <ResponsiveNav v-bind:hideNav="hideNav">
-    <button v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
+    <button class="languagebutton" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
     <!--<router-link v-bind:to="'/create/'+lang">{{uiLabels.createPoll}}</router-link>-->
   </ResponsiveNav>
 </template>
@@ -118,6 +118,17 @@ export default {
     display: block;
     grid-gap: 1%;
     grid-template-columns: 33% 33%;
+
+}
+
+.buttons:hover {
+    cursor: pointer;
+    background-color: lightgray;
+  }
+
+.languagebutton:hover {
+    cursor: pointer;
+    background-color: white;
 }
 
 .boxA {
@@ -164,5 +175,6 @@ export default {
   .hide {
     left:-12em;
   }
+  
 }
 </style>
