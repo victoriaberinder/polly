@@ -3,7 +3,7 @@
     <div v-bind:class="['hamburger', {'close': !hideNav}]" 
          v-on:click="toggleNav">
     </div>
-    <div class="logo"><img src="/img/logo.png">Polly polling tool</div>
+    <div class="logo"><img src="/img/logo.png">Glosor</div>
   </header>
   <ResponsiveNav v-bind:hideNav="hideNav">
     <button v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
@@ -18,6 +18,18 @@
     <input type="text" v-model="id">
   </label>
   <router-link v-bind:to="'/poll/'+id">{{uiLabels.participatePoll}}</router-link>
+  <body class="wrapper">
+    <form action="http://localhost:8080/#/create/en">
+        <button class="boxA" type="submit">
+          Create quiz
+        </button>
+    </form>
+    <form action="http://localhost:8080/#/create/en">
+        <button class="boxB" type="submit">
+          Play quiz
+        </button>
+    </form>
+  </body>
 </template>
 
 <script>
@@ -89,6 +101,32 @@ export default {
     cursor: pointer;
     font-size: 1.5rem;
   }
+
+  
+  .wrapper {
+    display: block;
+    grid-gap: 1%;
+    grid-template-columns: 33% 33%;
+}
+
+.boxA {
+    float: left;
+    width: 200px;
+    margin-left: 200px;
+    margin-top: 10px;
+    padding: 5px;
+    border: 2px solid blue;
+    text-align: center;
+}
+.boxB {
+    float: left;
+    width: 200px;
+    margin-left: 200px;
+    margin-top: 10px;
+    padding: 5px;
+    border: 2px solid blue;
+    text-align: center;
+}
 
 @media screen and (max-width:50em) {
   .logo {
