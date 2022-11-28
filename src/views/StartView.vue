@@ -8,22 +8,24 @@
 
   <body id="body">
     <h1 class="headline">
-      Welcome!
+      WELCOME!
     </h1>
     <img id="background" src="https://static.vecteezy.com/system/resources/previews/001/198/033/non_2x/world-map-png.png" alt="map">
     <div class="wrapper">
-      <button class="buttons" @click="$router.push('/create/'+lang)">Create</button>
-      <button class="buttons" @click="$router.push('/play/'+lang)">Play</button>
+      <button class="buttons" @click="$router.push('/create/'+lang)">CREATE</button>
+      <button class="buttons" @click="$router.push('/play/'+lang)">PLAY</button>
     </div>
+
+    <ResponsiveNav v-bind:hideNav="hideNav">
+      <button class="languagebutton" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
+      <!--<router-link v-bind:to="'/create/'+lang">{{uiLabels.createPoll}}</router-link>-->
+    </ResponsiveNav>
   </body>
 
   <!--<router-link v-bind:to="'/poll/'+id">{{uiLabels.participatePoll}}</router-link>
   <router-link v-bind:to="'/poll/'+id">{{uiLabels.participatePoll}}</router-link>-->
 
-  <ResponsiveNav v-bind:hideNav="hideNav">
-    <button class="languagebutton" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
-    <!--<router-link v-bind:to="'/create/'+lang">{{uiLabels.createPoll}}</router-link>-->
-  </ResponsiveNav>
+
 </template>
 
 <script>
@@ -108,12 +110,16 @@ export default {
 
 .buttons:hover {
     cursor: pointer;
-    background-color: lightgray;
+    background-color:#a1f196;
   }
 
 .languagebutton:hover {
     cursor: pointer;
     background-color: white;
+}
+
+.languagebutton{
+  background-color: grey;
 }
 
 .boxA {
@@ -139,7 +145,7 @@ export default {
   font-size: 75px;
   position: absolute;
   text-align: center;
-  margin-left: 550px;
+  margin-left: 520px;
   color: white;
 }
 .wrapper{
@@ -148,14 +154,15 @@ export default {
   margin-top: -500px;
 }
   .buttons {
+    font-size: 50px;
     object-position: center;
     width: 18rem;
     height: 6rem;
     border-radius: 15px;
-    border-color: aquamarine;
+    border-color: white;
     margin: 2.5rem;
     color: white;
-    background-color: grey;
+    background-color: #63e2fb;
   }
 
 @media screen and (max-width:50em) {
