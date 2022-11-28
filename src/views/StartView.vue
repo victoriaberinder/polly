@@ -22,20 +22,14 @@
     Write poll id: 
     <input type="text" v-model="id">
   </label>
+
+  <router-link v-bind:to="'/poll/'+id">{{uiLabels.participatePoll}}</router-link>
   <router-link v-bind:to="'/poll/'+id">{{uiLabels.participatePoll}}</router-link>-->
 
-  <body class="wrapper">
-    <form action="http://localhost:8080/#/create/en">
-        <button class="boxA" type="submit">
-          Create quiz
-        </button>
-    </form>
-    <form action="http://localhost:8080/#/create/en">
-        <button class="boxB" type="submit">
-          Play quiz
-        </button>
-    </form>
-  </body>
+  <div class="wrapper">
+    <button class="buttons" @click="$router.push('/create/'+lang)">Create</button>
+    <button class="buttons" @click="$router.push('/play/'+lang)">Play</button>
+  </div>
 
   <ResponsiveNav v-bind:hideNav="hideNav">
     <button v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
@@ -86,6 +80,7 @@ export default {
     width: 100%;
     display: grid;
     grid-template-columns: 2em auto;
+    background-color: #b8f3ff;
   }
   .logo {
     text-transform: uppercase;
@@ -112,8 +107,6 @@ export default {
     cursor: pointer;
     font-size: 1.5rem;
   }
-
-
   #background {
     width: 94%;
     display: grid;
@@ -145,6 +138,15 @@ export default {
     border: 2px solid blue;
     text-align: center;
 }
+  .buttons {
+    width: 18rem;
+    height: 6rem;
+    border-radius: 15px;
+    border-color: aquamarine;
+    margin: 2.5rem;
+    color: white;
+    background-color: grey;
+  }
 
 @media screen and (max-width:50em) {
   .logo {
