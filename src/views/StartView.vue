@@ -3,15 +3,40 @@
     <div v-bind:class="['hamburger', {'close': !hideNav}]" 
          v-on:click="toggleNav">
     </div>
-    <div class="logo"><img src="/img/logo.png">Polly polling tool</div>
+    <div class="logo"><img src="/img/logo.png">Glosor</div>
   </header>
 
+  <!--<<ResponsiveNav v-bind:hideNav="hideNav">
+    <button v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
+    <router-link v-bind:to="'/create/'+lang">{{uiLabels.createPoll}}</router-link>
+    <a href="">Pricing</a>
+    <a href="">About</a>
+    <a href="">FAQ</a>
+  </ResponsiveNav>-->
+  <body>
+  <img id="background" src="https://static.vecteezy.com/system/resources/previews/001/198/033/non_2x/world-map-png.png" alt="map">
+  </body>
+
   <h1>Welcome!</h1>
-  <label>
+  <!--<label>
     Write poll id: 
     <input type="text" v-model="id">
   </label>
-  <router-link v-bind:to="'/poll/'+id">{{uiLabels.participatePoll}}</router-link>
+  <router-link v-bind:to="'/poll/'+id">{{uiLabels.participatePoll}}</router-link>-->
+
+  <body class="wrapper">
+    <form action="http://localhost:8080/#/create/en">
+        <button class="boxA" type="submit">
+          Create quiz
+        </button>
+    </form>
+    <form action="http://localhost:8080/#/create/en">
+        <button class="boxB" type="submit">
+          Play quiz
+        </button>
+    </form>
+  </body>
+
   <ResponsiveNav v-bind:hideNav="hideNav">
     <button v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
     <!--<router-link v-bind:to="'/create/'+lang">{{uiLabels.createPoll}}</router-link>-->
@@ -57,7 +82,7 @@ export default {
 </script>
 <style scoped>
   header {
-    background-color: rgb(157, 219, 255);
+    background-color: gray;
     width: 100%;
     display: grid;
     grid-template-columns: 2em auto;
@@ -87,6 +112,39 @@ export default {
     cursor: pointer;
     font-size: 1.5rem;
   }
+
+
+  #background {
+    width: 94%;
+    display: grid;
+    padding: 3%;
+    background-color: #b8f3ff;
+  }
+  
+  .wrapper {
+    display: block;
+    grid-gap: 1%;
+    grid-template-columns: 33% 33%;
+}
+
+.boxA {
+    float: left;
+    width: 200px;
+    margin-left: 200px;
+    margin-top: 10px;
+    padding: 5px;
+    border: 2px solid blue;
+    text-align: center;
+}
+.boxB {
+    float: left;
+    width: 200px;
+    margin-left: 200px;
+    margin-top: 10px;
+    padding: 5px;
+    border: 2px solid blue;
+    text-align: center;
+}
 
 @media screen and (max-width:50em) {
   .logo {
