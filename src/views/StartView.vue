@@ -21,6 +21,18 @@
     <input type="text" v-model="id">
   </label>
   <router-link v-bind:to="'/poll/'+id">{{uiLabels.participatePoll}}</router-link>
+  <body class="wrapper">
+    <form action="http://localhost:8080/#/create/en">
+        <button class="boxA" type="submit">
+          Create quiz
+        </button>
+    </form>
+    <form action="http://localhost:8080/#/create/en">
+        <button class="boxB" type="submit">
+          Play quiz
+        </button>
+    </form>
+  </body>
 </template>
 
 <script>
@@ -93,12 +105,40 @@ export default {
     font-size: 1.5rem;
   }
 
+<<<<<<< HEAD
   #background {
     width: 94%;
     display: grid;
     padding: 3%;
     background-color: #b8f3ff;
   }
+=======
+  
+  .wrapper {
+    display: block;
+    grid-gap: 1%;
+    grid-template-columns: 33% 33%;
+}
+
+.boxA {
+    float: left;
+    width: 200px;
+    margin-left: 200px;
+    margin-top: 10px;
+    padding: 5px;
+    border: 2px solid blue;
+    text-align: center;
+}
+.boxB {
+    float: left;
+    width: 200px;
+    margin-left: 200px;
+    margin-top: 10px;
+    padding: 5px;
+    border: 2px solid blue;
+    text-align: center;
+}
+>>>>>>> cea3d3b870adf91b8da1fa032f7953781535386f
 
 @media screen and (max-width:50em) {
   .logo {
