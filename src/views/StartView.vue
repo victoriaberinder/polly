@@ -3,15 +3,18 @@
     <div v-bind:class="['hamburger', {'close': !hideNav}]" 
          v-on:click="toggleNav">
     </div>
-    <div class="logo"><img src="/img/logo.png">Polly polling tool</div>
+    <div class="logo"><img src="/img/logo.png">Glosor</div>
   </header>
   <ResponsiveNav v-bind:hideNav="hideNav">
     <button v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
     <router-link v-bind:to="'/create/'+lang">{{uiLabels.createPoll}}</router-link>
-    <a href="">Pricing</a>
+    <!--<a href="">Pricing</a>
     <a href="">About</a>
-    <a href="">FAQ</a>
+    <a href="">FAQ</a>-->
   </ResponsiveNav>
+  <body>
+  <img id="background" src="https://static.vecteezy.com/system/resources/previews/001/198/033/non_2x/world-map-png.png" alt="map">
+  </body>
   <h1>Welcome!</h1>
   <label>
     Write poll id: 
@@ -59,7 +62,7 @@ export default {
 </script>
 <style scoped>
   header {
-    background-color: rgb(157, 219, 255);
+    background-color: gray;
     width: 100%;
     display: grid;
     grid-template-columns: 2em auto;
@@ -88,6 +91,13 @@ export default {
     height: 2rem;
     cursor: pointer;
     font-size: 1.5rem;
+  }
+
+  #background {
+    width: 94%;
+    display: grid;
+    padding: 3%;
+    background-color: #b8f3ff;
   }
 
 @media screen and (max-width:50em) {
