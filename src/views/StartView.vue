@@ -138,8 +138,7 @@ export default {
     border-color: aquamarine;
     margin: 2.5rem;
     color: white;
-    background-color: rgb(59, 131, 238);  
-    font-size: 25px;
+
 
   }
 
@@ -150,8 +149,6 @@ export default {
     border-color: aquamarine;
     margin: 2.5rem;
     color: white;
-    background-color: rgb(62, 204, 46);
-    font-size: 25px;
 
   }
 
