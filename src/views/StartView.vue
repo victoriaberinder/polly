@@ -7,9 +7,6 @@
   </header>
 
   <body id="body">
-    <h1 class="headline">
-      WELCOME!
-    </h1>
     <img id="background" src="https://static.vecteezy.com/system/resources/previews/001/198/033/non_2x/world-map-png.png" alt="map">
     <div class="wrapper">
       <button class="buttons" @click="$router.push('/create/'+lang)">CREATE</button>
@@ -70,7 +67,7 @@ export default {
     width: 100%;
     display: grid;
     grid-template-columns: 2em auto;
-    background-color: #b8f3ff;
+    background-color: #c7e1ef;
   }
   .logo {
     text-transform: uppercase;
@@ -98,19 +95,19 @@ export default {
     font-size: 1.5rem;
   }
   #body{
-    background-color: #b8f3ff;
+    background-color: #c7e1ef;
   }
   #background {
     margin-left: 160px;
     width: 70%;
     display: grid;
     padding: 3%;
-    background-color: #b8f3ff;
+    filter: invert(1);
   }
 
 .buttons:hover {
     cursor: pointer;
-    background-color:#a1f196;
+    background-color:#56c770;
   }
 
 .languagebutton:hover {
@@ -162,7 +159,7 @@ export default {
     border-color: white;
     margin: 2.5rem;
     color: white;
-    background-color: #63e2fb;
+    background-color: #3c78d8ff;
   }
 
 @media screen and (max-width:50em) {
