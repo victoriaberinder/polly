@@ -27,8 +27,8 @@
   <router-link v-bind:to="'/poll/'+id">{{uiLabels.participatePoll}}</router-link>-->
 
   <div class="wrapper">
-    <button class="buttons" @click="$router.push('/create/'+lang)">Create</button>
-    <button class="buttons" @click="$router.push('/play/'+lang)">Play</button>
+    <button class="buttonA" @click="$router.push('/create/'+lang)">Create Quiz</button>
+    <button class="buttonB" @click="$router.push('/play/'+lang)">Play Quiz</button>
   </div>
 
   <ResponsiveNav v-bind:hideNav="hideNav">
@@ -131,32 +131,28 @@ export default {
     background-color: white;
 }
 
-.boxA {
-    float: left;
-    width: 200px;
-    margin-left: 200px;
-    margin-top: 10px;
-    padding: 5px;
-    border: 2px solid blue;
-    text-align: center;
-}
-.boxB {
-    float: left;
-    width: 200px;
-    margin-left: 200px;
-    margin-top: 10px;
-    padding: 5px;
-    border: 2px solid blue;
-    text-align: center;
-}
-  .buttons {
+  .buttonA {
     width: 18rem;
     height: 6rem;
     border-radius: 15px;
     border-color: aquamarine;
     margin: 2.5rem;
     color: white;
-    background-color: grey;
+    background-color: rgb(59, 131, 238);  
+    font-size: 25px;
+
+  }
+
+  .buttonB {
+    width: 18rem;
+    height: 6rem;
+    border-radius: 15px;
+    border-color: aquamarine;
+    margin: 2.5rem;
+    color: white;
+    background-color: rgb(62, 204, 46);
+    font-size: 25px;
+
   }
 
 @media screen and (max-width:50em) {
