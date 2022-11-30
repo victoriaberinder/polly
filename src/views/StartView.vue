@@ -3,7 +3,7 @@
     <div v-bind:class="['hamburger', {'close': !hideNav}]" 
          v-on:click="toggleNav">
     </div>
-    <div class="logo"><img src="/img/logo.png">Glosor</div>
+    <div class="logo"><img src="https://static.showit.co/400/1yzlYawSRsyajrqRf5NsQg/115216/books1.png">Glossor</div>
   </header>
 
   <body id="body">
@@ -72,12 +72,12 @@ export default {
   .logo {
     text-transform: uppercase;
     letter-spacing: 0.25em;
-    font-size: 2.5rem;
+    font-size: 5.0rem;
     color: white;
     padding-top:0.2em;
   }
   .logo img {
-    height:2.5rem;
+    height:6.5rem;
     vertical-align: bottom;
     margin-right: 0.5rem; 
   }
