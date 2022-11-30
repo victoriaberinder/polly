@@ -28,6 +28,9 @@
     {{data}}
     <router-link v-bind:to="'/result/'+pollId">Check result</router-link>
   </div>
+    <div class="wrapper">
+    <button class="exitbutton" @click="$router.push('/')">Exit</button>
+    </div>
 </template>
 
 <script>
@@ -75,3 +78,19 @@ export default {
   }
 }
 </script>
+
+<style>
+  .exitbutton {
+    width: 5rem;
+    height: 2rem;
+    border-radius: 15px;
+    border-color: rgb(227, 123, 123);
+    margin: 2.5rem;
+    color: white;
+    background-color: rgb(235, 76, 76);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: 15px; 
+  }
+</style>
