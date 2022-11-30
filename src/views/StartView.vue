@@ -159,20 +159,7 @@ export default {
     border-color: white;
     margin: 2.5rem;
     color: white;
-
-  }
-
-  .buttonB {
-    width: 18rem;
-    height: 6rem;
-    border-radius: 15px;
-    border-color: aquamarine;
-    margin: 2.5rem;
-    color: white;
-
-    background-color: #63e2fb;
     background-color: #3c78d8ff;
-
   }
 
 @media screen and (max-width:50em) {
