@@ -6,35 +6,26 @@
     <div class="logo"><img src="/img/logo.png">Glosor</div>
   </header>
 
-  <!--<<ResponsiveNav v-bind:hideNav="hideNav">
-    <button v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
-    <router-link v-bind:to="'/create/'+lang">{{uiLabels.createPoll}}</router-link>
-    <a href="">Pricing</a>
-    <a href="">About</a>
-    <a href="">FAQ</a>
-  </ResponsiveNav>-->
-  <body>
-  <img id="background" src="https://static.vecteezy.com/system/resources/previews/001/198/033/non_2x/world-map-png.png" alt="map">
+  <body id="body">
+    <h1 class="headline">
+      WELCOME!
+    </h1>
+    <img id="background" src="https://static.vecteezy.com/system/resources/previews/001/198/033/non_2x/world-map-png.png" alt="map">
+    <div class="wrapper">
+      <button class="buttons" @click="$router.push('/create/'+lang)">CREATE</button>
+      <button class="buttons" @click="$router.push('/play/'+lang)">PLAY</button>
+    </div>
+
+    <ResponsiveNav v-bind:hideNav="hideNav">
+      <button class="languagebutton" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
+      <!--<router-link v-bind:to="'/create/'+lang">{{uiLabels.createPoll}}</router-link>-->
+    </ResponsiveNav>
   </body>
 
-  <h1>Welcome!</h1>
-  <!--<label>
-    Write poll id: 
-    <input type="text" v-model="id">
-  </label>
-
-  <router-link v-bind:to="'/poll/'+id">{{uiLabels.participatePoll}}</router-link>
+  <!--<router-link v-bind:to="'/poll/'+id">{{uiLabels.participatePoll}}</router-link>
   <router-link v-bind:to="'/poll/'+id">{{uiLabels.participatePoll}}</router-link>-->
 
-  <div class="wrapper">
-    <button class="buttonA" @click="$router.push('/create/'+lang)">Create Quiz</button>
-    <button class="buttonB" @click="$router.push('/play/'+lang)">Play Quiz</button>
-  </div>
 
-  <ResponsiveNav v-bind:hideNav="hideNav">
-    <button class="languagebutton" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
-    <!--<router-link v-bind:to="'/create/'+lang">{{uiLabels.createPoll}}</router-link>-->
-  </ResponsiveNav>
 </template>
 
 <script>
@@ -76,7 +67,6 @@ export default {
 </script>
 <style scoped>
   header {
-    background-color: gray;
     width: 100%;
     display: grid;
     grid-template-columns: 2em auto;
@@ -107,23 +97,20 @@ export default {
     cursor: pointer;
     font-size: 1.5rem;
   }
+  #body{
+    background-color: #b8f3ff;
+  }
   #background {
-    width: 94%;
+    margin-left: 160px;
+    width: 70%;
     display: grid;
     padding: 3%;
     background-color: #b8f3ff;
   }
-  
-  .wrapper {
-    display: block;
-    grid-gap: 1%;
-    grid-template-columns: 33% 33%;
-
-}
 
 .buttons:hover {
     cursor: pointer;
-    background-color: lightgray;
+    background-color:#a1f196;
   }
 
 .languagebutton:hover {
@@ -131,14 +118,50 @@ export default {
     background-color: white;
 }
 
-  .buttonA {
+.languagebutton{
+  background-color: grey;
+}
+
+.boxA {
+    float: left;
+    width: 200px;
+    margin-left: 200px;
+    margin-top: 10px;
+    padding: 5px;
+    border: 2px solid blue;
+    text-align: center;
+}
+.boxB {
+    float: left;
+    width: 200px;
+    margin-left: 200px;
+    margin-top: 10px;
+    padding: 5px;
+    border: 2px solid blue;
+    text-align: center;
+}
+
+.headline{
+  font-size: 75px;
+  position: absolute;
+  text-align: center;
+  margin-left: 520px;
+  color: white;
+}
+.wrapper{
+  position: absolute;
+  margin-left: 350px;
+  margin-top: -500px;
+}
+  .buttons {
+    font-size: 50px;
+    object-position: center;
     width: 18rem;
     height: 6rem;
     border-radius: 15px;
-    border-color: aquamarine;
+    border-color: white;
     margin: 2.5rem;
     color: white;
-
 
   }
 
@@ -150,6 +173,7 @@ export default {
     margin: 2.5rem;
     color: white;
 
+    background-color: #63e2fb;
   }
 
 @media screen and (max-width:50em) {
@@ -170,4 +194,5 @@ export default {
   }
   
 }
+
 </style>

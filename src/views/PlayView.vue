@@ -46,9 +46,7 @@
     width: 100%;
     height: 33%;
   }
-  body {
-    background-color: rgb(194, 241, 255);
-  }
+  
 
   .logo {
     text-transform: uppercase;
