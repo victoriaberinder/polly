@@ -9,13 +9,13 @@
   <body id="body">
     <img id="background" src="https://static.vecteezy.com/system/resources/previews/001/198/033/non_2x/world-map-png.png" alt="map">
     <div class="wrapper">
-      <button class="buttons" @click="$router.push('/create/'+lang)">CREATE</button>
-      <button class="buttons" @click="$router.push('/play/'+lang)">PLAY</button>
+      <button class="buttons" @click="$router.push('/create/'+lang)">{{uiLabels.createButton}}</button>
+      <button class="buttons" @click="$router.push('/play/'+lang)">{{uiLabels.playButton}}</button>
     </div>
 
     <ResponsiveNav v-bind:hideNav="hideNav">
       <button class="languagebutton" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
-      <!--<router-link v-bind:to="'/create/'+lang">{{uiLabels.createPoll}}</router-link>-->
+      <router-link v-bind:to="'/create/'+lang">{{uiLabels.createPoll}}</router-link>
     </ResponsiveNav>
   </body>
 
@@ -116,7 +116,7 @@ export default {
 }
 
 .languagebutton{
-  background-color: grey;
+  background-color: lightgray;
 }
 
 .boxA {
@@ -160,6 +160,7 @@ export default {
     margin: 2.5rem;
     color: white;
     background-color: #3c78d8ff;
+    text-transform: uppercase;
   }
 
 @media screen and (max-width:50em) {
