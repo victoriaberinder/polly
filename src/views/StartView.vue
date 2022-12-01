@@ -15,7 +15,7 @@
 
     <ResponsiveNav v-bind:hideNav="hideNav">
       <button class="languagebutton" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
-      <router-link v-bind:to="'/create/'+lang">{{uiLabels.createPoll}}</router-link>
+      <!--<router-link v-bind:to="'/create/'+lang">{{uiLabels.createPoll}}</router-link>-->
     </ResponsiveNav>
   </body>
 
