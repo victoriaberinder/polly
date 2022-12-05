@@ -3,7 +3,7 @@
     <div v-bind:class="['hamburger', {'close': !hideNav}]" 
          v-on:click="toggleNav">
     </div>
-    <div class="logo"><img src="https://static.showit.co/400/1yzlYawSRsyajrqRf5NsQg/115216/books1.png">Glossor</div>
+    <div class="logo"><img src="https://static.showit.co/400/1yzlYawSRsyajrqRf5NsQg/115216/books1.png">Glosor</div>
   </header>
 
   <body id="body">
