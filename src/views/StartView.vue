@@ -116,26 +116,14 @@ export default {
 }
 
 .languagebutton{
-  background-color: lightgray;
-}
-
-.boxA {
-    float: left;
-    width: 200px;
-    margin-left: 200px;
-    margin-top: 10px;
-    padding: 5px;
-    border: 2px solid blue;
-    text-align: center;
-}
-.boxB {
-    float: left;
-    width: 200px;
-    margin-left: 200px;
-    margin-top: 10px;
-    padding: 5px;
-    border: 2px solid blue;
-    text-align: center;
+  background-color: rgb(225, 224, 224);
+  border-radius: 15px;
+  border-color: white;
+  margin-left: 20px;
+  margin-top: -50px;
+  text-transform: uppercase;
+  width: 12rem;
+  height: 3rem;
 }
 
 .headline{
@@ -163,6 +151,10 @@ export default {
     text-transform: uppercase;
   }
 
+.hide {
+  background-color: #c7e1ef;
+}
+
 @media screen and (max-width:50em) {
   .logo {
     font-size: 5vw;
@@ -179,7 +171,6 @@ export default {
   .hide {
     left:-12em;
   }
-  
 }
 
 </style>
