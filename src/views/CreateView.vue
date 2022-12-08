@@ -1,38 +1,46 @@
 <template>
-  <body>
-    <div class="container">
-      <div class="wrap">
-        <h1> Add Dynamic Table</h1>
-        <a href="/addInput" class="add">&plus;</a>
+  <h1>Create your quiz </h1>
+  <div class="wrapper">
+       
+      <div class="inputfields" >
+        <div class="word" v-for="key in count" :key="key">
+          <input type="text" v-model="values1['dynamic-field-' + key]" size="50" v-bind:placeholder="uiLabels.word" :id="key">
+        </div>
+      </div>
+      <div class="inputfields">
+        <div class="translation" v-for="key in count" :key="key">
+          <input type="text" v-model="values2['dynamic-field-' + key]" size="50" v-bind:placeholder="uiLabels.translation"
+            :id="key">
+        </div>
+      </div>
+
+    <div class="controls">
+      
+      <a id="add_more_fields" @click="add"><i class="addword"></i> {{uiLabels.addWord}}</a>
+      <a id="remove_fields" @click="remove"><i class="removeWord"></i> {{uiLabels.removeWord}}</a>
     </div>
-    <div class="inp-group">
-    </div>
-    </div>
-  </body>
+    <button class="btn" @click="submit">{{uiLabels.saveQuiz}}</button>
+  </div>
+</template>
   
-  </template>
-  
-  <script >
+<script>
 import io from 'socket.io-client';
 const socket = io();
 
-const addBtn = document.querySelector(".add");
-const input = document.querySelector(".inp-group");
-
 export default {
-  name: 'CreateView',
+
+  name: 'App',
   data: function () {
     return {
+    
       lang: "",
-      pollId: "",
-      question: "",
-      answers: ["", ""],
-      questionNumber: 0,
-      data: {},
-      uiLabels: {}
+      count: 1,
+      values1: {},
+      values2: {},
+      uiLabels: {},
+
     }
   },
-
   created: function () {
     this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang);
@@ -46,85 +54,114 @@ export default {
       this.data = data)
   },
 
+  methods: {
+    add: function () {
+      this.count++;
+      console.log(this.$route)
+     // this.$route.path = '/create/'+123
+      
+
+      
+      
+    },
+    remove: function () {
+      this.count--;
+
+    },
+    submit: function () {
+      for (var key of Object.keys(this.values)) {
+        console.log(key + " -> " + this.values[key])
+      }
+    }
 
 
-removeInput:function (){
-  this.parentElement.remove();
-  socket.emit("removeInput", {pollId: this.removeInput, lang: this.lang })
-},
+  }
+}
+</script>
 
-addInput:function (){
-  socket.emit("addInput", {pollId: this.addInput, lang: this.lang })
-  const name = document.createElement("input");
-  name.type="text";
-  name.placeholder="Enter your name";
-
-  const email = document.createElement("input");
-  email.type="text";
-  name.placeholder="Enter your Email";
-
-  const btn=document.createElement("a");
-  btn.className = "delete";
-  btn.innerHTML = "&times";
-
-  btn.addEventListener("click", this.removeInput);
-
-  const flex=document.createElement("div");
-  flex.className="flex";
-
-  input.appendChild(flex);
-  flex.appendChild(name);
-  flex.appendChild(email);
-  flex.appendChild(btn);
-
-  addBtn.addEventListener("click", this.addInput);
+<style>
+#app {
+  font-family: 'Comfortaa', cursive;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
 }
 
+
+body {
+  background-color: #f0f5ff;
+  color: #fff;
 }
-  </script>
-  
-  <style>
-  *{
-    margin:0;
-    padding:0;
-    box-sizing: border-box;
-  }
-  body {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(to top right, white 0%);
-  }
-  .container{
-    max-width: 600px;
-    background: grey;
-    border-radius: 5px;
-    width: 600px;
-    padding: 20px;
-    box-shadow: 0 2px 2px 3px black;
-  }
-  .wrap{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 40px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #ccc;
-  }
-  .add{
-    text-decoration: none;
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    background: pink;
-    font-size: 2rem;
-    font-weight: bold;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  </style>
+
+.btn {
+  width: 50%;
+  background: #3f51b5;
+  color: white;
+  border: 0;
+  padding: 7px;
+  border-radius: 5px;
+}
+
+.wrapper {
+  width: 1000px;
+  margin: 40px auto;
+  padding: 10px;
+  border-radius: 5px;
+  background: white;
+  box-shadow: 0px 10px 40px 0px rgba(47, 47, 47, .1);
+}
+
+
+
+.inputfields{
+  display: inline-block;
+
+}
+
+
+
+input[type="text"] {
+  padding: 10px;
+  margin: 30px;
+  display: block;
+  border-radius: 20px;
+  border: 1px solid lightgrey;
+  background: none;
+  width: 274px;
+  color: black;
+}
+
+input[type="text"]:focus {
+  outline: none;
+}
+
+.controls {
+  width: 294px;
+  margin: 15px auto;
+}
+
+.controls:hover{
+  cursor: pointer;
+}
+
+#remove_fields {
+  float: right;
+}
+
+.controls a i.fa-minus {
+  margin-right: 5px;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+h1 {
+  text-align: center;
+  font-size: 48px;
+  color: #232c3d;
+}
+</style>

@@ -25,6 +25,7 @@
 
 </template>
 
+
 <script>
 import ResponsiveNav from '@/components/ResponsiveNav.vue';
 import io from 'socket.io-client';
@@ -63,11 +64,14 @@ export default {
 }
 </script>
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+
   header {
+    font-family: 'Comfortaa', cursive;
     width: 100%;
     display: grid;
     grid-template-columns: 2em auto;
-    background-color: #c7e1ef;
+    background-color: #d8ecff;
   }
   .logo {
     text-transform: uppercase;
@@ -95,7 +99,11 @@ export default {
     font-size: 1.5rem;
   }
   #body{
-    background-color: #c7e1ef;
+    font-family: 'Comfortaa', cursive;
+    background-color: #d8ecff;
+    
+
+
   }
   #background {
     margin-left: 160px;
@@ -116,6 +124,7 @@ export default {
 }
 
 .languagebutton{
+  font-family: 'Comfortaa', cursive;
   background-color: rgb(225, 224, 224);
   border-radius: 15px;
   border-color: white;
@@ -139,6 +148,7 @@ export default {
   margin-top: -500px;
 }
   .buttons {
+    font-family: 'Comfortaa', cursive;
     font-size: 50px;
     object-position: center;
     width: 18rem;
@@ -152,7 +162,7 @@ export default {
   }
 
 .hide {
-  background-color: #c7e1ef;
+  background-color: #d8ecff;
 }
 
 @media screen and (max-width:50em) {

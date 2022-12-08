@@ -1,10 +1,15 @@
 {
-	"sales-pitch": "Simply. Great. Polling.",
-	"invite": "Invite participants with this link:",
-	"createPoll": "Create poll",
-	"participatePoll": "Participate in poll",
-	"question": "Question",
-	"changeLanguage": "Byt till svenska",
-	"createButton": "CREATE",
-	"playButton": "PLAY"
+    "sales-pitch": "Simply. Great. Polling.",
+    "invite": "Invite participants with this link:",
+    "createPoll": "Create poll",
+    "participatePoll": "Participate in poll",
+    "question": "Question",
+    "changeLanguage": "Byt till svenska",
+    "createButton": "CREATE",
+    "playButton": "PLAY",
+    "word": "Word",
+    "translation": "Translation",
+    "addWord": "Add word",
+    "removeWord": "Remove Word",
+    "saveQuiz":  "Save quiz"
 }
