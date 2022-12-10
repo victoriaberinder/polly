@@ -1,5 +1,5 @@
 <template>
-  <h1>Create your quiz </h1>
+  <h1>{{uiLabels.createHeader}}</h1>
   <div class="wrapper">
        
       <div class="inputfields" >
@@ -15,13 +15,13 @@
       </div>
 
     <div class="controls">
-        <a id="add_more_fields" @click="add" title="add word">
+        <a id="add_more_fields" @click="add" title="Add word">
           <i class="addword"></i>
           <div class="addSign">
             +
           </div>
         </a>
-        <a id="remove_fields" @click="remove" title="remove word">
+        <a id="remove_fields" @click="remove" title="Remove word">
           <i class="removeWord"></i>
           <div class="removeSign">
             -
@@ -54,6 +54,7 @@ export default {
 
     }
   },
+
   created: function () {
     this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang);
@@ -86,6 +87,7 @@ export default {
 
   }
 }
+
 </script>
 
 <style>
