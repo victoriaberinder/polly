@@ -6,5 +6,10 @@
 	"question": "Fråga",
 	"changeLanguage": "Change to English",
 	"createButton": "SKAPA",
-	"playButton": "SPELA"
+	"playButton": "SPELA",
+	"word": "Ord",
+    "translation": "Översättning",
+    "addWord": "Lägg till ord",
+    "removeWord": "Ta bort ord",
+    "saveQuiz":  "Spara quiz"
 }

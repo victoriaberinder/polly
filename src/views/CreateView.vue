@@ -15,11 +15,24 @@
       </div>
 
     <div class="controls">
-      
-      <a id="add_more_fields" @click="add"><i class="addword"></i> {{uiLabels.addWord}}</a>
-      <a id="remove_fields" @click="remove"><i class="removeWord"></i> {{uiLabels.removeWord}}</a>
+        <a id="add_more_fields" @click="add" title="add word">
+          <i class="addword"></i>
+          <div class="addSign">
+            +
+          </div>
+        </a>
+        <a id="remove_fields" @click="remove" title="remove word">
+          <i class="removeWord"></i>
+          <div class="removeSign">
+            -
+          </div>
+        </a>
     </div>
-    <button class="btn" @click="submit">{{uiLabels.saveQuiz}}</button>
+
+    <button class="saveQuizButton" @click="submit">{{uiLabels.saveQuiz}}</button>
+  </div>
+  <div>
+    <button class="exitbutton" @click="$router.push('/')">Exit</button>
   </div>
 </template>
   
@@ -60,9 +73,6 @@ export default {
       console.log(this.$route)
      // this.$route.path = '/create/'+123
       
-
-      
-      
     },
     remove: function () {
       this.count--;
@@ -73,7 +83,6 @@ export default {
         console.log(key + " -> " + this.values[key])
       }
     }
-
 
   }
 }
@@ -89,19 +98,25 @@ export default {
   margin-top: 60px;
 }
 
-
 body {
-  background-color: #f0f5ff;
+  background-color: #d8ecff;
   color: #fff;
 }
 
-.btn {
+.saveQuizButton{
   width: 50%;
   background: #3f51b5;
   color: white;
   border: 0;
   padding: 7px;
   border-radius: 5px;
+}
+
+.saveQuizButton:hover{
+  cursor: pointer;
+  width:32rem;
+  height: 2rem;
+  background-color: #56c770;
 }
 
 .wrapper {
@@ -113,14 +128,10 @@ body {
   box-shadow: 0px 10px 40px 0px rgba(47, 47, 47, .1);
 }
 
-
-
 .inputfields{
   display: inline-block;
 
 }
-
-
 
 input[type="text"] {
   padding: 10px;
@@ -138,12 +149,37 @@ input[type="text"]:focus {
 }
 
 .controls {
-  width: 294px;
-  margin: 15px auto;
+  display: grid;
+  grid-gap: 30px;
+  grid-template-columns: 200px 200px;
+  width: 300px;
+  padding: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.controls:hover{
+.addSign{
+  width: 60px;
+  height: 60px;
+  color:#56c770;
+  font-size: 60px;
+}
+
+.addSign:hover{
   cursor: pointer;
+  font-size: 65px;
+}
+
+.removeSign{
+  width: 60px;
+  height: 60px;
+  color:rgb(235, 76, 76);
+  font-size: 60px;
+}
+
+.removeSign:hover{
+  cursor: pointer;
+  font-size: 65px;
 }
 
 #remove_fields {
@@ -164,4 +200,27 @@ h1 {
   font-size: 48px;
   color: #232c3d;
 }
+
+.exitbutton {
+  width: 4rem;
+  height: 2rem;
+  border-radius: 15px;
+  border-color: rgb(227, 123, 123);
+  margin: 2.5rem;
+  color: white;
+  background-color: rgb(235, 76, 76);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: 15px; 
+}
+
+.exitbutton:hover{
+
+  cursor: pointer;
+  width: 5%;
+  height: 4%;
+  background-color: rgb(235, 60, 60);
+}
+  
 </style>
