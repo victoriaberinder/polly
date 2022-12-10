@@ -32,6 +32,7 @@
     <button class="saveQuizButton" @click="submit">{{uiLabels.saveQuiz}}</button>
   </div>
   <div>
+    <!-- skapa lyssnare som skickar iväg pageLoaded, som i sin tur returnerar uiLabels (och eventuellt annan typ av data)-->
     <button class="exitbutton" @click="$router.push('/')">Exit</button>
   </div>
 </template>
@@ -83,7 +84,8 @@ export default {
       for (var key of Object.keys(this.values)) {
         console.log(key + " -> " + this.values[key])
       }
-    }
+    },
+    
 
   }
 }
