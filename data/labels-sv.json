@@ -12,5 +12,6 @@
     "translation": "Översättning",
     "addWord": "Lägg till ord",
     "removeWord": "Ta bort ord",
-    "saveQuiz":  "Spara quiz"
+    "saveQuiz":  "Spara quiz",
+	"name": "Namnge ditt quiz"
 }

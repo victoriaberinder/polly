@@ -29,7 +29,7 @@
         </a>
     </div>
 
-    <button class="saveQuizButton" @click="submit">{{uiLabels.saveQuiz}}</button>
+    <button class="saveQuizButton" @click="$router.push('/name/'+lang)">{{uiLabels.saveQuiz}}</button>
   </div>
   <div>
     <!-- skapa lyssnare som skickar iväg pageLoaded, som i sin tur returnerar uiLabels (och eventuellt annan typ av data)-->

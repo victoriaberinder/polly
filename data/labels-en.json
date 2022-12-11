@@ -12,5 +12,6 @@
     "translation": "Translation",
     "addWord": "Add word",
     "removeWord": "Remove Word",
-    "saveQuiz":  "Save quiz"
+    "saveQuiz":  "Save quiz",
+    "name": "Name your quiz"
 }
