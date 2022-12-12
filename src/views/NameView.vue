@@ -67,7 +67,7 @@ input[type="text"] {
     margin: 50px;
     border: 1px solid lightgrey;
     background-color: white;
-    width: 300px;
+    width: 270px;
     height: 60px;
     font-size: 17pt;
     font-family: 'Comfortaa', cursive;
