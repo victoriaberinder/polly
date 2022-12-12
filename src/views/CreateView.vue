@@ -31,7 +31,7 @@
       </a>
     
 
-    <button class="saveQuizButton" @click="$router.push('/name/'+lang)">{{uiLabels.saveQuiz}}</button>
+    <button class="saveQuizButton" @click="save">{{uiLabels.saveQuiz}}</button>
   </div>
 
   </div>
@@ -70,9 +70,9 @@ export default {
     socket.on("init", (labels) => {
       this.uiLabels = labels
     })
-    //socket.on("dataUpdate", (data) =>
-      //this.data = data
-    //)
+    socket.on("dataUpdate", (data) =>
+      this.data = data
+    )
     socket.on("quizCreated", (data) =>
       this.data = data,
       //this.quizId = data.quizId
@@ -102,12 +102,17 @@ export default {
       this.translation.splice(key, 1)
 
     },
+
     submit: function () {
       for (var key of Object.keys(this.values)) {
         console.log(key + " -> " + this.values[key])
       }
     },
-
+    
+    save:  function (){
+      this.$router.push('/name/'+this.lang)
+      //socket.emit("addWord", {w: this.words, t: this.translation} )
+    }
 
   }
 }

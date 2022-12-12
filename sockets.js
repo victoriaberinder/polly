@@ -4,8 +4,8 @@ function sockets(io, socket, data) {
   socket.emit('init', data.getUILabels());
   
   socket.on('pageLoaded', function (lang) {
-    console.log('Pageloaded function')
-    console.log(data.getUILabels(lang))
+    //console.log('Pageloaded function')
+    //console.log(data.getUILabels(lang))
     socket.emit('init', data.getUILabels(lang));
   });
 
@@ -24,6 +24,12 @@ function sockets(io, socket, data) {
   socket.on('addQuestion', function(d) {
     data.addQuestion(d.pollId, {q: d.q, a: d.a});
     socket.emit('dataUpdate', data.getAnswers(d.pollId));
+  });
+
+  socket.on('addWord', function(d) {
+    data.addWord(quizId, {w: d.word, t: d.translation});
+    console.log("pollId och sparat quiz::", quizId, {w: d.word, t: d.translation})
+    //socket.emit('dataUpdate', data.getAnswers(d.quizId));
   });
 
   socket.on('editQuestion', function(d) {
