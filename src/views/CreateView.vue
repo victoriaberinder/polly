@@ -25,19 +25,19 @@
 
     <div class="controls">
       <a id="add_more_fields" @click="add" title="Add word">
-        <div class="addSign">
-          +
+        <div>
+          <button class="addSign"> Add word</button>
         </div>
       </a>
-    </div>
+    
 
     <button class="saveQuizButton" @click="$router.push('/name/'+lang)">{{uiLabels.saveQuiz}}</button>
-
+  </div>
 
   </div>
   <div>
     <!-- skapa lyssnare som skickar iväg pageLoaded, som i sin tur returnerar uiLabels (och eventuellt annan typ av data)-->
-    <button class="exitbutton" @click="$router.push('/'+lang)">Exit</button>
+    <button class="exitbutton" @click="$router.push('/')">Exit</button>
   </div>
 </template>
   
@@ -132,18 +132,20 @@ body {
 .saveQuizButton {
   font-family: 'Comfortaa', cursive;
   font-size: 20px;
-  width: 250px;
+  width: 180px;
   height: 40px;
-  background: #3f51b5;
-  color: white;
+  background: #a8e58cff;
+  color: black;
   border: 0;
+  border-color: black;
   padding: 7px;
-  border-radius: 50px;
+  border-radius: 15px;
+  
 }
 
 .saveQuizButton:hover {
   cursor: pointer;
-  background-color: #56c770;
+  background-color: rgb(135, 229, 92);
 }
 
 .wrapper {
@@ -180,24 +182,29 @@ input[type="text"]:focus {
 
 .controls {
   display: grid;
-  grid-gap: 30px;
+  grid-gap: 10px;
   grid-template-columns: 200px 200px;
   width: 300px;
   padding: 20px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 55%;
+  margin-right: 10%;
 }
 
 .addSign {
-  width: 60px;
-  height: 60px;
-  color: #56c770;
-  font-size: 60px;
+  font-family: 'Comfortaa', cursive;
+  font-size: 20px;
+  width: 180px;
+  height: 40px;
+  background:rgb(255, 227, 141);
+  color: black;
+  border:0;
+  border-color: black;
+  border-radius: 15px;
 }
 
 .addSign:hover {
   cursor: pointer;
-  font-size: 65px;
+  background-color: rgb(253, 213, 92);
 }
 
 #removeSignBox {
@@ -239,7 +246,7 @@ h1 {
 .exitbutton {
   width: 4rem;
   height: 2rem;
-  border-radius: 15px;
+  border-radius: 5px;
   border-color: rgb(227, 123, 123);
   margin: 2.5rem;
   color: white;
@@ -248,13 +255,21 @@ h1 {
   bottom: 0;
   left: 0;
   font-size: 15px;
+  font-family: 'Comfortaa', cursive;
 }
 
 .exitbutton:hover {
 
   cursor: pointer;
-  width: 5%;
-  height: 4%;
-  background-color: rgb(235, 60, 60);
+  width: 4rem;
+  height: 2rem;
+  background-color: rgb(187, 34, 34);
+}
+
+#wrapping{
+  display: inline-block;
+
+  grid-gap: 5%;
+  grid-template-columns: 50% 50%;
 }
 </style>

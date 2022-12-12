@@ -4,6 +4,8 @@ function sockets(io, socket, data) {
   socket.emit('init', data.getUILabels());
   
   socket.on('pageLoaded', function (lang) {
+    console.log('Pageloaded function')
+    console.log(data.getUILabels(lang))
     socket.emit('init', data.getUILabels(lang));
   });
 

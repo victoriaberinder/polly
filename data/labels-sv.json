@@ -13,5 +13,6 @@
     "addWord": "Lägg till ord",
     "removeWord": "Ta bort ord",
     "saveQuiz":  "Spara quiz",
-	"name": "Namnge ditt quiz"
+	"nameQuiz": "Namnge ditt quiz",
+	"name": "Namn"
 }

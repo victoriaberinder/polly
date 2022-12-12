@@ -8,7 +8,7 @@
 
   <body id="body">
     <img id="background" src="https://static.vecteezy.com/system/resources/previews/001/198/033/non_2x/world-map-png.png" alt="map">
-    <div class="wrapper">
+    <div class="wrapper1">
       <button class="buttons" @click="create">{{uiLabels.createButton}}</button>
       <button class="buttons" @click="$router.push('/play/'+lang)">{{uiLabels.playButton}}</button>
     </div>
@@ -46,8 +46,11 @@ export default {
     }
   },
   created: function () {
+    socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels
+      console.log("StartView.vue created")
+      console.log(labels)
     })
   },
   methods: {
@@ -153,7 +156,7 @@ export default {
   margin-left: 520px;
   color: white;
 }
-.wrapper{
+.wrapper1{
   position: absolute;
   margin-left: 350px;
   margin-top: -500px;
