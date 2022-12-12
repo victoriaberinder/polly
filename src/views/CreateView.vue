@@ -9,7 +9,7 @@
     </div>
 
 
-    <button class="saveQuizButton" @click="$router.push('/name/'+lang)">{{uiLabels.saveQuiz}}</button>
+    
 
     <div class="inputfields">
       <div class="translation" v-for="key in count" :key="key">
@@ -35,7 +35,9 @@
       </a>
     </div>
 
-    <button class="saveQuizButton" @click="submit">{{ uiLabels.saveQuiz }}</button>
+    <button class="saveQuizButton" @click="$router.push('/name/'+lang)">{{uiLabels.saveQuiz}}</button>
+
+
 
   </div>
   <div>
