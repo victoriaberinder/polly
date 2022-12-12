@@ -4,7 +4,7 @@
 
     <div class="inputfields">
       <div class="word" v-for="key in count" :key="key">
-        <input type="text" v-model="values1[key]" size="50" v-bind:placeholder="uiLabels.word" :id="key">
+        <input type="text" v-model="words[key]" size="50" v-bind:placeholder="uiLabels.word" :id="key">
       </div>
     </div>
 
@@ -13,7 +13,7 @@
 
     <div class="inputfields">
       <div class="translation" v-for="key in count" :key="key">
-        <input type="text" v-model="values2[key]" size="50" v-bind:placeholder="uiLabels.translation" :id="key">
+        <input type="text" v-model="translation[key]" size="50" v-bind:placeholder="uiLabels.translation" :id="key">
       </div>
     </div>
 
@@ -56,8 +56,8 @@ export default {
 
       lang: "",
       count: 1,
-      values1: [],
-      values2: [],
+      words: [],
+      translation: [],
       uiLabels: {},
 
     }
@@ -85,8 +85,8 @@ export default {
     },
     remove: function (key) {
       this.count--;
-      this.values1.splice(key, 1)
-      this.values2.splice(key, 1)
+      this.words.splice(key, 1)
+      this.translation.splice(key, 1)
 
     },
     submit: function () {
