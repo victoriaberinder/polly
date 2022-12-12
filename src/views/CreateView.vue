@@ -234,7 +234,7 @@ h1 {
 .exitbutton {
   width: 4rem;
   height: 2rem;
-  border-radius: 15px;
+  border-radius: 5px;
   border-color: rgb(227, 123, 123);
   margin: 2.5rem;
   color: white;
