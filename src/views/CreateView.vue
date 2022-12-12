@@ -1,15 +1,11 @@
 <template>
   <h1>{{ uiLabels.createHeader }}</h1>
   <div class="wrapper">
-
     <div class="inputfields">
       <div class="word" v-for="key in count" :key="key">
         <input type="text" v-model="words[key]" size="50" v-bind:placeholder="uiLabels.word" :id="key">
       </div>
     </div>
-
-
-    
 
     <div class="inputfields">
       <div class="translation" v-for="key in count" :key="key">
@@ -56,9 +52,11 @@ export default {
     return {
 
       lang: "",
+      quizId: "",
       count: 1,
       words: [],
       translation: [],
+      data: {},
       uiLabels: {},
 
     }
@@ -66,19 +64,32 @@ export default {
 
 
   created: function () {
+    console.log("data:", this.quizId)
     this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels
     })
-    socket.on("dataUpdate", (data) =>
-      this.data = data
+    //socket.on("dataUpdate", (data) =>
+      //this.data = data
+    //)
+    socket.on("quizCreated", (data) =>
+      this.data = data,
+      //this.quizId = data.quizId
+
+      console.log("data:", this.data)
     )
-    socket.on("pollCreated", (data) =>
-      this.data = data)
+    
   },
 
   methods: {
+
+    //testar att lägga till funktionen createQuiz
+    //createQuiz: function () {
+      //socket.emit("createQuiz", {quizId: this.quizId, lang: this.lang })
+      //console.log("quizId:", this.quizId)
+    //},
+
     add: function () {
       this.count++;
       console.log(this.$route)

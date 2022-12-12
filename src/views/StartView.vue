@@ -9,7 +9,7 @@
   <body id="body">
     <img id="background" src="https://static.vecteezy.com/system/resources/previews/001/198/033/non_2x/world-map-png.png" alt="map">
     <div class="wrapper">
-      <button class="buttons" @click="$router.push('/create/'+lang)">{{uiLabels.createButton}}</button>
+      <button class="buttons" @click="create">{{uiLabels.createButton}}</button>
       <button class="buttons" @click="$router.push('/play/'+lang)">{{uiLabels.playButton}}</button>
     </div>
 
@@ -41,7 +41,8 @@ export default {
       uiLabels: {},
       id: "",
       lang: "en",
-      hideNav: true
+      hideNav: true,
+      quizId: ""
     }
   },
   created: function () {
@@ -59,6 +60,16 @@ export default {
     },
     toggleNav: function () {
       this.hideNav = ! this.hideNav;
+    },
+
+    create: function() {
+      this.$router.push('/create/'+this.lang)
+      for(let i=0; i<5; i++){
+        let random= Math.floor(Math.random()*10)
+        this.quizId+= random.toString()
+      }
+      console.log(this.quizId)
+      socket.emit("createQuiz", {quizId: this.quizId, lang: this.lang })
     }
   }
 }
