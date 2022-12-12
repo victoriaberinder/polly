@@ -3,16 +3,28 @@
     <body>
 
         <body>
+<<<<<<< HEAD
             <div class="text">
                 <p>{{uiLabels.name}}</p>
             </div>
         
+=======
+            <form action="/url" method="GET" class="text">
+                <p>{{ uiLabels.name }}</p>
+            </form>
+        </body>
+>>>>>>> c7dbe1c574956ff24e0b292b7439afa4828da5e0
         <input type="text" placeholder="Titel" class="wrapper">
     </body>
         <div>
-        <button class="saveQuiz" @click="$router.push('/play/' + lang)">{{ uiLabels.saveQuiz }}</button>
-    </div>
+            <button class="saveQuiz" @click="$router.push('/play/' + lang)">{{ uiLabels.saveQuiz }}</button>
+        </div>
     </body>
+
+    <div>
+        <!-- skapa lyssnare som skickar iväg pageLoaded, som i sin tur returnerar uiLabels (och eventuellt annan typ av data)-->
+        <button class="exitbutton" @click="$router.push('/')">Exit</button>
+    </div>
 
 </template>
 
@@ -24,12 +36,12 @@ const socket = io();
 export default {
 
 
-data: function (){
-    return{
-        lang: "",
-        uiLabels: {}
-    }
-},
+    data: function () {
+        return {
+            lang: "",
+            uiLabels: {}
+        }
+    },
 
     created: function () {
         this.lang = this.$route.params.lang;
@@ -67,20 +79,44 @@ body {
 }
 
 .saveQuiz {
-  font-family: 'Comfortaa', cursive;
-  font-size: 20px;
-  width: 250px;
-  height: 40px;
-  background: #3f51b5;
-  color: white;
-  border: 0;
-  padding: 7px;
-  margin: 70px;
-  border-radius: 50px;
+    font-family: 'Comfortaa', cursive;
+    font-size: 20px;
+    width: 250px;
+    height: 40px;
+    background: #3f51b5;
+    color: white;
+    border: 0;
+    padding: 7px;
+    margin: 70px;
+    border-radius: 50px;
 }
+
 .saveQuiz:hover {
-  cursor: pointer;
-  background-color: #56c770;
+    cursor: pointer;
+    background-color: #56c770;
+}
+
+.exitbutton {
+    width: 4rem;
+    height: 2rem;
+    border-radius: 5px;
+    border-color: rgb(227, 123, 123);
+    margin: 2.5rem;
+    color: white;
+    background-color: rgb(235, 76, 76);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: 15px;
+    font-family: 'Comfortaa', cursive;
+}
+
+.exitbutton:hover {
+
+    cursor: pointer;
+    width: 4rem;
+    height: 2rem;
+    background-color: rgb(187, 34, 34);
 }
 
 .text {
