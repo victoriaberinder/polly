@@ -237,13 +237,14 @@ h1 {
   bottom: 0;
   left: 0;
   font-size: 15px;
+  font-family: 'Comfortaa', cursive;
 }
 
 .exitbutton:hover {
 
   cursor: pointer;
-  width: 5%;
-  height: 4%;
-  background-color: rgb(235, 60, 60);
+  width: 4rem;
+  height: 2rem;
+  background-color: rgb(187, 34, 34);
 }
 </style>

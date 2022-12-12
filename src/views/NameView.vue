@@ -4,10 +4,10 @@
 
         <body>
             <form action="/url" method="GET" class="text">
-                <p>Name your quiz</p>
+                <p>{{uiLabels.name}}</p>
             </form>
         </body>
-        <input type="text" placeholder="Enter" class="wrapper">
+        <input type="text" placeholder="Titel" class="wrapper">
         <div>
         <button class="saveQuiz" @click="$router.push('/play/' + lang)">{{ uiLabels.saveQuiz }}</button>
     </div>
