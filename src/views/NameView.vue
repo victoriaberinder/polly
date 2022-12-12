@@ -1,17 +1,14 @@
 <template>
 
-    <body>
-
-        <body>
-            <form action="/url" method="GET" class="text">
-                <p>{{ uiLabels.name }}</p>
-            </form>
-        </body>
-        <input type="text" placeholder="Titel" class="wrapper">
+    
+    <div class="wrapper2">
+        <h1 id="text">{{ uiLabels.nameQuiz }}</h1>
+        <input type="text" v-model="title" size="50" v-bind:placeholder="uiLabels.name" :id="key">
         <div>
             <button class="saveQuiz" @click="$router.push('/play/' + lang)">{{ uiLabels.saveQuiz }}</button>
         </div>
-    </body>
+    </div>
+
 
     <div>
         <!-- skapa lyssnare som skickar iväg pageLoaded, som i sin tur returnerar uiLabels (och eventuellt annan typ av data)-->
@@ -31,7 +28,8 @@ export default {
     data: function () {
         return {
             lang: "",
-            uiLabels: {}
+            uiLabels: {},
+            title: ""
         }
     },
 
@@ -56,18 +54,28 @@ body {
     background-color: #d8ecff;
 }
 
-.wrapper {
-    text-align: center;
-    color: black;
-    border: 1px ridge rgb(177, 177, 177);
+.wrapper2{
+    width: 400px;
+    height: 400px;
+    margin: auto;
+
+}
+
+input[type="text"] {
     border-radius: 50px;
+    margin: 50px;
+    border: 1px solid lightgrey;
     background-color: white;
-    margin-top: 10px;
-    justify-content: center;
-    height: 50px;
     width: 300px;
-    font-size: 15px;
+    height: 60px;
+    font-size: 17pt;
     font-family: 'Comfortaa', cursive;
+    color: black;
+    text-align: center;
+}
+
+input[type="text"]:focus {
+    outline: none;
 }
 
 .saveQuiz {
@@ -78,8 +86,6 @@ body {
     background: #3f51b5;
     color: white;
     border: 0;
-    padding: 7px;
-    margin: 70px;
     border-radius: 50px;
 }
 
@@ -111,13 +117,14 @@ body {
     background-color: rgb(187, 34, 34);
 }
 
-.text {
+#text {
     color: black;
     font-size: 35px;
     font-family: 'Comfortaa', cursive;
     text-align: center;
     margin-top: 150px;
 }
+
 
 .saveQuizButton {
     width: 50%;

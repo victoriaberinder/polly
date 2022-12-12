@@ -13,5 +13,6 @@
     "addWord": "Add word",
     "removeWord": "Remove Word",
     "saveQuiz":  "Save quiz",
-    "name": "Name your quiz"
+    "nameQuiz": "Name your quiz",
+    "name": "Name"
 }
