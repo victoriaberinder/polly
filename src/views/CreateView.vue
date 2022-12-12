@@ -121,14 +121,15 @@ body {
 .saveQuizButton {
   font-family: 'Comfortaa', cursive;
   font-size: 20px;
-  width: 200px;
+  width: 180px;
   height: 40px;
   background: #a8e58cff;
   color: black;
   border: 0;
   border-color: black;
   padding: 7px;
-  border-radius: 20px;
+  border-radius: 15px;
+  
 }
 
 .saveQuizButton:hover {
@@ -170,24 +171,24 @@ input[type="text"]:focus {
 
 .controls {
   display: grid;
-  grid-gap: 30px;
+  grid-gap: 10px;
   grid-template-columns: 200px 200px;
   width: 300px;
   padding: 20px;
-  margin-left: 50%;
-  margin-right: 15%;
+  margin-left: 55%;
+  margin-right: 10%;
 }
 
 .addSign {
   font-family: 'Comfortaa', cursive;
   font-size: 20px;
-  width: 200px;
+  width: 180px;
   height: 40px;
   background:rgb(255, 227, 141);
   color: black;
   border:0;
-  border-radius: 20px;
   border-color: black;
+  border-radius: 15px;
 }
 
 .addSign:hover {

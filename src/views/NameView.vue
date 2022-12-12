@@ -4,6 +4,7 @@
     <div class="wrapper2">
         <h1 id="text">{{ uiLabels.nameQuiz }}</h1>
         <input type="text" v-model="title" size="50" v-bind:placeholder="uiLabels.name" :id="key">
+
         <div>
             <button class="saveQuiz" @click="$router.push('/play/' + lang)">{{ uiLabels.saveQuiz }}</button>
         </div>
