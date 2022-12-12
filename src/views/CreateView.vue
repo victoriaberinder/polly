@@ -38,11 +38,10 @@
     <button class="saveQuizButton" @click="$router.push('/name/'+lang)">{{uiLabels.saveQuiz}}</button>
 
 
-
   </div>
   <div>
     <!-- skapa lyssnare som skickar iväg pageLoaded, som i sin tur returnerar uiLabels (och eventuellt annan typ av data)-->
-    <button class="exitbutton" @click="$router.push('/')">Exit</button>
+    <button class="exitbutton" @click="$router.push('/'+lang)">Exit</button>
   </div>
 </template>
   
@@ -64,6 +63,7 @@ export default {
 
     }
   },
+
 
   created: function () {
     this.lang = this.$route.params.lang;
@@ -119,18 +119,19 @@ body {
 }
 
 .saveQuizButton {
-  width: 50%;
+  font-family: 'Comfortaa', cursive;
+  font-size: 20px;
+  width: 250px;
+  height: 40px;
   background: #3f51b5;
   color: white;
   border: 0;
   padding: 7px;
-  border-radius: 5px;
+  border-radius: 50px;
 }
 
 .saveQuizButton:hover {
   cursor: pointer;
-  width: 32rem;
-  height: 2rem;
   background-color: #56c770;
 }
 
