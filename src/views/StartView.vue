@@ -8,8 +8,8 @@
 
   <body id="body">
     <img id="background" src="https://static.vecteezy.com/system/resources/previews/001/198/033/non_2x/world-map-png.png" alt="map">
-    <div class="wrapper">
-      <button class="buttons" @click="$router.push('/create/'+lang)">{{uiLabels.createButton}}</button>
+    <div class="wrapper1">
+      <button class="buttons" @click="create">{{uiLabels.createButton}}</button>
       <button class="buttons" @click="$router.push('/play/'+lang)">{{uiLabels.playButton}}</button>
     </div>
 
@@ -41,12 +41,16 @@ export default {
       uiLabels: {},
       id: "",
       lang: "en",
-      hideNav: true
+      hideNav: true,
+      quizId: ""
     }
   },
   created: function () {
+    socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels
+      console.log("StartView.vue created")
+      console.log(labels)
     })
   },
   methods: {
@@ -59,6 +63,16 @@ export default {
     },
     toggleNav: function () {
       this.hideNav = ! this.hideNav;
+    },
+
+    create: function() {
+      this.$router.push('/create/'+this.lang)
+      for(let i=0; i<5; i++){
+        let random= Math.floor(Math.random()*10)
+        this.quizId+= random.toString()
+      }
+      console.log(this.quizId)
+      socket.emit("createQuiz", {quizId: this.quizId, lang: this.lang })
     }
   }
 }
@@ -142,7 +156,7 @@ export default {
   margin-left: 520px;
   color: white;
 }
-.wrapper{
+.wrapper1{
   position: absolute;
   margin-left: 350px;
   margin-top: -500px;

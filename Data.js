@@ -5,7 +5,9 @@ const languages = ["en", "se"];
 // Store data in an object to keep the global namespace clean
 function Data() {
   this.polls = {};
+  this.quizes ={};
 }
+
 
 /***********************************************
 For performance reasons, methods are added to the
@@ -31,11 +33,37 @@ Data.prototype.createPoll = function(pollId, lang="en") {
   return this.polls[pollId];
 }
 
+Data.prototype.createQuiz = function(quizId, lang="en"){
+  console.log("Nu är vi i create quiz i data.js och vi har parametrarna quizId och lang. Det är följande:", quizId, lang)
+  if (typeof this.quizes[quizId] === "undefined") {
+    let quiz = {};
+    quiz.lang = lang;  
+    quiz.words = [];
+    quiz.translations = [];
+    quiz.title = "";
+    quiz.id = quizId;
+    //quiz.currentQuestion = 0;              
+    this.quizes[quizId] = quiz;
+    console.log("quiz created", quizId, quiz);
+  }
+  return this.quizes[quizId];
+
+}
+
 Data.prototype.addQuestion = function(pollId, q) {
   const poll = this.polls[pollId];
   console.log("question added to", pollId, q);
   if (typeof poll !== 'undefined') {
     poll.questions.push(q);
+  }
+}
+
+Data.prototype.addWord = function(quizId, word, translation) {
+  const quiz = this.quizes[quizId];
+  console.log("word added to", quizId, word, translation);
+  if (typeof quiz !== 'undefined') {
+    quiz.words.push(word);
+    quiz.translations.push(translation);
   }
 }
 

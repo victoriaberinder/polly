@@ -13,8 +13,13 @@
     "addWord": "Add word",
     "removeWord": "Remove Word",
     "saveQuiz":  "Save quiz",
+<<<<<<< HEAD
     "name": "Name your quiz",
     "answer": "Answer",
     "flashcard": "Flashcard",
     "submit": "Submit"
+=======
+    "nameQuiz": "Name your quiz",
+    "name": "Name"
+>>>>>>> b817981d3d0f131147c854a5c62d92630f431569
 }
