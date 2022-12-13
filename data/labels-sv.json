@@ -13,13 +13,9 @@
     "addWord": "Lägg till ord",
     "removeWord": "Ta bort ord",
     "saveQuiz":  "Spara quiz",
-<<<<<<< HEAD
-	"name": "Namnge ditt quiz",
 	"answer": "Svar",
 	"flashcard": "Flashcard",
-	"submit": "Skicka in"
-=======
+	"submit": "Skicka in",
 	"nameQuiz": "Namnge ditt quiz",
 	"name": "Namn"
->>>>>>> b817981d3d0f131147c854a5c62d92630f431569
 }
