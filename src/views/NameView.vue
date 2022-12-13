@@ -50,7 +50,7 @@ export default {
     },
     methods:{
         save: function(){
-            this.$router.push('/play/' + this.lang)
+            this.$router.push('/play/' + this.eylang)
             socket.emit('addTitle', {q: this.quizId, t: this.title})
         }
     }

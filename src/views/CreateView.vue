@@ -9,6 +9,7 @@
 
     <div class="inputfields">
       <div class="translation" v-for="key in count" :key="key">
+        console.log(key)
         <input type="text" v-model="translation[key]" size="50" v-bind:placeholder="uiLabels.translation" :id="key">
       </div>
     </div>
