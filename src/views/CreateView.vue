@@ -111,7 +111,7 @@ export default {
     },
     
     save:  function (){
-      this.$router.push('/name/'+this.lang)
+      this.$router.push('/name/'+this.lang+'/'+this.quizId)
       console.log(this.words, this.translation)
     
       socket.emit("addWord", {q: this.quizId, w: this.words, t: this.translation} )
