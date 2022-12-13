@@ -13,5 +13,8 @@
     "addWord": "Add word",
     "removeWord": "Remove Word",
     "saveQuiz":  "Save quiz",
-    "name": "Name your quiz"
+    "name": "Name your quiz",
+    "answer": "Answer",
+    "flashcard": "Flashcard",
+    "submit": "Submit"
 }

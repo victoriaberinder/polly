@@ -13,5 +13,8 @@
     "addWord": "Lägg till ord",
     "removeWord": "Ta bort ord",
     "saveQuiz":  "Spara quiz",
-	"name": "Namnge ditt quiz"
+	"name": "Namnge ditt quiz",
+	"answer": "Svar",
+	"flashcard": "Flashcard",
+	"submit": "Skicka in"
 }
