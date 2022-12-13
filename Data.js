@@ -41,7 +41,6 @@ Data.prototype.createQuiz = function(quizId, lang="en"){
     quiz.words = [];
     quiz.translations = [];
     quiz.title = "";
-    quiz.id = quizId;
     //quiz.currentQuestion = 0;              
     this.quizes[quizId] = quiz;
     console.log("quiz created", quizId, quiz);
@@ -60,10 +59,11 @@ Data.prototype.addQuestion = function(pollId, q) {
 
 Data.prototype.addWord = function(quizId, word, translation) {
   const quiz = this.quizes[quizId];
-  console.log("word added to", quizId, word, translation);
+  console.log("word added to", quizId, word, translation)
   if (typeof quiz !== 'undefined') {
     quiz.words.push(word);
     quiz.translations.push(translation);
+    console.log("quiz updated", quizId, this.quizes[quizId]);
   }
 }
 

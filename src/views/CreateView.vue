@@ -52,8 +52,8 @@ export default {
     return {
 
       lang: "",
-      quizId: "",
       count: 1,
+      quizId: "",
       words: [],
       translation: [],
       data: {},
@@ -64,8 +64,10 @@ export default {
 
 
   created: function () {
-    console.log("data:", this.quizId)
+    console.log("Quiz", this.quizId)
     this.lang = this.$route.params.lang;
+    this.quizId = this.$route.params.id;
+    console.log("QuizID:", this.quizId)
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels
@@ -77,7 +79,6 @@ export default {
       this.data = data,
       //this.quizId = data.quizId
 
-      console.log("data:", this.data)
     )
     
   },
@@ -92,7 +93,7 @@ export default {
 
     add: function () {
       this.count++;
-      console.log(this.$route)
+      //console.log(this.$route)
       // this.$route.path = '/create/'+123
 
     },
@@ -111,7 +112,9 @@ export default {
     
     save:  function (){
       this.$router.push('/name/'+this.lang)
-      //socket.emit("addWord", {w: this.words, t: this.translation} )
+      console.log(this.words, this.translation)
+    
+      socket.emit("addWord", {q: this.quizId, w: this.words, t: this.translation} )
     }
 
   }

@@ -39,10 +39,10 @@ export default {
   data: function () {
     return {
       uiLabels: {},
-      id: "",
+      quizId: "",
       lang: "en",
       hideNav: true,
-      quizId: ""
+
     }
   },
   created: function () {
@@ -66,11 +66,12 @@ export default {
     },
 
     create: function() {
-      this.$router.push('/create/'+this.lang)
+      
       for(let i=0; i<5; i++){
         let random= Math.floor(Math.random()*10)
         this.quizId+= random.toString()
       }
+      this.$router.push('/create/'+this.lang+'/'+this.quizId)
       console.log(this.quizId)
       socket.emit("createQuiz", {quizId: this.quizId, lang: this.lang })
     }
