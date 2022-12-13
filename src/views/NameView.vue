@@ -6,7 +6,7 @@
         <input type="text" v-model="title" size="50" v-bind:placeholder="uiLabels.name" :id="key">
 
         <div>
-            <button class="saveQuiz" @click="$router.push('/play/' + lang)">{{ uiLabels.saveQuiz }}</button>
+            <button class="saveQuiz" @click="save">{{ uiLabels.saveQuiz }}</button>
         </div>
     </div>
 
@@ -30,11 +30,13 @@ export default {
         return {
             lang: "",
             uiLabels: {},
-            title: ""
+            title: "",
+            quizId: ""
         }
     },
 
     created: function () {
+        this.quizId = this.$route.params.id
         this.lang = this.$route.params.lang;
         socket.emit("pageLoaded", this.lang);
         socket.on("init", (labels) => {
@@ -45,7 +47,14 @@ export default {
         )
         socket.on("pollCreated", (data) =>
             this.data = data)
+    },
+    methods:{
+        save: function(){
+            this.$router.push('/play/' + this.eylang)
+            socket.emit('addTitle', {q: this.quizId, t: this.title})
+        }
     }
+
 }
 
 </script>

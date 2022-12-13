@@ -13,7 +13,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/PollView.vue')
   },
   {
-    path: '/create/:lang',
+    path: '/create/:lang/:id',
     name: 'CreateView',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -21,7 +21,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/CreateView.vue')
   },
   {
-    path: '/play/:lang',
+    path: '/play/:lang/',
     name: 'PlayView',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -37,7 +37,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/ResultView.vue')
   },
   {
-    path: '/name/:lang',
+    path: '/name/:lang/:id',
     name: 'NameView',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route

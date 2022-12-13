@@ -27,10 +27,14 @@ function sockets(io, socket, data) {
   });
 
   socket.on('addWord', function(d) {
-    data.addWord(quizId, {w: d.word, t: d.translation});
-    console.log("pollId och sparat quiz::", quizId, {w: d.word, t: d.translation})
+    console.log(d.w, d.t)
+    data.addWord( d.q, d.w, d.t);
     //socket.emit('dataUpdate', data.getAnswers(d.quizId));
   });
+
+  socket.on('addTitle', function(d) {
+    data.addTitle(d.q, d.t)
+  })
 
   socket.on('editQuestion', function(d) {
     data.editQuestion(d.pollId, d.index, {q: d.q, a: d.a});
