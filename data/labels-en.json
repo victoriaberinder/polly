@@ -14,5 +14,8 @@
     "removeWord": "Remove Word",
     "saveQuiz":  "Save quiz",
     "nameQuiz": "Name your quiz",
-    "name": "Name"
+    "name": "Name",
+    "answer": "Answer",
+    "flashcard": "Flashcard",
+    "submit": "Submit"
 }
