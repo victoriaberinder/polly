@@ -1,12 +1,9 @@
 <template>
 
     <body>
-
-        <body>
-            <form action="/url" method="GET" class="text">
-                <p>{{ uiLabels.flashcard }}</p>
-            </form>
-        </body>
+        <div class="wrapper2">
+            <h1 type="text">{{ uiLabels.flashcard }}</h1>
+        </div>
         <div>
             <div class="scene scene--card">
                 <div class="card" @click="cardOne == 'start' ? (cardOne = 'flipped') : (cardOne = 'start')"
@@ -16,6 +13,7 @@
                 </div>
             </div>
         </div>
+        <div class="inter">
         <input type="text" placeholder="Answer" class="wrapper">
         <div>
             <button class="submit" @click="$router.push('/flash/' + lang)">{{ uiLabels.submit }}</button>
@@ -23,6 +21,7 @@
         <div>
             <!-- skapa lyssnare som skickar iväg pageLoaded, som i sin tur returnerar uiLabels (och eventuellt annan typ av data)-->
             <button class="exitbutton" @click="$router.push('/' + lang)">Exit</button>
+        </div>
         </div>
     </body>
 </template>
@@ -54,9 +53,6 @@ export default {
             this.data = data)
     }
 }
-
-
-
 </script>
 
 <style>
@@ -76,6 +72,22 @@ body {
     width: 300px;
     font-size: 15px;
     font-family: 'Comfortaa', cursive;
+}
+
+.wrapper2 {
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    text-align: center;
+    height: 50px;
+    width: 300px;
+    font-size: 15px;
+    font-family: 'Comfortaa', cursive;
+}
+
+.inter {
+    margin: 20px;
+    padding: 20px;
 }
 
 .box {
@@ -145,11 +157,12 @@ body {
 }
 
 .scene {
-    width: 200px;
-    height: 260px;
-    border: 1px solid #ccc;
-    margin: 40px 0;
-    perspective: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    border-radius: 50px;
+    width: 800px;
+    height: 500px;
 }
 
 .card {
@@ -159,13 +172,12 @@ body {
     text-align: center;
     font-family: 'Comfortaa', cursive;
     font-size: 20px;
-    width: 500px;
-    height: 200px;
+    width: 800px;
+    height: 500px;
     transition: transform 1s;
     transform-style: preserve-3d;
     cursor: pointer;
-    padding: 7px;
-    margin: 70px;
+    margin: auto;
     border-radius: 50px;
 }
 
@@ -177,12 +189,10 @@ body {
     backface-visibility: hidden;
     font-family: 'Comfortaa', cursive;
     font-size: 20px;
-    width: 500px;
-    height: 200px;
+    width: 800px;
+    height: 500px;
     background: #3f51b5;
-    border: 0;
-    padding: 7px;
-    margin: 70px;
+    margin: auto;
     border-radius: 50px;
 }
 
