@@ -115,8 +115,6 @@ export default {
   #body{
     font-family: 'Comfortaa', cursive;
     background-color: #d8ecff;
-    
-
 
   }
   #background {

@@ -17,5 +17,6 @@
     "name": "Name",
     "answer": "Answer",
     "flashcard": "Flashcard",
-    "submit": "Submit"
+    "submit": "Submit",
+    "playHeader": "Quiz Library"
 }
