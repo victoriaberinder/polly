@@ -61,8 +61,10 @@ Data.prototype.addWord = function(quizId, word, translation) {
   const quiz = this.quizes[quizId];
   console.log("word added to", quizId, word, translation)
   if (typeof quiz !== 'undefined') {
-    quiz.words.push(word);
-    quiz.translations.push(translation);
+    for(let i=0; i<word.length;i++){
+      quiz.words.push(word[i]);
+      quiz.translations.push(translation[i]);
+    }
     console.log("quiz updated", quizId, this.quizes[quizId]);
   }
 }
