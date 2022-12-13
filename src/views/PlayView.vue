@@ -8,12 +8,12 @@
 
       <div class="allQuizes">
       <div v-for="key in count" :key="key">
-          <button class="playbutton" @click="$router.push('/flash/'+lang)">Play</button>            x
+          <button class="playbutton" @click="$router.push('/flash/'+lang)">Play</button>            
       </div>
     </div>
     <div class="allQuizes">
       <div v-for="key in count" :key="key">
-          <button class="editbutton" @click="$router.push('/create/'+lang)">Edit</button>            x
+          <button class="editbutton" @click="$router.push('/create/'+lang)">Edit</button>            
       </div>
     </div>
     <div class="allQuizes">
