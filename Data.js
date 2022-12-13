@@ -67,6 +67,15 @@ Data.prototype.addWord = function(quizId, word, translation) {
   }
 }
 
+Data.prototype.addTitle = function(quizId, title){
+  const quiz = this.quizes[quizId];
+  if (typeof quiz !== 'undefined'){
+    quiz.title = title;
+    console.log("quiz updated", quizId, this.quizes[quizId]);
+  }
+
+}
+
 Data.prototype.editQuestion = function(pollId, index, newQuestion) {
   const poll = this.polls[pollId];
   if (typeof poll !== 'undefined') {
