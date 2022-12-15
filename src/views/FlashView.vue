@@ -7,7 +7,8 @@
         <div class="scene scene--card">
             <div class="card" v-bind:class="{ flipme: cardOne == 'flipped' }">
                 <div class="card__face card__face--front">front</div>
-                <div class="card__face card__face--back">back</div>
+                <div class="card__face card__face--backRight">backRight</div>
+                <div class="card__face card__face--backWrong">backWrong</div>
             </div>
         </div>
         <div class="inter">
@@ -36,7 +37,7 @@ export default {
         return {
             lang: "",
             uiLabels: {},
-            cardOne: "start"
+            cardOne: "start",
         }
     },
 
@@ -51,7 +52,14 @@ export default {
         )
         socket.on("pollCreated", (data) =>
             this.data = data)
-    }
+    },
+
+    // methods: {
+    //     getAnswer: function () {
+    //         Green = this.backRight;
+    //         Red = this.backWrong;
+    //     }
+    // }
 }
 </script>
 
@@ -200,6 +208,11 @@ body {
 
 .card__face--back {
     background: #56c770;
+    transform: rotateX(180deg);
+}
+
+.card__face--backWrong {
+    background: rgb(235, 76, 76);
     transform: rotateX(180deg);
 }
 
