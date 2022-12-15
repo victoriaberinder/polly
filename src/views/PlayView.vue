@@ -1,19 +1,24 @@
 <template>
-  <h1>{{uiLabels.playHeader}}</h1>
+  <h1>{{ uiLabels.playHeader }}</h1>
+  <div v-for="(quiz, key) in quizes" v-bind:key="key">
+          <p>
+            #{{ key }}: {{ quiz.title}} <br>
+          
+          </p>
+          </div>
+  <div class="wrapper3">
+    <div class="allQuizes">
+      <input type="text" v-model="quizId" size="50" v-bind:placeholder="uiLabels.name">
+    </div>
 
-    <div class="wrapper3">
-      <div class="allQuizes">
-      <input type="text" v-model="quizId" size="50" v-bind:placeholder="uiLabels.name" :id="key">
-      </div>
-
-      <div class="allQuizes">
+    <div class="allQuizes">
       <div v-for="key in count" :key="key">
-          <button class="playbutton" @click="$router.push('/flash/'+lang)">Play</button>            
+        <button class="playbutton" @click="$router.push('/flash/' + lang)">Play</button>
       </div>
     </div>
     <div class="allQuizes">
       <div v-for="key in count" :key="key">
-          <button class="editbutton" @click="$router.push('/create/'+lang)">Edit</button>            
+        <button class="editbutton" @click="$router.push('/create/' + lang)">Edit</button>
       </div>
     </div>
     <div class="allQuizes">
@@ -26,16 +31,16 @@
       </div>
     </div>
 
-    </div>
-    
-    <div>
-        <!-- skapa lyssnare som skickar iväg pageLoaded, som i sin tur returnerar uiLabels (och eventuellt annan typ av data)-->
-        <button class="exitbutton" @click="$router.push('/')">Exit</button>
-    </div>
+  </div>
 
-  </template>
+  <div>
+    <!-- skapa lyssnare som skickar iväg pageLoaded, som i sin tur returnerar uiLabels (och eventuellt annan typ av data)-->
+    <button class="exitbutton" @click="$router.push('/')">Exit</button>
+  </div>
+
+</template>
   
-  <script>
+<script>
 import io from 'socket.io-client';
 const socket = io();
 
@@ -49,36 +54,43 @@ export default {
       count: 1,
       data: {},
       uiLabels: {},
+      quizes: {'16792': { lang: 'en', words: [], translations: [], title: '' },
+  '30049': { lang: 'en', words: [], translations: [], title: '' },'78683': { lang: 'en', words: [], translations: [], title: 'hej' }}
 
     }
   },
 
 
   created: function () {
-    console.log("data:", this.quizId)
+
     this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels
     })
-    socket.on("dataUpdate", (data) =>
+    /* socket.on("dataUpdate", (data) =>
       this.data = data
+    ) */
+    socket.on("allQuizes", (data) =>
+      
+      this.quizes = data,
+      console.log("quizes:", this.quizes)
     )
-    socket.on("quizCreated", (data) =>
-      this.data = data,
-      //this.quizId = data.quizId
 
+    socket.on("quizCreated", (data) =>
+      
+      this.quizId = data.quizId,
       console.log("data:", this.data)
     )
-    
+
   },
 
   methods: {
 
     //testar att lägga till funktionen createQuiz
     //createQuiz: function () {
-      //socket.emit("createQuiz", {quizId: this.quizId, lang: this.lang })
-      //console.log("quizId:", this.quizId)
+    //socket.emit("createQuiz", {quizId: this.quizId, lang: this.lang })
+    //console.log("quizId:", this.quizId)
     //},
 
     add: function () {
@@ -101,19 +113,18 @@ export default {
 
   }
 }
-  
-  </script>
 
-  <style>
+</script>
 
-  body {
-    background-color: #d8ecff; 
-  }
+<style>
+body {
+  background-color: #d8ecff;
+}
 
-  h1{
-    font-family: 'Comfortaa', cursive;
-  }
-  
+h1 {
+  font-family: 'Comfortaa', cursive;
+}
+
 .exitbutton {
   width: 4rem;
   height: 2rem;
@@ -150,5 +161,4 @@ export default {
   display: inline-block;
 
 }
-
 </style>

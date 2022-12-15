@@ -3,7 +3,7 @@
     
     <div class="wrapper2">
         <h1 id="text">{{ uiLabels.nameQuiz }}</h1>
-        <input type="text" v-model="title" size="50" v-bind:placeholder="uiLabels.name" :id="key">
+        <input type="text" v-model="title" size="50" v-bind:placeholder="uiLabels.name" >
 
         <div>
             <button class="saveQuiz" @click="save">{{ uiLabels.saveQuiz }}</button>
@@ -50,8 +50,9 @@ export default {
     },
     methods:{
         save: function(){
-            this.$router.push('/play/' + this.eylang)
-            socket.emit('addTitle', {q: this.quizId, t: this.title})
+            this.$router.push('/play/' + this.lang)
+            socket.emit('save', {q: this.quizId, t: this.title})
+
         }
     }
 

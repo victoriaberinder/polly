@@ -75,8 +75,11 @@ Data.prototype.addTitle = function(quizId, title){
     quiz.title = title;
     console.log("quiz updated", quizId, this.quizes[quizId]);
   }
-
 }
+
+Data.prototype.getAllQuizes = function () {
+  return this.quizes;
+};
 
 Data.prototype.editQuestion = function(pollId, index, newQuestion) {
   const poll = this.polls[pollId];

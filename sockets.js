@@ -27,14 +27,18 @@ function sockets(io, socket, data) {
   });
 
   socket.on('addWord', function(d) {
-    console.log(d.w, d.t)
+  
     data.addWord( d.q, d.w, d.t);
     //socket.emit('dataUpdate', data.getAnswers(d.quizId));
   });
 
-  socket.on('addTitle', function(d) {
+  socket.on('save', function(d) {
     data.addTitle(d.q, d.t)
-  })
+    console.log("quizes: ", data.getAllQuizes())
+    socket.emit('allQuizes', data.getAllQuizes() );
+    //io.emit('allQuizes',  { quizes: data.getAllQuizes() })
+    
+  });
 
   socket.on('editQuestion', function(d) {
     data.editQuestion(d.pollId, d.index, {q: d.q, a: d.a});
@@ -61,7 +65,7 @@ function sockets(io, socket, data) {
     data = new Data();
     data.initializeData();
   })
- 
+
 }
 
 module.exports = sockets;
