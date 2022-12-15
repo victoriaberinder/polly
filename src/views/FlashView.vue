@@ -21,7 +21,7 @@
             </div>
             <div>
                 <!-- skapa lyssnare som skickar iväg pageLoaded, som i sin tur returnerar uiLabels (och eventuellt annan typ av data)-->
-                <button class="exitbutton" @click="$router.push('/' + lang)">Exit</button>
+                <button class="exitbutton" @click="$router.push('/')">Exit</button>
             </div>
         </div>
     </body>
@@ -52,14 +52,7 @@ export default {
         )
         socket.on("pollCreated", (data) =>
             this.data = data)
-    },
-
-    // methods: {
-    //     getAnswer: function () {
-    //         Green = this.backRight;
-    //         Red = this.backWrong;
-    //     }
-    // }
+    }
 }
 </script>
 
