@@ -1,7 +1,7 @@
 <template>
 
     <body>
-        <div class="wrapper2">
+        <div class="wrapper4">
             <h1 type="text">{{ uiLabels.flashcard }}</h1>
         </div>
         <div class="scene scene--card">
@@ -12,15 +12,14 @@
             </div>
         </div>
         <div class="inter">
-            <input type="text" placeholder="answer" class="wrapper">
+            <input type="text" placeholder="answer" class="wrapper5">
             <div>
-                <div class="wrapper3">
+                <div class="wrapper6">
                     <button class="submit" @click="[(cardOne == 'start' ? (cardOne = 'flipped') : (cardOne = 'start'))],
                     [$router.push('/flash/' + lang)]">{{ uiLabels.submit }}</button>
                 </div>
             </div>
             <div>
-                <!-- skapa lyssnare som skickar iväg pageLoaded, som i sin tur returnerar uiLabels (och eventuellt annan typ av data)-->
                 <button class="exitbutton" @click="$router.push('/')">Exit</button>
             </div>
         </div>
@@ -61,7 +60,7 @@ body {
     background-color: #d8ecff;
 }
 
-.wrapper {
+.wrapper5 {
     text-align: center;
     color: black;
     border: 1px ridge rgb(177, 177, 177);
@@ -75,7 +74,7 @@ body {
     font-family: 'Comfortaa', cursive;
 }
 
-.wrapper2 {
+.wrapper4 {
     margin-left: auto;
     margin-right: auto;
     justify-content: center;
@@ -86,7 +85,7 @@ body {
     font-family: 'Comfortaa', cursive;
 }
 
-.wrapper3 {
+.wrapper6 {
     margin-left: auto;
     margin-right: auto;
     justify-content: center;

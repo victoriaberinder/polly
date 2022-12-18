@@ -25,7 +25,7 @@
       <div v-for="key in count" :key="key">
         <a id="removeSignBox">
           <a class="removeSign" @click="remove(key)" title="Remove word">
-            Delete
+            <button class="deletebutton">Delete</button>
           </a>
         </a>
       </div>
@@ -155,6 +155,64 @@ h1 {
   border-radius: 30px;
   background: #ffffff;
   /*box-shadow: 0px 10px 40px 0px rgba(47, 47, 47, .1);*/
+}
+
+.playbutton {
+  font-family: 'Comfortaa', cursive;
+  font-size: 20px;
+  width: 120px;
+  height: 40px;
+  background: #a8e58cff;
+  color: black;
+  border: 0;
+  border-color: black;
+  padding: 7px;
+  border-radius: 15px;
+  margin-left: 32px;
+}
+
+.editbutton {
+  font-family: 'Comfortaa', cursive;
+  font-size: 20px;
+  width: 120px;
+  height: 40px;
+  background: rgb(255, 227, 141);
+  color: black;
+  border: 0;
+  border-color: black;
+  padding: 7px;
+  border-radius: 15px;
+  margin-left: 32px;
+}
+
+.deletebutton{
+  font-family: 'Comfortaa', cursive;
+  font-size: 20px;
+  width: 120px;
+  height: 40px;
+  background: rgb(235, 76, 76);
+  color: white;
+  border: 0;
+  border-color: black;
+  padding: 7px;
+  border-radius: 15px;
+  margin-left: 32px;
+} 
+
+.playbutton:hover {
+  cursor: pointer;
+  background-color: rgb(135, 229, 92);
+}
+
+
+.editbutton:hover {
+  cursor: pointer;
+  background-color: rgb(253, 213, 92);
+}
+
+.deletebutton:hover {
+  cursor: pointer;
+  background-color: rgb(241, 15, 15);
 }
 
 .allQuizes {
