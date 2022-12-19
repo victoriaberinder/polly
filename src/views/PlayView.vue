@@ -2,7 +2,7 @@
   <h1>{{ uiLabels.playHeader }}</h1>
   <div v-for="(quiz, key) in quizes" v-bind:key="key">
           <p>
-            #{{ key }}: {{ quiz.title}} <br>
+            {{ key }}: {{ quiz.title}} <br>
           
           </p>
           </div>
@@ -54,8 +54,7 @@ export default {
       count: 1,
       data: {},
       uiLabels: {},
-      quizes: {'16792': { lang: 'en', words: [], translations: [], title: '' },
-  '30049': { lang: 'en', words: [], translations: [], title: '' },'78683': { lang: 'en', words: [], translations: [], title: 'hej' }}
+      quizes: {}
 
     }
   },
@@ -65,17 +64,18 @@ export default {
 
     this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang);
+    socket.emit("getAllQuizes")
     socket.on("init", (labels) => {
       this.uiLabels = labels
     })
     /* socket.on("dataUpdate", (data) =>
       this.data = data
     ) */
-    socket.on("allQuizes", (data) =>
-      
-      this.quizes = data,
-      console.log("quizes:", this.quizes)
+    socket.on("allQuizes", (data) => {
+      this.quizes = data
+    }
     )
+    
 
     socket.on("quizCreated", (data) =>
       

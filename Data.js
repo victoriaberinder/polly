@@ -34,7 +34,6 @@ Data.prototype.createPoll = function(pollId, lang="en") {
 }
 
 Data.prototype.createQuiz = function(quizId, lang="en"){
-  console.log("Nu är vi i create quiz i data.js och vi har parametrarna quizId och lang. Det är följande:", quizId, lang)
   if (typeof this.quizes[quizId] === "undefined") {
     let quiz = {};
     quiz.lang = lang;  
@@ -43,7 +42,7 @@ Data.prototype.createQuiz = function(quizId, lang="en"){
     quiz.title = "";
     //quiz.currentQuestion = 0;              
     this.quizes[quizId] = quiz;
-    console.log("quiz created", quizId, quiz);
+    
   }
   return this.quizes[quizId];
 
@@ -51,7 +50,6 @@ Data.prototype.createQuiz = function(quizId, lang="en"){
 
 Data.prototype.addQuestion = function(pollId, q) {
   const poll = this.polls[pollId];
-  console.log("question added to", pollId, q);
   if (typeof poll !== 'undefined') {
     poll.questions.push(q);
   }
@@ -59,13 +57,11 @@ Data.prototype.addQuestion = function(pollId, q) {
 
 Data.prototype.addWord = function(quizId, word, translation) {
   const quiz = this.quizes[quizId];
-  console.log("word added to", quizId, word, translation)
   if (typeof quiz !== 'undefined') {
     for(let i=1; i<word.length;i++){
       quiz.words.push(word[i]);
       quiz.translations.push(translation[i]);
     }
-    console.log("quiz updated", quizId, this.quizes[quizId]);
   }
 }
 
@@ -73,7 +69,6 @@ Data.prototype.addTitle = function(quizId, title){
   const quiz = this.quizes[quizId];
   if (typeof quiz !== 'undefined'){
     quiz.title = title;
-    console.log("quiz updated", quizId, this.quizes[quizId]);
   }
 }
 
@@ -90,7 +85,7 @@ Data.prototype.editQuestion = function(pollId, index, newQuestion) {
 
 Data.prototype.getQuestion = function(pollId, qId=null) {
   const poll = this.polls[pollId];
-  console.log("question requested for ", pollId, qId);
+
   if (typeof poll !== 'undefined') {
     if (qId !== null) {
       poll.currentQuestion = qId;

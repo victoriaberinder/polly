@@ -32,10 +32,16 @@ function sockets(io, socket, data) {
     //socket.emit('dataUpdate', data.getAnswers(d.quizId));
   });
 
+  socket.on('getAllQuizes', function() {
+    socket.emit('allQuizes', data.getAllQuizes() );
+    //io.emit('allQuizes',  { quizes: data.getAllQuizes() })
+    
+  });
+
   socket.on('save', function(d) {
     data.addTitle(d.q, d.t)
     console.log("quizes: ", data.getAllQuizes())
-    socket.emit('allQuizes', data.getAllQuizes() );
+  
     //io.emit('allQuizes',  { quizes: data.getAllQuizes() })
     
   });
