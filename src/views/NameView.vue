@@ -1,9 +1,9 @@
 <template>
 
     
-    <div class="wrapper2">
+    <div class="wrapper2" action="" method="get">
         <h1 id="text">{{ uiLabels.nameQuiz }}</h1>
-        <input type="text" v-model="title" size="50" v-bind:placeholder="uiLabels.name" >
+        <input type="text" v-model="title" size="50" v-bind:placeholder="uiLabels.name" required>
 
         <div>
             <button class="saveQuiz" @click="save">{{ uiLabels.saveQuiz }}</button>
@@ -54,6 +54,7 @@ export default {
             socket.emit('save', {q: this.quizId, t: this.title})
 
         }
+
     }
 
 }

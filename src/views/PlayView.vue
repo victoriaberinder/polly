@@ -1,33 +1,30 @@
 <template>
   <h1>{{ uiLabels.playHeader }}</h1>
-  <div v-for="(quiz, key) in quizes" v-bind:key="key">
+  
+  <div class="wrapper3">
+    <div class="allQuizes">
+    <div v-for="(quiz, key) in quizes" v-bind:key="key">
           <p>
-            {{ key }}: {{ quiz.title}} <br>
+             {{ quiz.title}} <br>
           
           </p>
           </div>
-  <div class="wrapper3">
+        </div>
     <div class="allQuizes">
-      <input type="text" v-model="quizId" size="50" v-bind:placeholder="uiLabels.name">
-    </div>
-
-    <div class="allQuizes">
-      <div v-for="key in count" :key="key">
+      <div v-for="key in quizes" :key="key" >
         <button class="playbutton" @click="$router.push('/flash/' + lang)">Play</button>
       </div>
     </div>
     <div class="allQuizes">
-      <div v-for="key in count" :key="key">
+      <div v-for="key in quizes" :key="key">
         <button class="editbutton" @click="$router.push('/create/' + lang)">Edit</button>
       </div>
     </div>
     <div class="allQuizes">
-      <div v-for="key in count" :key="key">
-        <a id="removeSignBox">
-          <a class="removeSign" @click="remove(key)" title="Remove word">
+      <div v-for="key in quizes" :key="key">
+          <a  @click="remove(key)" title="Remove word">
             <button class="deletebutton">Delete</button>
           </a>
-        </a>
       </div>
     </div>
 
@@ -54,7 +51,8 @@ export default {
       count: 1,
       data: {},
       uiLabels: {},
-      quizes: {}
+      quizes: {},
+      allQuizes: {}
 
     }
   },
@@ -100,10 +98,13 @@ export default {
 
     },
     remove: function (key) {
-      this.count--;
-      this.quizId.splice(key, 1)
+      this.quizes--;
+      this.quiz.splice(key, 1)
+      this.play.splice(key,1)
+      this.editbutton.splice(key,1)
 
     },
+  
 
     submit: function () {
       for (var key of Object.keys(this.values)) {
@@ -154,6 +155,9 @@ h1 {
   padding: 10px;
   border-radius: 30px;
   background: #ffffff;
+  margin-bottom: 100px;
+  font-size: 20px;
+  font-family:'Comfortaa', cursive ;
   /*box-shadow: 0px 10px 40px 0px rgba(47, 47, 47, .1);*/
 }
 
@@ -161,7 +165,7 @@ h1 {
   font-family: 'Comfortaa', cursive;
   font-size: 20px;
   width: 120px;
-  height: 40px;
+  height: 32px;
   background: #a8e58cff;
   color: black;
   border: 0;
@@ -169,13 +173,14 @@ h1 {
   padding: 7px;
   border-radius: 15px;
   margin-left: 32px;
+  margin-bottom: 10px;
 }
 
 .editbutton {
   font-family: 'Comfortaa', cursive;
   font-size: 20px;
   width: 120px;
-  height: 40px;
+  height: 32px;
   background: rgb(255, 227, 141);
   color: black;
   border: 0;
@@ -183,13 +188,14 @@ h1 {
   padding: 7px;
   border-radius: 15px;
   margin-left: 32px;
+  margin-bottom: 10px;
 }
 
 .deletebutton{
   font-family: 'Comfortaa', cursive;
   font-size: 20px;
   width: 120px;
-  height: 40px;
+  height: 32px;
   background: rgb(235, 76, 76);
   color: white;
   border: 0;
@@ -197,6 +203,7 @@ h1 {
   padding: 7px;
   border-radius: 15px;
   margin-left: 32px;
+  margin-bottom: 10px;
 } 
 
 .playbutton:hover {

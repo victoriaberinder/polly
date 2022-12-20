@@ -84,6 +84,9 @@ export default {
     
   },
 
+    
+    
+
   methods: {
 
     //testar att lägga till funktionen createQuiz
@@ -116,7 +119,7 @@ export default {
       console.log(this.words, this.translation)
     
       socket.emit("addWord", {q: this.quizId, w: this.words, t: this.translation} )
-    }
+    },
 
   }
 }
