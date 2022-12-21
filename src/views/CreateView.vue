@@ -3,14 +3,14 @@
   <div class="wrapper">
     <div class="inputfields">
       <div class="word" v-for="key in count" :key="key">
-        <input type="text" v-model="words[key]" size="50" v-bind:placeholder="uiLabels.word" :id="key">
+        <input class="input" type="text" v-model="words[key]" size="50" v-bind:placeholder="uiLabels.word" :id="key">
       </div>
     </div>
 
     <div class="inputfields">
       <div class="translation" v-for="key in count" :key="key">
         
-        <input type="text" v-model="translation[key]" size="50" v-bind:placeholder="uiLabels.translation" :id="key">
+        <input class="input" type="text" v-model="translation[key]" size="50" v-bind:placeholder="uiLabels.translation" :id="key">
       </div>
     </div>
 
@@ -32,7 +32,7 @@
       </a>
     
 
-    <button class="saveQuizButton" @click="save">{{uiLabels.saveQuiz}}</button>
+    <button class="saveQuizButton1" @click="save">{{uiLabels.saveQuiz}}</button>
   </div>
 
   </div>
@@ -139,7 +139,7 @@ body {
   color: #fff;
 }
 
-.saveQuizButton {
+.saveQuizButton1 {
   font-family: 'Comfortaa', cursive;
   font-size: 20px;
   width: 180px;
@@ -153,7 +153,7 @@ body {
   
 }
 
-.saveQuizButton:hover {
+.saveQuizButton1:hover {
   cursor: pointer;
   background-color: rgb(135, 229, 92);
 }
@@ -172,7 +172,7 @@ body {
 
 }
 
-input[type="text"] {
+input[class="input"] {
   padding: 10px;
   margin: 30px;
   display: block;

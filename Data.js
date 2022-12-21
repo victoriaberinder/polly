@@ -123,6 +123,14 @@ Data.prototype.getAnswers = function(pollId) {
   }
   return {}
 }
+
+Data.prototype.deleteQuiz = function(key) {
+  delete this.quizes[key];
+
+
+}
+
+
 module.exports = Data;
 
 

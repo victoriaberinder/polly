@@ -1,15 +1,15 @@
 <template>
   <h1>{{ uiLabels.playHeader }}</h1>
-  
+
   <div class="wrapper3">
     <div class="allQuizes">
-    <div v-for="(quiz, key) in quizes" v-bind:key="key">
-          <p>
-             {{ quiz.title}} <br>
-          
-          </p>
-          </div>
-        </div>
+      <div v-for="(quiz, key) in quizes" v-bind:key="key">
+        <p>
+          {{ quiz.title }} <br>
+
+        </p>
+      </div>
+    </div>
     <div class="allQuizes">
       <div v-for="(quiz, key) in quizes" v-bind:key="key">
 
@@ -22,10 +22,10 @@
       </div>
     </div>
     <div class="allQuizes">
-      <div v-for="key in quizes" :key="key">
-          <a  @click="remove(key)" title="Remove word">
-            <button class="deletebutton">Delete</button>
-          </a>
+      <div v-for="(quiz, key) in quizes" v-bind:key="key">
+        <a @click="remove(key)" title="Remove word">
+          <button class="deletebutton">Delete</button>
+        </a>
       </div>
     </div>
 
@@ -67,20 +67,20 @@ export default {
     socket.on("init", (labels) => {
       this.uiLabels = labels
     })
-    /* socket.on("dataUpdate", (data) =>
-      this.data = data
-    ) */
+    //socket.on("quizesUpdated", (data) =>
+    //  this.quizes = data
+    //) 
     socket.on("allQuizes", (data) => {
       this.quizes = data
-      console.log("quizes:", data)
+      //console.log("quizes:", data)
     }
     )
-    
+
 
     socket.on("quizCreated", (data) =>
-      
+
       this.quizId = data.quizId,
-      
+
     )
 
   },
@@ -95,18 +95,26 @@ export default {
 
     add: function () {
       this.count++;
-      console.log(this.$route)
+      //console.log(this.$route)
       // this.$route.path = '/create/'+123
 
     },
-    remove: function () {
-      console.log("hej",this.quizId);
-      const a = 98760;
-      delete this.quizes[a];
-      console.log(this.quizes);
-  
+    remove: function (key) {
+      //console.log("hej",this.quizId);
+      //const a = 98760;
+      //delete this.quizes[key];
+      socket.emit("deleteQuiz", key);
+      socket.emit("getAllQuizes");
+      socket.on("allQuizes", (data) => {
+        this.quizes = data
+        console.log("quizes1:", data)
+      }
+      )
+
+
+
     },
-  
+
 
     submit: function () {
       for (var key of Object.keys(this.values)) {
@@ -159,7 +167,7 @@ h1 {
   background: #ffffff;
   margin-bottom: 100px;
   font-size: 20px;
-  font-family:'Comfortaa', cursive ;
+  font-family: 'Comfortaa', cursive;
   /*box-shadow: 0px 10px 40px 0px rgba(47, 47, 47, .1);*/
 }
 
@@ -193,7 +201,7 @@ h1 {
   margin-bottom: 10px;
 }
 
-.deletebutton{
+.deletebutton {
   font-family: 'Comfortaa', cursive;
   font-size: 20px;
   width: 120px;
@@ -206,7 +214,7 @@ h1 {
   border-radius: 15px;
   margin-left: 32px;
   margin-bottom: 10px;
-} 
+}
 
 .playbutton:hover {
   cursor: pointer;

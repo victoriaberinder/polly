@@ -3,7 +3,7 @@
     
     <div class="wrapper2" action="" method="get">
         <h1 id="text">{{ uiLabels.nameQuiz }}</h1>
-        <input type="text" v-model="title" size="50" v-bind:placeholder="uiLabels.name" required>
+        <input class="input1" type="text" v-model="title" size="50" v-bind:placeholder="uiLabels.name" required>
 
         <div>
             <button class="saveQuiz" @click="save">{{ uiLabels.saveQuiz }}</button>
@@ -73,13 +73,13 @@ body {
 
 }
 
-input[type="text"] {
+input[class="input1"] {
     border-radius: 50px;
     margin: 50px;
     border: 1px solid lightgrey;
     background-color: white;
-    width: 270px;
-    height: 60px;
+    width: 300px;
+    height: 80px;
     font-size: 17pt;
     font-family: 'Comfortaa', cursive;
     color: black;

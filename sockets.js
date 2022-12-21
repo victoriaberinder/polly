@@ -72,6 +72,12 @@ function sockets(io, socket, data) {
     data.initializeData();
   });
 
+  socket.on("deleteQuiz", function(key) {
+    data.deleteQuiz(key);
+    //socket.emit("quizesUpdated", data.getAllQuizes());
+    console.log(data.getAllQuizes());
+  }
+  )
 }
 
 module.exports = sockets;
