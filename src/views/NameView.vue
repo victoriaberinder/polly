@@ -1,12 +1,12 @@
 <template>
 
-    
+
     <div class="wrapper2" action="" method="get">
         <h1 id="text">{{ uiLabels.nameQuiz }}</h1>
         <input class="input1" type="text" v-model="title" size="50" v-bind:placeholder="uiLabels.name" required>
 
         <div>
-            <button class="saveQuiz" @click="save">{{ uiLabels.saveQuiz }}</button>
+            <button v-bind:disabled="title == ''" class="saveQuiz" @click="save">{{ uiLabels.saveQuiz }}</button>
         </div>
     </div>
 
@@ -48,10 +48,11 @@ export default {
         socket.on("pollCreated", (data) =>
             this.data = data)
     },
-    methods:{
-        save: function(){
+    methods: {
+        save: function () {
+            
             this.$router.push('/play/' + this.lang)
-            socket.emit('save', {q: this.quizId, t: this.title})
+            socket.emit('save', { q: this.quizId, t: this.title })
 
         }
 
@@ -66,7 +67,7 @@ body {
     background-color: #d8ecff;
 }
 
-.wrapper2{
+.wrapper2 {
     width: 400px;
     height: 400px;
     margin: auto;
@@ -137,20 +138,10 @@ input[type="text"]:focus {
     margin-top: 150px;
 }
 
-
-.saveQuizButton {
-    width: 50%;
-    background: #3f51b5;
-    color: white;
-    border: 0;
-    padding: 7px;
-    border-radius: 5px;
+.saveQuiz:disabled {
+    background-color: dimgrey;
+    color: linen;
+    opacity: 1;
 }
 
-.saveQuizButton:hover {
-    cursor: pointer;
-    width: 32rem;
-    height: 2rem;
-    background-color: #56c770;
-}
 </style>
