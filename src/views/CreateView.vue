@@ -3,14 +3,15 @@
   <div class="wrapper">
     <div class="inputfields">
       <div class="word" v-for="key in count" :key="key">
-        <input class="input" type="text" v-model="words[key]" size="50" v-bind:placeholder="uiLabels.word" :id="key">
+        <input class="input" type="text" v-model="words[key-1]" size="50" v-bind:placeholder="uiLabels.word" :id="key">
+        
       </div>
     </div>
 
     <div class="inputfields">
       <div class="translation" v-for="key in count" :key="key">
         
-        <input class="input" type="text" v-model="translation[key]" size="50" v-bind:placeholder="uiLabels.translation" :id="key">
+        <input class="input" type="text" v-model="translation[key-1]" size="50" v-bind:placeholder="uiLabels.translation" :id="key">
       </div>
     </div>
 
@@ -81,7 +82,12 @@ export default {
     socket.emit("getQuiz", this.quizId);
     socket.on("quiz", (data) => {
       this.quiz = data,
-      console.log("hej",data)}
+      this.words = data.words
+      this.translation = data.translations
+      if(data.words.length !=0){
+        this.count = data.words.length
+        console.log("hej", data.words)}
+      }
       //this.translation = this.quiz.translations,
       //this.words = this.quiz.words
     )
@@ -120,6 +126,7 @@ export default {
     
     save:  function (){
       this.$router.push('/name/'+this.lang+'/'+this.quizId)
+      console.log(this.words, this.translation)
       socket.emit("addWord", {q: this.quizId, w: this.words, t: this.translation} )
     },
 

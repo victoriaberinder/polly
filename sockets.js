@@ -27,7 +27,7 @@ function sockets(io, socket, data) {
   });
 
   socket.on('addWord', function(d) {
-  
+    console.log("QuizID:", d.q, "Words:", d.w, "Translation:", d.t)
     data.addWord( d.q, d.w, d.t);
     //socket.emit('dataUpdate', data.getAnswers(d.quizId));
   });

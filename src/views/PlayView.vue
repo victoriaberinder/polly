@@ -76,7 +76,6 @@ export default {
     }
     )
 
-
     socket.on("quizCreated", (data) =>
 
       this.quizId = data.quizId,

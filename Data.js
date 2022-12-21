@@ -57,8 +57,10 @@ Data.prototype.addQuestion = function(pollId, q) {
 
 Data.prototype.addWord = function(quizId, word, translation) {
   const quiz = this.quizes[quizId];
+  quiz.words = [];
+  quiz.translations =[];
   if (typeof quiz !== 'undefined') {
-    for(let i=1; i<word.length;i++){
+    for(let i=0; i<word.length;i++){
       quiz.words.push(word[i]);
       quiz.translations.push(translation[i]);
     }
