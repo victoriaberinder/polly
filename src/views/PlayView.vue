@@ -97,12 +97,12 @@ export default {
       // this.$route.path = '/create/'+123
 
     },
-    remove: function (key) {
-      this.quizes--;
-      this.quiz.splice(key, 1)
-      this.play.splice(key,1)
-      this.editbutton.splice(key,1)
-
+    remove: function () {
+      console.log("hej",this.quizId);
+      const a = 98760;
+      delete this.quizes[a];
+      console.log(this.quizes);
+  
     },
   
 

@@ -70,7 +70,7 @@ function sockets(io, socket, data) {
   socket.on('resetAll', () => {
     data = new Data();
     data.initializeData();
-  })
+  });
 
 }
 
