@@ -6,11 +6,7 @@
         <input class="input1" type="text" v-model="title" size="50" v-bind:placeholder="uiLabels.name" >
 
         <div>
-<<<<<<< HEAD
             <button v-bind:disabled="title == ''" class="saveQuiz" @click="save">{{ uiLabels.saveQuiz }}</button>
-=======
-            <button class="saveQuiz" type ="submit" @click="save">{{ uiLabels.saveQuiz }}</button>
->>>>>>> 0a8dfd2d737f83341adad94ca0a9a30e3b0f14ab
         </div>
     </div>
 
