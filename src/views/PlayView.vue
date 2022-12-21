@@ -11,13 +11,14 @@
           </div>
         </div>
     <div class="allQuizes">
-      <div v-for="key in quizes" :key="key" >
-        <button class="playbutton" @click="$router.push('/flash/' + lang)">Play</button>
+      <div v-for="(quiz, key) in quizes" v-bind:key="key">
+
+        <button class="playbutton" @click="$router.push('/flash/' + lang + '/' + key)">Play</button>
       </div>
     </div>
     <div class="allQuizes">
-      <div v-for="key in quizes" :key="key">
-        <button class="editbutton" @click="$router.push('/create/' + lang)">Edit</button>
+      <div v-for="(quiz, key) in quizes" v-bind:key="key">
+        <button class="editbutton" @click="$router.push('/create/' + lang + '/' + key)">Edit</button>
       </div>
     </div>
     <div class="allQuizes">
@@ -71,6 +72,7 @@ export default {
     ) */
     socket.on("allQuizes", (data) => {
       this.quizes = data
+      console.log("quizes:", data)
     }
     )
     
@@ -78,7 +80,7 @@ export default {
     socket.on("quizCreated", (data) =>
       
       this.quizId = data.quizId,
-      console.log("data:", this.data)
+      
     )
 
   },
