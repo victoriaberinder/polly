@@ -50,7 +50,11 @@ export default {
     socket.on("init", (labels) => {
       this.uiLabels = labels
       //console.log("StartView.vue created")
+<<<<<<< HEAD
       
+=======
+      //console.log(labels)
+>>>>>>> 0a8dfd2d737f83341adad94ca0a9a30e3b0f14ab
     })
   },
   methods: {

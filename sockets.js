@@ -77,7 +77,12 @@ function sockets(io, socket, data) {
     //socket.emit("quizesUpdated", data.getAllQuizes());
     console.log(data.getAllQuizes());
   }
-  )
+  );
+  socket.on("getQuiz", function(key){
+    console.log("quiz", data.getQuiz(key))
+    socket.emit('quiz', data.getQuiz(key) );
+    
+  })
 }
 
 module.exports = sockets;

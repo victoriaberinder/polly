@@ -76,6 +76,10 @@ Data.prototype.getAllQuizes = function () {
   return this.quizes;
 };
 
+Data.prototype.getQuiz = function(key) {
+  return this.quizes[key];
+}
+
 Data.prototype.editQuestion = function(pollId, index, newQuestion) {
   const poll = this.polls[pollId];
   if (typeof poll !== 'undefined') {
