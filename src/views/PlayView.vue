@@ -2,33 +2,21 @@
   <h1>{{ uiLabels.playHeader }}</h1>
 
   <div class="wrapper3">
-    <div class="allQuizes">
       <div v-for="(quiz, key) in quizes" v-bind:key="key">
-        <p>
-          {{ quiz.title }} <br>
+        <div class="size">
+          <p id="title">
+            {{ key }} : {{ quiz.title }}
+          </p>
+        </div>
+        <div class="size sizeButtons">
+          <button class="playbutton" @click="$router.push('/flash/' + lang + '/' + key)">Play</button>
+          <button class="editbutton" @click="edit(key)">Edit</button>
+          <a @click="remove(key)" title="Remove word">
+            <button class="deletebutton">Delete</button>
+          </a>
 
-        </p>
+        </div>
       </div>
-    </div>
-    <div class="allQuizes">
-      <div v-for="(quiz, key) in quizes" v-bind:key="key">
-
-        <button class="playbutton" @click="$router.push('/flash/' + lang + '/' + key)">Play</button>
-      </div>
-    </div>
-    <div class="allQuizes">
-      <div v-for="(quiz, key) in quizes" v-bind:key="key">
-        <button class="editbutton" @click="edit(key)" >Edit</button>
-      </div>
-    </div>
-    <div class="allQuizes">
-      <div v-for="(quiz, key) in quizes" v-bind:key="key">
-        <a @click="remove(key)" title="Remove word">
-          <button class="deletebutton">Delete</button>
-        </a>
-      </div>
-    </div>
-
   </div>
 
   <div>
@@ -87,22 +75,15 @@ export default {
 
   methods: {
 
-    //testar att lägga till funktionen createQuiz
-    //createQuiz: function () {
-    //socket.emit("createQuiz", {quizId: this.quizId, lang: this.lang })
-    //console.log("quizId:", this.quizId)
-    //},
+
 
     add: function () {
       this.count++;
-      //console.log(this.$route)
-      // this.$route.path = '/create/'+123
+
 
     },
     remove: function (key) {
-      //console.log("hej",this.quizId);
-      //const a = 98760;
-      //delete this.quizes[key];
+
       socket.emit("deleteQuiz", key);
       socket.emit("getAllQuizes");
       socket.on("allQuizes", (data) => {
@@ -112,8 +93,8 @@ export default {
       )
 
     },
-    
-    edit: function(key) {
+
+    edit: function (key) {
       this.$router.push('/create/' + this.lang + '/' + this.siteId + '/' + key)
     },
 
@@ -141,6 +122,22 @@ h1 {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+#title{
+  text-align: left;
+  font-size: 25px;
+  margin-left: 5%;
+}
+.size {
+  width: 500px;
+  height: 60px;
+  display: inline-block;
+
+}
+
+.sizeButtons{
+  text-align: right;
+
 }
 
 .exitbutton {
@@ -187,10 +184,10 @@ h1 {
   color: black;
   border: 0;
   border-color: black;
-  padding: 7px;
   border-radius: 15px;
-  margin-left: 32px;
-  margin-bottom: 10px;
+  padding: 7px;
+  margin-left: 7px;
+  
 }
 
 .editbutton {
@@ -204,8 +201,8 @@ h1 {
   border-color: black;
   padding: 7px;
   border-radius: 15px;
-  margin-left: 32px;
-  margin-bottom: 10px;
+  margin-left: 7px;
+  
 }
 
 .deletebutton {
@@ -217,10 +214,10 @@ h1 {
   color: white;
   border: 0;
   border-color: black;
-  padding: 7px;
   border-radius: 15px;
-  margin-left: 32px;
-  margin-bottom: 10px;
+  padding: 7px;
+  margin-left: 7px;
+  
 }
 
 .playbutton:hover {
@@ -239,8 +236,4 @@ h1 {
   background-color: rgb(241, 15, 15);
 }
 
-.allQuizes {
-  display: inline-block;
-
-}
 </style>
