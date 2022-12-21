@@ -57,7 +57,7 @@ export default {
       quizId: "",
       words: [],
       translation: [],
-      data: {},
+      quiz: {},
       uiLabels: {},
 
     }
@@ -72,12 +72,18 @@ export default {
       this.uiLabels = labels
     })
     socket.on("dataUpdate", (data) =>
-      this.data = data
+      this.quiz = data
     )
     socket.on("quizCreated", (data) =>
-      this.data = data,
+      this.quiz = data,
       //this.quizId = data.quizId
-
+    )
+    socket.emit("getQuiz", this.quizId);
+    socket.on("quiz", (data) => {
+      this.quiz = data,
+      console.log("hej",data)}
+      //this.translation = this.quiz.translations,
+      //this.words = this.quiz.words
     )
     
   },

@@ -3,10 +3,10 @@
     
     <div class="wrapper2" action="" method="get">
         <h1 id="text">{{ uiLabels.nameQuiz }}</h1>
-        <input class="input1" type="text" v-model="title" size="50" v-bind:placeholder="uiLabels.name" required>
+        <input class="input1" type="text" v-model="title" size="50" v-bind:placeholder="uiLabels.name" >
 
         <div>
-            <button class="saveQuiz" @click="save">{{ uiLabels.saveQuiz }}</button>
+            <button class="saveQuiz" type ="submit" @click="save">{{ uiLabels.saveQuiz }}</button>
         </div>
     </div>
 

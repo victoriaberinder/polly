@@ -18,7 +18,7 @@
     </div>
     <div class="allQuizes">
       <div v-for="(quiz, key) in quizes" v-bind:key="key">
-        <button class="editbutton" @click="$router.push('/create/' + lang + '/' + key)">Edit</button>
+        <button class="editbutton" @click="edit(key)" >Edit</button>
       </div>
     </div>
     <div class="allQuizes">
@@ -111,8 +111,10 @@ export default {
       }
       )
 
-
-
+    },
+    
+    edit: function(key) {
+      this.$router.push('/create/' + this.lang + '/' + key)
     },
 
 
@@ -134,6 +136,11 @@ body {
 
 h1 {
   font-family: 'Comfortaa', cursive;
+  /* -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; */
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
 }
 
 .exitbutton {

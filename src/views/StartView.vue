@@ -49,8 +49,8 @@ export default {
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels
-      console.log("StartView.vue created")
-      console.log(labels)
+      //console.log("StartView.vue created")
+      //console.log(labels)
     })
   },
   methods: {
