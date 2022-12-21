@@ -53,7 +53,8 @@ export default {
       data: {},
       uiLabels: {},
       quizes: {},
-      allQuizes: {}
+      allQuizes: {},
+      siteId: "edit"
 
     }
   },
@@ -113,7 +114,7 @@ export default {
     },
     
     edit: function(key) {
-      this.$router.push('/create/' + this.lang + '/' + key)
+      this.$router.push('/create/' + this.lang + '/' + this.siteId + '/' + key)
     },
 
 

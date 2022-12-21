@@ -13,7 +13,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/PollView.vue')
   },
   {
-    path: '/create/:lang/:id',
+    path: '/create/:lang/:siteId/:id',
     name: 'CreateView',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
