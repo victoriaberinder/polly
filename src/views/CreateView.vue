@@ -65,10 +65,8 @@ export default {
 
 
   created: function () {
-    console.log("Quiz", this.quizId)
     this.lang = this.$route.params.lang;
     this.quizId = this.$route.params.id;
-    console.log("QuizID:", this.quizId)
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels
