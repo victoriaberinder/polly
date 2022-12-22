@@ -10,8 +10,10 @@
             <div class="card" v-bind:class="{ flip: cardOne == 'flipped' }">
                 <div class="card__face card__faceFront">{{ words[index] }}</div>
                 <div class="card__face"
-                    v-bind:class="{ card__faceBackWrong: cardOneWord == false, card__faceBackRight: cardOneWord == true }">
-                    {{ translations[index] }}
+                    v-bind:class="{ card__faceBackWrong: cardOneWord == false, card__faceBackRight: cardOneWord == true }" >
+                    <div v-bind:class="{hideText: hideBack == true}">
+                        {{ translations[index] }}
+                    </div>
                 </div>
             </div>
         </div>
@@ -50,7 +52,8 @@ export default {
             cardOneWord: false,
             words: [],
             translations: [],
-            index: 0
+            index: 0,
+            hideBack: true
 
         }
     },
@@ -76,6 +79,7 @@ export default {
         },
 
         getAnswer: function () {
+            this.hideBack = false;
             if (this.cardAnswer == this.translations[this.index]) {
                 this.cardOneWord = true
             }
@@ -85,8 +89,10 @@ export default {
         },
         nextQuestion: function () {
             this.cardOne = 'start'
-            this.index++
             this.cardAnswer = ''
+            this.hideBack = true
+            this.index++
+            
         }
     }
 }
@@ -254,6 +260,10 @@ body {
 .card__faceBackRight {
     background: #56c770;
     transform: rotateX(180deg);
+}
+
+.hideText{
+    color: transparent;
 }
 
 .card__faceBackWrong {
