@@ -18,7 +18,7 @@
         </div>
         <hr>
       </div>
-      <button class="ButtonCreateNew"> Create new quiz</button>
+      <button class="ButtonCreateNew" @click="create"> {{ uiLabels.createNewQuiz }}</button>
       
   </div>
 
@@ -45,7 +45,8 @@ export default {
       uiLabels: {},
       quizes: {},
       allQuizes: {},
-      siteId: "edit"
+      siteId: "edit",
+      newQuizId: ""
 
     }
   },
@@ -106,6 +107,16 @@ export default {
       for (var key of Object.keys(this.values)) {
         console.log(key + " -> " + this.values[key])
       }
+    },
+    create: function() {
+      
+      for(let i=0; i<5; i++){
+        let random= Math.floor(Math.random()*10)
+        this.newQuizId+= random.toString()
+      }
+      this.$router.push('/create/'+this.lang+'/new/'+this.newQuizId)
+      console.log(this.newQuizId)
+      socket.emit("createQuiz", {quizId: this.newQuizId, lang: this.lang })
     }
 
   }

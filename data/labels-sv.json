@@ -23,5 +23,6 @@
 	"username": "Användarnamn",
 	"play": "Spela",
     "edit": "Redigera",
-    "delete": "Radera"
+    "delete": "Radera",
+	"createNewQuiz": "Skapa nytt quiz"
 }

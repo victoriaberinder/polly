@@ -23,5 +23,6 @@
     "username": "Username",
     "play": "Play",
     "edit": "Edit",
-    "delete": "Delete"
+    "delete": "Delete",
+    "createNewQuiz": "Create new quiz"
 }
