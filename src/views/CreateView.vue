@@ -114,8 +114,8 @@ export default {
     },
     remove: function (key) {
       this.count--;
-      this.words.splice(key, 1)
-      this.translation.splice(key, 1)
+      this.words.splice(key-1, 1)
+      this.translation.splice(key-1, 1)
 
     },
 

@@ -14,9 +14,12 @@
           <a @click="remove(key)" title="Remove word">
             <button class="deletebutton">Delete</button>
           </a>
-
+          
         </div>
+        <hr>
       </div>
+      <button class="ButtonCreateNew"> Create new quiz</button>
+      
   </div>
 
   <div>
@@ -115,6 +118,11 @@ body {
   background-color: #d8ecff;
 }
 
+hr{
+  margin-top: 2px;
+  border-top: 1px solid #d8ecff;
+}
+
 h1 {
   font-family: 'Comfortaa', cursive;
   /* -webkit-font-smoothing: antialiased;
@@ -184,7 +192,7 @@ h1 {
   color: black;
   border: 0;
   border-color: black;
-  border-radius: 15px;
+  border-radius: 10px;
   padding: 7px;
   margin-left: 7px;
   
@@ -200,7 +208,7 @@ h1 {
   border: 0;
   border-color: black;
   padding: 7px;
-  border-radius: 15px;
+  border-radius: 10px;
   margin-left: 7px;
   
 }
@@ -214,10 +222,25 @@ h1 {
   color: white;
   border: 0;
   border-color: black;
-  border-radius: 15px;
+  border-radius: 10px;
   padding: 7px;
   margin-left: 7px;
   
+}
+
+.ButtonCreateNew{
+  font-family: 'Comfortaa', cursive;
+  font-size: 20px;
+  width: 200px;
+  height: 32px;
+  background: rgb(108, 169, 227);
+  color: rgb(0, 0, 0);
+  border: 0;
+  border-color: black;
+  border-radius: 10px;
+  padding: 7px;
+  
+
 }
 
 .playbutton:hover {
