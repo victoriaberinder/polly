@@ -18,5 +18,7 @@
 	"submit": "Skicka in",
 	"nameQuiz": "Namnge ditt quiz",
 	"name": "Namn",
-	"playHeader": "Quizbibliotek"
+	"playHeader": "Quizbibliotek",
+	"usernameQuiz": "Ange ditt användarnamn",
+	"username": "Användarnamn"
 }

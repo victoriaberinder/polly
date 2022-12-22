@@ -26,9 +26,9 @@
     </div>
 
     <div class="controls">
-      <a id="add_more_fields" @click="add" title="Add word">
+      <a id="add_more_fields" @click="add">
         <div>
-          <button class="addSign"> Add word</button>
+          <button class="addSign">{{uiLabels.addWord}}</button>
         </div>
       </a>
     
@@ -252,7 +252,7 @@ input[type="text"]:focus {
 
 .removeSign:hover {
   cursor: pointer;
-  font-size: 65px;
+  font-size: 61px;
 }
 
 

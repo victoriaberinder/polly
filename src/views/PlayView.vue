@@ -9,7 +9,7 @@
           </p>
         </div>
         <div class="size sizeButtons">
-          <button class="playbutton" @click="$router.push('/flash/' + lang + '/' + key)">Play</button>
+          <button class="playbutton" @click="$router.push('/username/' + lang + '/' + key)">Play</button>
           <button class="editbutton" @click="edit(key)">Edit</button>
           <a @click="remove(key)" title="Remove word">
             <button class="deletebutton">Delete</button>
