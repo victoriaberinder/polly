@@ -5,7 +5,7 @@
             <h1 type="text">{{ uiLabels.flashcard }}</h1>
             
         </div>
-        <p>{{ index+1}} / {{ words.length }}</p>
+        <p class="count">{{ index+1}} / {{ words.length }}</p>
         <div class="scene sceneCard">
             <div class="card" v-bind:class="{ flip: cardOne == 'flipped' }">
                 <div class="card__face card__faceFront">{{ words[index] }}</div>
@@ -22,9 +22,10 @@
                 <button v-if="cardOne != 'flipped'" class="submit" @click="[flipCard()], [getAnswer()]">{{
                         uiLabels.submit
                 }}</button>
-            </div>
-            <button v-if="cardOne == 'flipped'" class="nextQuestionButton" @click="nextQuestion"> Next question
+            
+            <button v-else class="nextQuestionButton" @click="nextQuestion"> Next question
             </button>
+            </div>
             <div>
                 <button class="exitbutton" @click="$router.push('/')">Exit</button>
             </div>
@@ -95,7 +96,9 @@ export default {
 body {
     background-color: #d8ecff;
 }
-
+.count{
+    color: black;
+}
 .wrapper5 {
     text-align: center;
     color: black;
@@ -214,12 +217,11 @@ body {
 }
 
 .card {
-    position: absolute;
-    line-height: 260px;
+    /* position: absolute;
+    line-height: 260px; */
     color: white;
     text-align: center;
     font-family: 'Comfortaa', cursive;
-    font-size: 20px;
     width: 800px;
     height: 500px;
     transition: transform 1s;
@@ -232,12 +234,12 @@ body {
 
 .card__face {
     position: absolute;
-    line-height: 260px;
-    color: white;
+    line-height: 450px;
     text-align: center;
+    color: white;
     backface-visibility: hidden;
     font-family: 'Comfortaa', cursive;
-    font-size: 20px;
+    font-size: 60px;
     width: 800px;
     height: 500px;
     background: #3f51b5;

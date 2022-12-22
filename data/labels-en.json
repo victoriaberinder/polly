@@ -20,5 +20,8 @@
     "submit": "Submit",
     "playHeader": "Quiz Library",
     "usernameQuiz": "Add your username",
-    "username": "Username"
+    "username": "Username",
+    "play": "Play",
+    "edit": "Edit",
+    "delete": "Delete"
 }

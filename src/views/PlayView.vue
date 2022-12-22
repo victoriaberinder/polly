@@ -9,10 +9,10 @@
           </p>
         </div>
         <div class="size sizeButtons">
-          <button class="playbutton" @click="$router.push('/username/' + lang + '/' + key)">Play</button>
-          <button class="editbutton" @click="edit(key)">Edit</button>
+          <button class="playbutton" @click="$router.push('/username/' + lang + '/' + key)">{{uiLabels.play}}</button>
+          <button class="editbutton" @click="edit(key)">{{uiLabels.edit}}</button>
           <a @click="remove(key)" title="Remove word">
-            <button class="deletebutton">Delete</button>
+            <button class="deletebutton">{{uiLabels.delete}}</button>
           </a>
           
         </div>

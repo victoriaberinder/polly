@@ -20,5 +20,8 @@
 	"name": "Namn",
 	"playHeader": "Quizbibliotek",
 	"usernameQuiz": "Ange ditt användarnamn",
-	"username": "Användarnamn"
+	"username": "Användarnamn",
+	"play": "Spela",
+    "edit": "Redigera",
+    "delete": "Radera"
 }
