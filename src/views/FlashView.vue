@@ -4,23 +4,24 @@
         <div class="wrapper4">
             <h1 type="text">{{ uiLabels.flashcard }}</h1>
         </div>
-        <div class="scene scene--card">
-            <div class="card" v-bind:class="{ flipme: cardOne == 'flipped' }">
-                <div class="card__face card__face--front">front</div>
-                <div class="card__face card__face--backRight">backRight</div>
-                <div class="card__face card__face--backWrong">backWrong</div>
+        <div class="scene sceneCard">
+            <div class="card" v-bind:class="{ flip: cardOne == 'flipped' }">
+                <div class="card__face card__faceFront"></div>
+                <div class="card__face"
+                    v-bind:class="{ card__faceBackWrong: cardOneWord == 'wrong', card__faceBackRight: cardOneWord == 'right' }">
+                </div>
             </div>
         </div>
         <div class="inter">
-            <input type="text" placeholder="answer" class="wrapper5">
+            <input type="text" placeholder="answer" class="wrapper5" v-model="cardOneWord">
             <div>
                 <div class="wrapper6">
-                    <button class="submit" @click="[(cardOne == 'start' ? (cardOne = 'flipped') : (cardOne = 'start'))],
-                    [$router.push('/flash/' + lang)]">{{ uiLabels.submit }}</button>
+                    <button class="submit" @click="[flipCard()], [getAnswer()]">{{
+                            uiLabels.submit
+                    }}</button>
                 </div>
             </div>
             <div>
-                 <!-- skapa lyssnare som skickar iväg pageLoaded, som i sin tur returnerar uiLabels (och eventuellt annan typ av data)-->
                 <button class="exitbutton" @click="$router.push('/')">Exit</button>
             </div>
         </div>
@@ -37,7 +38,10 @@ export default {
         return {
             lang: "",
             uiLabels: {},
-            cardOne: "start",
+            cardOne: "",
+            answer: "",
+            cardOneWord: "",
+            wordArray: ['hej', 'två', 'tre'],
         }
     },
 
@@ -52,6 +56,20 @@ export default {
         )
         socket.on("pollCreated", (data) =>
             this.data = data)
+    },
+    methods: {
+        flipCard: function () {
+            (this.cardOne == 'start' ? (this.cardOne = 'flipped') : (this.cardOne = 'start'))
+        },
+
+        getAnswer: function () {
+            if (this.cardOneWord) {
+                return this.cardOneWord == 'right'
+            }
+            else {
+                return this.cardOneWord == 'wrong'
+            }
+        }
     }
 }
 </script>
@@ -178,6 +196,7 @@ body {
     cursor: pointer;
     margin: auto;
     border-radius: 50px;
+    perspective: 1000px;
 }
 
 .card__face {
@@ -195,22 +214,25 @@ body {
     border-radius: 50px;
 }
 
-.card__face--front {
+.card__faceFront {
     background: #3f51b5;
 }
 
-.card__face--back {
+.card__faceBackRight {
     background: #56c770;
     transform: rotateX(180deg);
 }
 
-.card__face--backWrong {
+.card__faceBackWrong {
     background: rgb(235, 76, 76);
     transform: rotateX(180deg);
 }
 
-/* this style is applied when the card is clicked */
-.flipme {
+.noflip {
+    transform: rotateX(0deg);
+}
+
+.flip {
     transform: rotateX(180deg);
 }
 </style>
