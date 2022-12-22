@@ -3,32 +3,32 @@
     <body>
         <div class="wrapper4">
             <h1 type="text">{{ uiLabels.flashcard }}</h1>
+            
         </div>
-        <div class="ALL" v-for="(word, translation) in quiz" v-bind:key="translation">
+        <p>{{ index+1}} / {{ words.length }}</p>
         <div class="scene sceneCard">
             <div class="card" v-bind:class="{ flip: cardOne == 'flipped' }">
-                <div class="card__face card__faceFront" v-for="word in words" :key="word">{{ word }}</div>
+                <div class="card__face card__faceFront">{{ words[index] }}</div>
                 <div class="card__face"
-                    v-bind:class="{ card__faceBackWrong: cardOneWord == false, card__faceBackRight: cardOneWord == true }"
-                    v-for="translation in translations" :key="translation">
-                    {{ translation }}
+                    v-bind:class="{ card__faceBackWrong: cardOneWord == false, card__faceBackRight: cardOneWord == true }">
+                    {{ translations[index] }}
                 </div>
             </div>
         </div>
         <div class="inter">
-            <input type="text" placeholder="answer" class="wrapper5" v-model="cardAnswer">
-            <div>
-                <div class="wrapper6">
-                    <button class="submit" @click="[flipCard()], [getAnswer()]">{{
-                            uiLabels.submit
-                    }}</button>
-                </div>
+            <input type="text" placeholder="answer" class="wrapper5" v-model="cardAnswer" v-bind:readonly="cardOne == 'flipped'">
+            <div class="wrapper6">
+
+                <button v-if="cardOne != 'flipped'" class="submit" @click="[flipCard()], [getAnswer()]">{{
+                        uiLabels.submit
+                }}</button>
             </div>
+            <button v-if="cardOne == 'flipped'" class="nextQuestionButton" @click="nextQuestion"> Next question
+            </button>
             <div>
                 <button class="exitbutton" @click="$router.push('/')">Exit</button>
             </div>
         </div>
-    </div>
     </body>
 </template>
 
@@ -44,12 +44,13 @@ export default {
             quizId: "",
             quiz: {},
             uiLabels: {},
-            cardOne: "",
+            cardOne: "start",
             cardAnswer: "",
             cardOneWord: false,
             words: [],
             translations: [],
-            wordArray: ['hej', 'två', 'tre'],
+            index: 0
+
         }
     },
 
@@ -60,12 +61,12 @@ export default {
         socket.on("init", (labels) => {
             this.uiLabels = labels
         })
-        console.log('key' + this.quizId)
         socket.emit("getQuiz", this.quizId);
         socket.on("quiz", (data) => {
             this.quiz = data
             this.words = data.words
             this.translations = data.translations
+
         })
     },
     methods: {
@@ -74,12 +75,17 @@ export default {
         },
 
         getAnswer: function () {
-            if (this.cardAnswer == this.translations) {
+            if (this.cardAnswer == this.translations[this.index]) {
                 this.cardOneWord = true
             }
             else {
                 this.cardOneWord = false
             }
+        },
+        nextQuestion: function () {
+            this.cardOne = 'start'
+            this.index++
+            this.cardAnswer = ''
         }
     }
 }
@@ -182,6 +188,20 @@ body {
     width: 4rem;
     height: 2rem;
     background-color: rgb(187, 34, 34);
+}
+
+.nextQuestionButton {
+    text-align: center;
+    color: white;
+    border: 1px ridge rgb(177, 177, 177);
+    border-radius: 50px;
+    background-color: #3f51b5;
+    margin-top: 10px;
+    justify-content: center;
+    height: 50px;
+    width: 300px;
+    font-size: 15px;
+    font-family: 'Comfortaa', cursive;
 }
 
 .scene {
