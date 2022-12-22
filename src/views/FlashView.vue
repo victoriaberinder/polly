@@ -4,16 +4,19 @@
         <div class="wrapper4">
             <h1 type="text">{{ uiLabels.flashcard }}</h1>
         </div>
+        <div class="ALL" v-for="(word, translation) in quiz" v-bind:key="translation">
         <div class="scene sceneCard">
             <div class="card" v-bind:class="{ flip: cardOne == 'flipped' }">
-                <div class="card__face card__faceFront"></div>
+                <div class="card__face card__faceFront" v-for="word in words" :key="word">{{ word }}</div>
                 <div class="card__face"
-                    v-bind:class="{ card__faceBackWrong: cardOneWord == 'wrong', card__faceBackRight: cardOneWord == 'right' }">
+                    v-bind:class="{ card__faceBackWrong: cardOneWord == false, card__faceBackRight: cardOneWord == true }"
+                    v-for="translation in translations" :key="translation">
+                    {{ translation }}
                 </div>
             </div>
         </div>
         <div class="inter">
-            <input type="text" placeholder="answer" class="wrapper5" v-model="cardOneWord">
+            <input type="text" placeholder="answer" class="wrapper5" v-model="cardAnswer">
             <div>
                 <div class="wrapper6">
                     <button class="submit" @click="[flipCard()], [getAnswer()]">{{
@@ -25,6 +28,7 @@
                 <button class="exitbutton" @click="$router.push('/')">Exit</button>
             </div>
         </div>
+    </div>
     </body>
 </template>
 
@@ -37,25 +41,32 @@ export default {
     data: function () {
         return {
             lang: "",
+            quizId: "",
+            quiz: {},
             uiLabels: {},
             cardOne: "",
-            answer: "",
-            cardOneWord: "",
+            cardAnswer: "",
+            cardOneWord: false,
+            words: [],
+            translations: [],
             wordArray: ['hej', 'två', 'tre'],
         }
     },
 
     created: function () {
         this.lang = this.$route.params.lang;
+        this.quizId = this.$route.params.id;
         socket.emit("pageLoaded", this.lang);
         socket.on("init", (labels) => {
             this.uiLabels = labels
         })
-        socket.on("dataUpdate", (data) =>
-            this.data = data
-        )
-        socket.on("pollCreated", (data) =>
-            this.data = data)
+        console.log('key' + this.quizId)
+        socket.emit("getQuiz", this.quizId);
+        socket.on("quiz", (data) => {
+            this.quiz = data
+            this.words = data.words
+            this.translations = data.translations
+        })
     },
     methods: {
         flipCard: function () {
@@ -63,11 +74,11 @@ export default {
         },
 
         getAnswer: function () {
-            if (this.cardOneWord) {
-                return this.cardOneWord == 'right'
+            if (this.cardAnswer == this.translations) {
+                this.cardOneWord = true
             }
             else {
-                return this.cardOneWord == 'wrong'
+                this.cardOneWord = false
             }
         }
     }
