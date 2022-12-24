@@ -80,7 +80,7 @@ export default {
 
         getAnswer: function () {
             this.hideBack = false;
-            if (this.cardAnswer == this.translations[this.index]) {
+            if (this.cardAnswer.toLowerCase() == this.translations[this.index].toLowerCase()) {
                 this.cardOneWord = true
             }
             else {
