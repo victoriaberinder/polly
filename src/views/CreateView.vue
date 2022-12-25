@@ -99,7 +99,7 @@ export default {
     
 
   methods: {
-
+    
     //testar att lägga till funktionen createQuiz
     //createQuiz: function () {
       //socket.emit("createQuiz", {quizId: this.quizId, lang: this.lang })
@@ -107,9 +107,10 @@ export default {
     //},
 
     add: function () {
-      this.count++;
-      //console.log(this.$route)
-      // this.$route.path = '/create/'+123
+      if( this.count < 20 && this.words.length == this.count){
+        this.count++;
+      }
+
 
     },
     remove: function (key) {

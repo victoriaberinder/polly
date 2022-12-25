@@ -11,7 +11,7 @@
                 <div class="card__face card__faceFront">{{ words[index] }}</div>
                 <div class="card__face"
                     v-bind:class="{ card__faceBackWrong: cardOneWord == false, card__faceBackRight: cardOneWord == true }" >
-                    <div v-bind:class="{hideText: hideBack == true}">
+                    <div v-bind:class="{hideText: showBack == false}">
                         {{ translations[index] }}
                     </div>
                 </div>
@@ -53,7 +53,8 @@ export default {
             words: [],
             translations: [],
             index: 0,
-            hideBack: true
+            showBack: false,
+            username: ""
 
         }
     },
@@ -61,6 +62,7 @@ export default {
     created: function () {
         this.lang = this.$route.params.lang;
         this.quizId = this.$route.params.id;
+        this.username = this.$route.params.username;
         socket.emit("pageLoaded", this.lang);
         socket.on("init", (labels) => {
             this.uiLabels = labels
@@ -79,7 +81,7 @@ export default {
         },
 
         getAnswer: function () {
-            this.hideBack = false;
+            this.showBack = true;
             if (this.cardAnswer.toLowerCase() == this.translations[this.index].toLowerCase()) {
                 this.cardOneWord = true
             }
@@ -90,7 +92,7 @@ export default {
         nextQuestion: function () {
             this.cardOne = 'start'
             this.cardAnswer = ''
-            this.hideBack = true
+            this.showBack = false
             this.index++
             
         }

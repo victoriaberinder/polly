@@ -3,10 +3,10 @@
 
     <div class="wrapper7" action="" method="get">
         <h1 id="text">{{ uiLabels.usernameQuiz }}</h1>
-        <input class="usernameInput" type="text" v-model="usernameInput" size="50" v-bind:placeholder="uiLabels.username" >
+        <input class="usernameInput" type="text" v-model="username" size="50" v-bind:placeholder="uiLabels.username" >
 
         <div>
-            <button v-bind:disabled="usernameInput == ''" class="playQuiz" @click="play">{{ uiLabels.playButton }}</button>
+            <button v-bind:disabled="username == ''" class="playQuiz" @click="play">{{ uiLabels.playButton }}</button>
         </div>
     </div>
 
@@ -28,7 +28,7 @@ export default {
         return {
             lang: "",
             uiLabels: {},
-            UsernameInput: "",
+            username: "",
             quizId: ""
         }
     },
@@ -49,7 +49,7 @@ export default {
     methods: {
         play: function () {
             
-            this.$router.push('/flash/' + this.lang + '/' + this.quizId)
+            this.$router.push('/flash/' + this.lang + '/' + this.quizId + '/' + this.username)
             //socket.emit('play', { q: this.quizId, u: this.usernameInput })
 
         }
