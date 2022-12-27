@@ -29,7 +29,8 @@ export default {
             lang: "",
             uiLabels: {},
             username: "",
-            quizId: ""
+            quizId: "",
+            siteId: "first"
         }
     },
 
@@ -49,10 +50,9 @@ export default {
     methods: {
         play: function () {
             
-            this.$router.push('/flash/' + this.lang + '/' + this.quizId + '/' + this.username)
+            this.$router.push('/flash/' + this.lang + '/' + this.quizId + '/' + this.username+"/"+this.siteId)
             //socket.emit('play', { q: this.quizId, u: this.usernameInput })
             
-
         }
 
     }

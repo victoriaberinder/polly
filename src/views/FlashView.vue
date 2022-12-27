@@ -61,7 +61,11 @@ export default {
             showBack: false,
             username: "",
             failedWords: [],
-            correctWords: []
+            correctWords: [],
+            failedTranslations: [],
+            correctTranslations: [],
+
+            sitedId:""
 
         }
     },
@@ -70,17 +74,31 @@ export default {
         this.lang = this.$route.params.lang;
         this.quizId = this.$route.params.id;
         this.username = this.$route.params.username;
+        this.siteId = this.$route.params.siteId;
         socket.emit("pageLoaded", this.lang);
         socket.on("init", (labels) => {
             this.uiLabels = labels
         })
-        socket.emit("getQuiz", this.quizId);
-        socket.on("quiz", (data) => {
+        console.log("siteId:", this.siteId)
+        if(this.siteId == "first"){
+            socket.emit("getQuiz", this.quizId);
+            socket.on("quiz", (data) => {
             this.quiz = data
             this.words = data.words
             this.translations = data.translations
 
         })
+        }
+        if(this.siteId == "again"){
+            socket.emit("getMyResult", {quizId:this.quizId, user:this.username})
+            socket.on("MyResult", (data) => {
+            this.user = data
+            this.words = data.failedWords
+            this.translation = data.failedTranslations
+            
+      })
+        }
+        
     },
     methods: {
         flipCard: function () {
@@ -92,11 +110,13 @@ export default {
             if (this.cardAnswer.toLowerCase().trim() == this.translations[this.index].toLowerCase().trim()) {
                 this.cardOneWord = true
                 this.correctWords.push(this.words[this.index])
+                this.correctTranslations.push(this.translations[this.index])
                 console.log(this.correctWords)
             }
             else {
                 this.cardOneWord = false
                 this.failedWords.push(this.words[this.index])
+                this.failedTranslations.push(this.translations[this.index])
                 console.log(this.failedWords)
             }
         },
@@ -110,7 +130,7 @@ export default {
 
         done: function(){
             this.$router.push('/myresult/'+this.lang+'/'+this.quizId+'/'+this.username)
-            socket.emit("saveMyResult", {quizId: this.quizId, username: this.username, failedWords:this.failedWords, correctWords:this.correctWords})
+            socket.emit("saveMyResult", {quizId: this.quizId, username: this.username, failedWords:this.failedWords, correctWords:this.correctWords, failedTranslations: this.failedTranslations, correctTranslations: this.correctTranslations})
         }
     }
 }

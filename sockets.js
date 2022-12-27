@@ -85,7 +85,7 @@ function sockets(io, socket, data) {
   });
 
   socket.on("saveMyResult", function(d) {
-    data.saveMyResult(d.quizId, d.username, d.failedWords, d.correctWords)
+    data.saveMyResult(d.quizId, d.username, d.failedWords, d.correctWords, d.failedTranslations, d.correctTranslations)
     console.log("Efter save my result:" , data.getAllQuizes())
   });
 

@@ -138,17 +138,17 @@ Data.prototype.deleteQuiz = function(key) {
 
 }
 
-Data.prototype.saveMyResult = function(quizId, username, failedWords, correctWords){
+Data.prototype.saveMyResult = function(quizId, username, failedWords, correctWords,failedTranslations,correctTranslations){
 
   const quiz = this.quizes[quizId];
   if (typeof quiz.users[username] === "undefined") {
     let user = {};
     user.failedWords = failedWords;  
-    user.correctWords = correctWords;       
+    user.correctWords = correctWords;   
+    user.failedTranslations = failedTranslations;
+    user.correctTranslations = correctTranslations;    
     this.quizes[quizId].users[username] = user;
   }
-
-  console.log("Efter save my result rätta ord: ", this.quizes[quizId].users[username].correctWords, "failed words:", this.quizes[quizId].users[username].failedWords)
   
 }
 

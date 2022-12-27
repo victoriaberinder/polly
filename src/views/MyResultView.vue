@@ -6,7 +6,7 @@
     <p>Correct words: {{ correctWords }}</p>
     <div class="correctWords"></div>
     <div class="failedWords"></div>
-    
+    <button class="tryagain" @click="$router.push('/flash/' + this.lang + '/' + this.quizId + '/' + this.username+'/'+this.siteId)"> Try again</button>
     <div>
       <!-- skapa lyssnare som skickar iväg pageLoaded, som i sin tur returnerar uiLabels (och eventuellt annan typ av data)-->
       <button class="exitbutton" @click="$router.push('/')">Exit</button>
@@ -27,9 +27,11 @@
         lang: "",
         quizId: "",
         username:"",
+        user:{},
         quiz: {},
         failedWords: [],
-        correctWords:[]
+        correctWords:[],
+        siteId: "again"
        
       }
     },
@@ -51,11 +53,10 @@
 
       socket.emit("getMyResult", {quizId:this.quizId, user:this.username})
       socket.on("MyResult", (data) => {
+        this.user = data
         this.failedWords = data.failedWords
         this.correctWords = data.correctWords
       })
-      
-  
     },
   
     methods: {

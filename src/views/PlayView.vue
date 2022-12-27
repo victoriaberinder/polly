@@ -46,7 +46,8 @@ export default {
       quizes: {},
       allQuizes: {},
       siteId: "edit",
-      newQuizId: ""
+      newQuizId: "",
+
 
     }
   },
