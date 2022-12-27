@@ -6,6 +6,7 @@ const languages = ["en", "se"];
 function Data() {
   this.polls = {};
   this.quizes ={};
+
 }
 
 
@@ -40,8 +41,10 @@ Data.prototype.createQuiz = function(quizId, lang="en"){
     quiz.words = [];
     quiz.translations = [];
     quiz.title = "";
+    quiz.users = {};
     //quiz.currentQuestion = 0;              
     this.quizes[quizId] = quiz;
+    //console.log("Quizes:", this.quizes)
     
   }
   return this.quizes[quizId];
@@ -133,9 +136,25 @@ Data.prototype.getAnswers = function(pollId) {
 Data.prototype.deleteQuiz = function(key) {
   delete this.quizes[key];
 
-
 }
 
+Data.prototype.saveMyResult = function(quizId, username, failedWords, correctWords){
+
+  const quiz = this.quizes[quizId];
+  if (typeof quiz.users[username] === "undefined") {
+    let user = {};
+    user.failedWords = failedWords;  
+    user.correctWords = correctWords;       
+    this.quizes[quizId].users[username] = user;
+  }
+
+  console.log("Efter save my result rätta ord: ", this.quizes[quizId].users[username].correctWords, "failed words:", this.quizes[quizId].users[username].failedWords)
+  
+}
+
+Data.prototype.getMyResult = function(quizId, user){
+  return this.quizes[quizId].users[user]
+}
 
 module.exports = Data;
 

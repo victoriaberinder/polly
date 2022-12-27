@@ -27,7 +27,7 @@ function sockets(io, socket, data) {
   });
 
   socket.on('addWord', function(d) {
-    console.log("QuizID:", d.q, "Words:", d.w, "Translation:", d.t)
+   // console.log("QuizID:", d.q, "Words:", d.w, "Translation:", d.t)
     data.addWord( d.q, d.w, d.t);
     //socket.emit('dataUpdate', data.getAnswers(d.quizId));
   });
@@ -75,14 +75,24 @@ function sockets(io, socket, data) {
   socket.on("deleteQuiz", function(key) {
     data.deleteQuiz(key);
     //socket.emit("quizesUpdated", data.getAllQuizes());
-    console.log(data.getAllQuizes());
+    console.log("Efter delete: ", data.getAllQuizes());
   }
   );
   socket.on("getQuiz", function(key){
-    console.log("quiz", data.getQuiz(key))
+    //console.log("quiz", data.getQuiz(key))
     socket.emit('quiz', data.getQuiz(key) );
     
-  })
+  });
+
+  socket.on("saveMyResult", function(d) {
+    data.saveMyResult(d.quizId, d.username, d.failedWords, d.correctWords)
+    console.log("Efter save my result:" , data.getAllQuizes())
+  });
+
+  socket.on("getMyResult", function(d){
+    console.log("User:", data.getMyResult(d.quizId, d.user))
+    socket.emit("MyResult", data.getMyResult(d.quizId, d.user))
+   })
 }
 
 module.exports = sockets;

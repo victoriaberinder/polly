@@ -74,7 +74,7 @@ export default {
       }
       this.$router.push('/create/'+this.lang+'/'+this.siteId +'/'+this.quizId)
       console.log(this.quizId)
-      socket.emit("createQuiz", {quizId: this.quizId, lang: this.lang })
+      //socket.emit("createQuiz", {quizId: this.quizId, lang: this.lang })
     }
   }
 }

@@ -114,9 +114,9 @@ export default {
         let random= Math.floor(Math.random()*10)
         this.newQuizId+= random.toString()
       }
+
       this.$router.push('/create/'+this.lang+'/new/'+this.newQuizId)
       console.log(this.newQuizId)
-      socket.emit("createQuiz", {quizId: this.newQuizId, lang: this.lang })
     }
 
   }
