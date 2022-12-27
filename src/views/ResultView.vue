@@ -21,12 +21,15 @@ export default {
   data: function () {
     return {
       question: "",
+      lang:"",
       submittedAnswers: {
       }
     }
   },
   created: function () {
     this.pollId = this.$route.params.id
+    this.lang = this.$route.params.lang
+
     socket.emit('joinPoll', this.pollId)
     socket.on("dataUpdate", (update) => {
       this.submittedAnswers = update.a;

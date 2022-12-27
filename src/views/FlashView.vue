@@ -3,30 +3,35 @@
     <body>
         <div class="wrapper4">
             <h1 type="text">{{ uiLabels.flashcard }}</h1>
-            
+
         </div>
-        <p class="count">{{ index+1}} / {{ words.length }}</p>
+        <p class="count">{{ index + 1 }} / {{ words.length }}</p>
         <div class="scene sceneCard">
             <div class="card" v-bind:class="{ flip: cardOne == 'flipped' }">
                 <div class="card__face card__faceFront">{{ words[index] }}</div>
                 <div class="card__face"
-                    v-bind:class="{ card__faceBackWrong: cardOneWord == false, card__faceBackRight: cardOneWord == true }" >
-                    <div v-bind:class="{hideText: showBack == false}">
+                    v-bind:class="{ card__faceBackWrong: cardOneWord == false, card__faceBackRight: cardOneWord == true }">
+                    <div v-bind:class="{ hideText: showBack == false }">
                         {{ translations[index] }}
                     </div>
                 </div>
             </div>
         </div>
         <div class="inter">
-            <input type="text" placeholder="answer" class="wrapper5" v-model="cardAnswer" v-bind:readonly="cardOne == 'flipped'">
+            <input type="text" placeholder="answer" class="wrapper5" v-model="cardAnswer"
+                v-bind:readonly="cardOne == 'flipped'">
             <div class="wrapper6">
 
                 <button v-if="cardOne != 'flipped'" class="submit" @click="[flipCard()], [getAnswer()]">{{
                         uiLabels.submit
                 }}</button>
-            
-            <button v-else class="nextQuestionButton" @click="nextQuestion"> Next question
-            </button>
+
+                <button v-else-if="index+1 == words.length" class="submit" @click="done">
+                    Done
+                </button>
+
+                <button v-else class="nextQuestionButton" @click="nextQuestion"> Next question
+                </button>
             </div>
             <div>
                 <button class="exitbutton" @click="$router.push('/')">Exit</button>
@@ -54,7 +59,9 @@ export default {
             translations: [],
             index: 0,
             showBack: false,
-            username: ""
+            username: "",
+            failedWords: [],
+            correctWords: []
 
         }
     },
@@ -82,11 +89,15 @@ export default {
 
         getAnswer: function () {
             this.showBack = true;
-            if (this.cardAnswer.toLowerCase() == this.translations[this.index].toLowerCase()) {
+            if (this.cardAnswer.toLowerCase().trim() == this.translations[this.index].toLowerCase().trim()) {
                 this.cardOneWord = true
+                this.correctWords.push(this.words[this.index])
+                console.log(this.correctWords)
             }
             else {
                 this.cardOneWord = false
+                this.failedWords.push(this.words[this.index])
+                console.log(this.failedWords)
             }
         },
         nextQuestion: function () {
@@ -94,7 +105,12 @@ export default {
             this.cardAnswer = ''
             this.showBack = false
             this.index++
-            
+
+        },
+
+        done: function(){
+            this.$router.push('/myresult/'+this.lang+'/'+this.quizId+'/'+this.username)
+            socket.emit("saveMyResult", {quizId: this.quizId, username: this.username, failedWords:this.failedWords, correctWords:this.correctWords})
         }
     }
 }
@@ -104,9 +120,11 @@ export default {
 body {
     background-color: #d8ecff;
 }
-.count{
+
+.count {
     color: black;
 }
+
 .wrapper5 {
     text-align: center;
     color: black;
@@ -264,7 +282,7 @@ body {
     transform: rotateX(180deg);
 }
 
-.hideText{
+.hideText {
     color: transparent;
 }
 

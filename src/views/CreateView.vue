@@ -127,16 +127,20 @@ export default {
     },
     
     save:  function (){
+
       console.log("ID:", this.siteId)
       if(this.siteId== "new"){
         this.$router.push('/name/'+this.lang+'/'+this.quizId)
+        socket.emit("createQuiz", {quizId: this.quizId, lang: this.lang })
       }
       else if(this.siteId == "edit"){
         this.$router.push('/play/'+this.lang)
       }
       console.log(this.words, this.translation)
       socket.emit("addWord", {q: this.quizId, w: this.words, t: this.translation} )
+      
     },
+
 
   }
 }
