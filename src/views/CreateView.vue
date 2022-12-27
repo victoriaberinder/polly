@@ -3,14 +3,15 @@
   <div class="wrapper">
     <div class="inputfields">
       <div class="word" v-for="key in count" :key="key">
-        <input class="input" type="text" v-model="words[key]" size="50" v-bind:placeholder="uiLabels.word" :id="key">
+        <input class="input" type="text" v-model="words[key-1]" size="50" v-bind:placeholder="uiLabels.word" :id="key">
+        
       </div>
     </div>
 
     <div class="inputfields">
       <div class="translation" v-for="key in count" :key="key">
         
-        <input class="input" type="text" v-model="translation[key]" size="50" v-bind:placeholder="uiLabels.translation" :id="key">
+        <input class="input" type="text" v-model="translation[key-1]" size="50" v-bind:placeholder="uiLabels.translation" :id="key">
       </div>
     </div>
 
@@ -25,9 +26,9 @@
     </div>
 
     <div class="controls">
-      <a id="add_more_fields" @click="add" title="Add word">
+      <a id="add_more_fields" @click="add">
         <div>
-          <button class="addSign"> Add word</button>
+          <button class="addSign">{{uiLabels.addWord}}</button>
         </div>
       </a>
     
@@ -67,6 +68,7 @@ export default {
   created: function () {
     this.lang = this.$route.params.lang;
     this.quizId = this.$route.params.id;
+    this.siteId = this.$route.params.siteId;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels
@@ -81,7 +83,12 @@ export default {
     socket.emit("getQuiz", this.quizId);
     socket.on("quiz", (data) => {
       this.quiz = data,
-      console.log("hej",data)}
+      this.words = data.words
+      this.translation = data.translations
+      if(data.words.length !=0){
+        this.count = data.words.length
+        console.log("hej", data.words)}
+      }
       //this.translation = this.quiz.translations,
       //this.words = this.quiz.words
     )
@@ -92,7 +99,7 @@ export default {
     
 
   methods: {
-
+    
     //testar att lägga till funktionen createQuiz
     //createQuiz: function () {
       //socket.emit("createQuiz", {quizId: this.quizId, lang: this.lang })
@@ -100,15 +107,16 @@ export default {
     //},
 
     add: function () {
-      this.count++;
-      //console.log(this.$route)
-      // this.$route.path = '/create/'+123
+      if( this.count < 20 && this.words.length == this.count){
+        this.count++;
+      }
+
 
     },
     remove: function (key) {
       this.count--;
-      this.words.splice(key, 1)
-      this.translation.splice(key, 1)
+      this.words.splice(key-1, 1)
+      this.translation.splice(key-1, 1)
 
     },
 
@@ -119,7 +127,14 @@ export default {
     },
     
     save:  function (){
-      this.$router.push('/name/'+this.lang+'/'+this.quizId)
+      console.log("ID:", this.siteId)
+      if(this.siteId== "new"){
+        this.$router.push('/name/'+this.lang+'/'+this.quizId)
+      }
+      else if(this.siteId == "edit"){
+        this.$router.push('/play/'+this.lang)
+      }
+      console.log(this.words, this.translation)
       socket.emit("addWord", {q: this.quizId, w: this.words, t: this.translation} )
     },
 
@@ -238,7 +253,7 @@ input[type="text"]:focus {
 
 .removeSign:hover {
   cursor: pointer;
-  font-size: 65px;
+  font-size: 61px;
 }
 
 

@@ -18,5 +18,11 @@
     "answer": "Answer",
     "flashcard": "Flashcard",
     "submit": "Submit",
-    "playHeader": "Quiz Library"
+    "playHeader": "Quiz Library",
+    "usernameQuiz": "Add your username",
+    "username": "Username",
+    "play": "Play",
+    "edit": "Edit",
+    "delete": "Delete",
+    "createNewQuiz": "Create new quiz"
 }

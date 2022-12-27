@@ -42,6 +42,7 @@ export default {
       quizId: "",
       lang: "en",
       hideNav: true,
+      siteId: "new"
 
     }
   },
@@ -71,7 +72,7 @@ export default {
         let random= Math.floor(Math.random()*10)
         this.quizId+= random.toString()
       }
-      this.$router.push('/create/'+this.lang+'/'+this.quizId)
+      this.$router.push('/create/'+this.lang+'/'+this.siteId +'/'+this.quizId)
       console.log(this.quizId)
       socket.emit("createQuiz", {quizId: this.quizId, lang: this.lang })
     }

@@ -18,5 +18,11 @@
 	"submit": "Skicka in",
 	"nameQuiz": "Namnge ditt quiz",
 	"name": "Namn",
-	"playHeader": "Quizbibliotek"
+	"playHeader": "Quizbibliotek",
+	"usernameQuiz": "Ange ditt användarnamn",
+	"username": "Användarnamn",
+	"play": "Spela",
+    "edit": "Redigera",
+    "delete": "Radera",
+	"createNewQuiz": "Skapa nytt quiz"
 }
