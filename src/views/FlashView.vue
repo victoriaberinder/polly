@@ -26,7 +26,7 @@
                         uiLabels.submit
                 }}</button>
 
-                <button v-else-if="index+1 == words.length" class="submit" @click="done">
+                <button v-else-if="index + 1 == words.length" class="submit" @click="done">
                     Done
                 </button>
 
@@ -65,7 +65,7 @@ export default {
             failedTranslations: [],
             correctTranslations: [],
 
-            sitedId:""
+            sitedId: ""
 
         }
     },
@@ -80,25 +80,24 @@ export default {
             this.uiLabels = labels
         })
         console.log("siteId:", this.siteId)
-        if(this.siteId == "first"){
+        if (this.siteId == "first") {
             socket.emit("getQuiz", this.quizId);
             socket.on("quiz", (data) => {
-            this.quiz = data
-            this.words = data.words
-            this.translations = data.translations
+                this.quiz = data
+                this.words = data.words
+                this.translations = data.translations
 
-        })
+            })
         }
-        if(this.siteId == "again"){
-            socket.emit("getMyResult", {quizId:this.quizId, user:this.username})
+        if (this.siteId == "again") {
+            socket.emit("getMyResult", { quizId: this.quizId, user: this.username })
             socket.on("MyResult", (data) => {
-            this.user = data
-            this.words = data.failedWords
-            this.translation = data.failedTranslations
-            
-      })
+                this.user = data
+                this.words = data.failedWords
+                this.translations = data.failedTranslations
+            })
         }
-        
+
     },
     methods: {
         flipCard: function () {
@@ -128,9 +127,9 @@ export default {
 
         },
 
-        done: function(){
-            this.$router.push('/myresult/'+this.lang+'/'+this.quizId+'/'+this.username)
-            socket.emit("saveMyResult", {quizId: this.quizId, username: this.username, failedWords:this.failedWords, correctWords:this.correctWords, failedTranslations: this.failedTranslations, correctTranslations: this.correctTranslations})
+        done: function () {
+            this.$router.push('/myresult/' + this.lang + '/' + this.quizId + '/' + this.username)
+            socket.emit("saveMyResult", { quizId: this.quizId, username: this.username, failedWords: this.failedWords, correctWords: this.correctWords, failedTranslations: this.failedTranslations, correctTranslations: this.correctTranslations })
         }
     }
 }

@@ -3,9 +3,13 @@
         <h1> My result</h1>
     <p>{{ quiz.title }} </p>
     <p>Failed words: {{ failedWords }}</p>
+    <p>Failed translation: {{ failedTranslations }}</p>
     <p>Correct words: {{ correctWords }}</p>
-    <div class="correctWords"></div>
+    <p>Correct translation: {{ correctTranslations }}</p>
     <div class="failedWords"></div>
+    <div class="failedTranslations"></div>
+    <div class="correctWords"></div>
+    <div class="correctTranslations"></div>
     <button class="tryagain" @click="$router.push('/flash/' + this.lang + '/' + this.quizId + '/' + this.username+'/'+this.siteId)"> Try again</button>
     <div>
       <!-- skapa lyssnare som skickar iväg pageLoaded, som i sin tur returnerar uiLabels (och eventuellt annan typ av data)-->
@@ -30,7 +34,9 @@
         user:{},
         quiz: {},
         failedWords: [],
+        failedTranslations: [],
         correctWords:[],
+        correctTranslations: [],
         siteId: "again"
        
       }
@@ -55,7 +61,9 @@
       socket.on("MyResult", (data) => {
         this.user = data
         this.failedWords = data.failedWords
+        this.failedTranslations = data.failedTranslations
         this.correctWords = data.correctWords
+        this.correctTranslations = data.correctTranslations
       })
     },
   

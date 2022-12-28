@@ -107,7 +107,7 @@ export default {
     //},
 
     add: function () {
-      if( this.count < 20 && this.words.length == this.count){
+      if( this.count < 20 && this.words.length == this.count && this.translation.length == this.count){
         this.count++;
       }
 

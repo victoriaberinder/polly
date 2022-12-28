@@ -138,14 +138,14 @@ Data.prototype.deleteQuiz = function(key) {
 
 }
 
-Data.prototype.saveMyResult = function(quizId, username, failedWords, correctWords,failedTranslations,correctTranslations){
+Data.prototype.saveMyResult = function(quizId, username, failedWords, failedTranslations, correctWords, correctTranslations){
 
   const quiz = this.quizes[quizId];
   if (typeof quiz.users[username] === "undefined") {
     let user = {};
-    user.failedWords = failedWords;  
-    user.correctWords = correctWords;   
+    user.failedWords = failedWords;    
     user.failedTranslations = failedTranslations;
+    user.correctWords = correctWords; 
     user.correctTranslations = correctTranslations;    
     this.quizes[quizId].users[username] = user;
   }
