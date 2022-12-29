@@ -141,14 +141,26 @@ Data.prototype.deleteQuiz = function (key) {
 Data.prototype.saveMyResult = function (quizId, username, failedWords, failedTranslations, correctWords, correctTranslations) {
 
   const quiz = this.quizes[quizId];
+  
+  quiz.users[username].failedWords = failedWords;
+  quiz.users[username].failedTranslations = failedTranslations;
+  for (let i = 0; i < correctWords.length; i++) {
+    quiz.users[username].correctWords.push(correctWords[i]);
+    quiz.users[username].correctTranslations.push(correctTranslations[i]);
+  }
+  
+}
+
+Data.prototype.makeUser = function (quizId, username){
+  const quiz = this.quizes[quizId];
+
   let user = {};
-  user.failedWords = failedWords;
-  user.failedTranslations = failedTranslations;
-  user.correctWords = correctWords;
-  user.correctTranslations = correctTranslations;
+  user.correctTranslations = [];
+  user.correctWords = [];
+  user.failedWords = [];
+  user.failedTranslations = [];
+  
   this.quizes[quizId].users[username] = user;
-
-
 }
 
 Data.prototype.getMyResult = function (quizId, user) {

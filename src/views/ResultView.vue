@@ -23,14 +23,15 @@ export default {
       question: "",
       lang:"",
       submittedAnswers: {
-      }
+      },
+      quizId:""
     }
   },
   created: function () {
-    this.pollId = this.$route.params.id
+    this.quizId = this.$route.params.id
     this.lang = this.$route.params.lang
 
-    socket.emit('joinPoll', this.pollId)
+    //socket.emit('joinPoll', this.pollId)
     socket.on("dataUpdate", (update) => {
       this.submittedAnswers = update.a;
       this.question = update.q;

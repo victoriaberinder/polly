@@ -1,87 +1,108 @@
 <template>
-    <body>
-        <h1> My result</h1>
-    <p>{{ quiz.title }} </p>
-    <p>Failed words: {{ failedWords }}</p>
-    <p>Failed translation: {{ failedTranslations }}</p>
-    <p>Correct words: {{ correctWords }}</p>
-    <p>Correct translation: {{ correctTranslations }}</p>
-    <div class="failedWords"></div>
-    <div class="failedTranslations"></div>
-    <div class="correctWords"></div>
-    <div class="correctTranslations"></div>
-    <button class="tryagain" @click="$router.push('/flash/' + this.lang + '/' + this.quizId + '/' + this.username+'/'+this.siteId)"> Try again</button>
+
+  <body>
+    <h1> My result</h1>
+    <p>Title: {{ quiz.title }} </p>
+    <div class="wrapperWords">
+      <div v-if="correctWords.length>0" class="correctWords">
+        <div class="correct" >
+        <div v-for="(word, index) in correctWords" v-bind:key="index">
+          {{ word }} - {{ correctTranslations[index] }}
+        </div>
+      </div>
+
+      </div>
+      <div v-if="failedWords.length>0" class="failedWords">
+        <div class="failed">
+        <div v-for="(word, index) in failedWords" v-bind:key="index">
+          {{ word }} </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button v-if="failedWords.length > 0" class="tryagain"
+        @click="$router.push('/flash/' + this.lang + '/' + this.quizId + '/' + this.username + '/' + this.siteId)"> Try
+        again</button>
+      <button v-else-if="failedWords.length == 0" class="tryagain"
+        @click="$router.push('/result/' + this.lang + '/' + this.quizId)"> Show toplist</button>
+    </div>
+
     <div>
       <!-- skapa lyssnare som skickar iväg pageLoaded, som i sin tur returnerar uiLabels (och eventuellt annan typ av data)-->
       <button class="exitbutton" @click="$router.push('/')">Exit</button>
     </div>
-    </body>
-    
-  </template>
-    
-  <script>
-  import io from 'socket.io-client';
-  const socket = io();
-  
-  export default {
-  
-    data: function () {
-      return {
-  
-        lang: "",
-        quizId: "",
-        username:"",
-        user:{},
-        quiz: {},
-        failedWords: [],
-        failedTranslations: [],
-        correctWords:[],
-        correctTranslations: [],
-        siteId: "again"
-       
-      }
-    },
-  
-    created: function () {
-  
-      this.lang = this.$route.params.lang;
-      this.quizId = this.$route.params.id;
-      this.username = this.$route.params.username;
-      socket.emit("pageLoaded", this.lang);
-      socket.on("init", (labels) => {
-        this.uiLabels = labels
-      })
-      socket.emit("getQuiz", this.quizId);
-      socket.on("quiz", (data) => {
-        this.quiz = data
+  </body>
 
-      })
+</template>
+    
+<script>
+import io from 'socket.io-client';
+const socket = io();
 
-      socket.emit("getMyResult", {quizId:this.quizId, user:this.username})
-      socket.on("MyResult", (data) => {
-        this.user = data
-        this.failedWords = data.failedWords
-        this.failedTranslations = data.failedTranslations
-        this.correctWords = data.correctWords
-        this.correctTranslations = data.correctTranslations
-      })
-    },
-  
-    methods: {
-  
-      
+export default {
+
+  data: function () {
+    return {
+
+      lang: "",
+      quizId: "",
+      username: "",
+      user: {},
+      quiz: {},
+      failedWords: [],
+      failedTranslations: [],
+      correctWords: [],
+      correctTranslations: [],
+      siteId: "again",
+
+
+
     }
+  },
+
+  created: function () {
+
+    this.lang = this.$route.params.lang;
+    this.quizId = this.$route.params.id;
+    this.username = this.$route.params.username;
+    socket.emit("pageLoaded", this.lang);
+    socket.on("init", (labels) => {
+      this.uiLabels = labels
+    })
+    socket.emit("getQuiz", this.quizId);
+    socket.on("quiz", (data) => {
+      this.quiz = data
+
+    })
+
+    socket.emit("getMyResult", { quizId: this.quizId, user: this.username })
+    socket.on("MyResult", (data) => {
+      this.user = data
+      this.failedWords = data.failedWords
+      this.failedTranslations = data.failedTranslations
+      this.correctWords = data.correctWords
+      this.correctTranslations = data.correctTranslations
+    })
+  },
+
+  methods: {
+
+
   }
-  
-  </script>
-  
-  <style>
-body {
-    background-color: #d8ecff;
 }
 
-h1{
+</script>
+  
+<style>
+body {
+  background-color: #d8ecff;
   font-family: 'Comfortaa', cursive;
+
+ 
+}
+
+h1 {
+
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
@@ -110,4 +131,45 @@ h1{
   background-color: rgb(187, 34, 34);
 }
 
-  </style>
+.failedWords {
+  float:left;
+  flex:1;
+  display: inline-block;
+  width: 400px;
+  height: auto;
+  background-color: rgb(229, 140, 140);
+  border-radius: 10px;
+
+}
+
+.correctWords {
+  float:left;
+  flex:1;
+  display:inline-block;
+  width: 400px;
+  height: auto;
+  background-color: #a8e58cff;
+  border-radius: 10px;
+  margin-right: 50px;
+  
+}
+.correct{
+  margin-top:100px;
+  margin-bottom: 100px;
+}
+
+.failed{
+  margin-top:200px;
+  margin-bottom: 200px;
+}
+
+.wrapperWords {
+
+  display: flex;
+  margin-left: 300px;
+  margin-right: 300px;
+  font-size: 40px;
+  color: #2c3e50;
+ 
+}
+</style>

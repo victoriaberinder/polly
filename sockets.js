@@ -89,6 +89,10 @@ function sockets(io, socket, data) {
     console.log("Efter save my result:" , data.getAllQuizes())
   });
 
+  socket.on("makeUser", function(d){
+    data.makeUser(d.q, d.u)
+  });
+
   socket.on("getMyResult", function(d){
     console.log("User:", data.getMyResult(d.quizId, d.user))
     socket.emit("MyResult", data.getMyResult(d.quizId, d.user))
