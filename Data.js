@@ -5,7 +5,7 @@ const languages = ["en", "se"];
 // Store data in an object to keep the global namespace clean
 function Data() {
   this.polls = {};
-  this.quizes ={};
+  this.quizes = {};
 
 }
 
@@ -21,23 +21,23 @@ Data.prototype.getUILabels = function (lang = "en") {
   return ui;
 }
 
-Data.prototype.createPoll = function(pollId, lang="en") {
+Data.prototype.createPoll = function (pollId, lang = "en") {
   if (typeof this.polls[pollId] === "undefined") {
     let poll = {};
-    poll.lang = lang;  
+    poll.lang = lang;
     poll.questions = [];
     poll.answers = [];
-    poll.currentQuestion = 0;              
+    poll.currentQuestion = 0;
     this.polls[pollId] = poll;
     console.log("poll created", pollId, poll);
   }
   return this.polls[pollId];
 }
 
-Data.prototype.createQuiz = function(quizId, lang="en"){
+Data.prototype.createQuiz = function (quizId, lang = "en") {
   if (typeof this.quizes[quizId] === "undefined") {
     let quiz = {};
-    quiz.lang = lang;  
+    quiz.lang = lang;
     quiz.words = [];
     quiz.translations = [];
     quiz.title = "";
@@ -45,34 +45,34 @@ Data.prototype.createQuiz = function(quizId, lang="en"){
     //quiz.currentQuestion = 0;              
     this.quizes[quizId] = quiz;
     //console.log("Quizes:", this.quizes)
-    
+
   }
   return this.quizes[quizId];
 
 }
 
-Data.prototype.addQuestion = function(pollId, q) {
+Data.prototype.addQuestion = function (pollId, q) {
   const poll = this.polls[pollId];
   if (typeof poll !== 'undefined') {
     poll.questions.push(q);
   }
 }
 
-Data.prototype.addWord = function(quizId, word, translation) {
+Data.prototype.addWord = function (quizId, word, translation) {
   const quiz = this.quizes[quizId];
   quiz.words = [];
-  quiz.translations =[];
+  quiz.translations = [];
   if (typeof quiz !== 'undefined') {
-    for(let i=0; i<word.length;i++){
+    for (let i = 0; i < word.length; i++) {
       quiz.words.push(word[i]);
       quiz.translations.push(translation[i]);
     }
   }
 }
 
-Data.prototype.addTitle = function(quizId, title){
+Data.prototype.addTitle = function (quizId, title) {
   const quiz = this.quizes[quizId];
-  if (typeof quiz !== 'undefined'){
+  if (typeof quiz !== 'undefined') {
     quiz.title = title;
   }
 }
@@ -81,18 +81,18 @@ Data.prototype.getAllQuizes = function () {
   return this.quizes;
 };
 
-Data.prototype.getQuiz = function(key) {
+Data.prototype.getQuiz = function (key) {
   return this.quizes[key];
 }
 
-Data.prototype.editQuestion = function(pollId, index, newQuestion) {
+Data.prototype.editQuestion = function (pollId, index, newQuestion) {
   const poll = this.polls[pollId];
   if (typeof poll !== 'undefined') {
     poll.questions[index] = newQuestion;
   }
 }
 
-Data.prototype.getQuestion = function(pollId, qId=null) {
+Data.prototype.getQuestion = function (pollId, qId = null) {
   const poll = this.polls[pollId];
 
   if (typeof poll !== 'undefined') {
@@ -104,7 +104,7 @@ Data.prototype.getQuestion = function(pollId, qId=null) {
   return []
 }
 
-Data.prototype.submitAnswer = function(pollId, answer) {
+Data.prototype.submitAnswer = function (pollId, answer) {
   const poll = this.polls[pollId];
   console.log("answer submitted for ", pollId, answer);
   if (typeof poll !== 'undefined') {
@@ -122,37 +122,36 @@ Data.prototype.submitAnswer = function(pollId, answer) {
   }
 }
 
-Data.prototype.getAnswers = function(pollId) {
+Data.prototype.getAnswers = function (pollId) {
   const poll = this.polls[pollId];
   if (typeof poll !== 'undefined') {
     const answers = poll.answers[poll.currentQuestion];
     if (typeof poll.questions[poll.currentQuestion] !== 'undefined') {
-      return {q: poll.questions[poll.currentQuestion].q, a: answers};
+      return { q: poll.questions[poll.currentQuestion].q, a: answers };
     }
   }
   return {}
 }
 
-Data.prototype.deleteQuiz = function(key) {
+Data.prototype.deleteQuiz = function (key) {
   delete this.quizes[key];
 
 }
 
-Data.prototype.saveMyResult = function(quizId, username, failedWords, failedTranslations, correctWords, correctTranslations){
+Data.prototype.saveMyResult = function (quizId, username, failedWords, failedTranslations, correctWords, correctTranslations) {
 
   const quiz = this.quizes[quizId];
-  if (typeof quiz.users[username] === "undefined") {
-    let user = {};
-    user.failedWords = failedWords;    
-    user.failedTranslations = failedTranslations;
-    user.correctWords = correctWords; 
-    user.correctTranslations = correctTranslations;    
-    this.quizes[quizId].users[username] = user;
-  }
-  
+  let user = {};
+  user.failedWords = failedWords;
+  user.failedTranslations = failedTranslations;
+  user.correctWords = correctWords;
+  user.correctTranslations = correctTranslations;
+  this.quizes[quizId].users[username] = user;
+
+
 }
 
-Data.prototype.getMyResult = function(quizId, user){
+Data.prototype.getMyResult = function (quizId, user) {
   return this.quizes[quizId].users[user]
 }
 
