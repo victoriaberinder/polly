@@ -33,6 +33,7 @@
     </div>
   </body>
 
+
 </template>
     
 <script>
@@ -190,5 +191,9 @@ h1 {
   .hide {
     left:-12em;
   }
+}
+
+.tryagain{
+  
 }
 </style>
