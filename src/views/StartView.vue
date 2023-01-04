@@ -186,11 +186,12 @@ export default {
     align-items: center;
     justify-content: center;
   }
-  .hamburger::before {
-    content: "☰";
-  }
-  .close::before {
-    content: "✕";
+
+  .buttons {
+    font-size: 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .hide {
     left:-12em;

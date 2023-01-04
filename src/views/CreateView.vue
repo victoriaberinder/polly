@@ -192,6 +192,7 @@ body {
 
 .inputfields {
   display: inline-block;
+  flex: 1;
 
 }
 
@@ -221,6 +222,7 @@ input[type="text"]:focus {
   padding: 20px;
   margin-left: 55%;
   margin-right: 10%;
+  
 }
 
 .addSign {
@@ -304,5 +306,33 @@ h1 {
 
   grid-gap: 5%;
   grid-template-columns: 50% 50%;
+}
+
+@media screen and (max-width:1000px) {
+  .wrapper {
+    font-size: 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  .inputfields {
+    font-size: 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20px;
+    margin-right: 10px;
+  }
+
+  .controls {
+    font-size: 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
 }
 </style>

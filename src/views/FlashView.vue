@@ -18,19 +18,19 @@
             </div>
         </div>
         <div class="inter">
-            <input type="text" placeholder="answer" class="wrapper5" v-model="cardAnswer"
+            <input type="text" v-bind:placeholder="uiLabels.answer" class="wrapper5" v-model="cardAnswer"
                 v-bind:readonly="cardOne == 'flipped'">
             <div class="wrapper6">
 
-                <button v-if="cardOne != 'flipped'" class="submit" @click="[flipCard()], [getAnswer()]">{{
+                <button v-bind:disabled="cardAnswer == ''" v-if="cardOne != 'flipped'" class="submit" @click="[flipCard()], [getAnswer()]">{{
                         uiLabels.submit
                 }}</button>
 
-                <button v-else-if="index + 1 == words.length" class="submit" @click="done">
-                    Done
+                <button v-else-if="index + 1 == words.length" class="done" @click="done">
+                    {{uiLabels.done}}
                 </button>
 
-                <button v-else class="nextQuestionButton" @click="nextQuestion"> Next question
+                <button v-else class="nextQuestionButton" @click="nextQuestion"> {{uiLabels.nextQuestion}}
                 </button>
             </div>
             <div>
@@ -142,7 +142,7 @@ body {
 }
 
 .count {
-    color: black;
+    color:  #2c3e05;;
 }
 
 .wrapper5 {
@@ -211,9 +211,34 @@ body {
 
 .submit:hover {
     cursor: pointer;
+    background-color: #27378e;
+}
+
+.submit:disabled {
+    background-color: dimgrey;
+    color: linen;
+    opacity: 1;
+}
+.done {
+    text-align: center;
+    color: white;
+    border: 1px ridge rgb(177, 177, 177);
+    border-radius: 50px;
+    background-color: #56c770;
+    margin-top: 10px;
+    justify-content: center;
+    height: 50px;
+    width: 300px;
+    font-size: 15px;
+    font-family: 'Comfortaa', cursive;
+    
+}
+
+.done:hover {
+    cursor: pointer;
     width: 300px;
     height: 50px;
-    background-color: #56c770;
+    background-color: #2ca248;
 }
 
 .exitbutton {
@@ -241,16 +266,22 @@ body {
 
 .nextQuestionButton {
     text-align: center;
-    color: white;
+    color: #2c3e05;
     border: 1px ridge rgb(177, 177, 177);
     border-radius: 50px;
-    background-color: #3f51b5;
+    background-color:  rgb(255, 227, 141);
     margin-top: 10px;
     justify-content: center;
     height: 50px;
     width: 300px;
     font-size: 15px;
     font-family: 'Comfortaa', cursive;
+}
+
+.nextQuestionButton:hover {
+    cursor:pointer;
+    background-color: rgb(253, 213, 92);
+    
 }
 
 .scene {

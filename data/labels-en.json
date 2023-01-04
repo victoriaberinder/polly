@@ -24,5 +24,7 @@
     "play": "Play",
     "edit": "Edit",
     "delete": "Delete",
-    "createNewQuiz": "Create new quiz"
+    "createNewQuiz": "Create new quiz",
+    "nextQuestion": "Next question",
+    "done": "Done"
 }
