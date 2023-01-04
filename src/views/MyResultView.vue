@@ -132,23 +132,24 @@ h1 {
   float:left;
   flex:1;
   display: inline-block;
-  width: 5vw;
+  width: 100px;
   height: auto;
   background-color: rgb(229, 140, 140);
   border-radius: 10px;
-  padding: 2vw;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .correctWords {
   float:left;
   flex:1;
   display:inline-block;
-  width: 5vw;
+  width: 100px;
   height: auto;
   background-color: #a8e58cff;
   border-radius: 10px;
-  margin-right: 50px;
-  padding: 2vw;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 .correct{
   margin-top:100px;
@@ -162,12 +163,12 @@ h1 {
 
 .wrapperWords {
   display: flex;
-  margin-left: 100px;
-  margin-right: 100px;
+  margin-left: 10px;
+  margin-right: 10px;
   font-size: 3vw;
   color: #2c3e50;
-  padding-left: 100px;
-  padding-right: 100px;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
 @media screen and (max-width:50em) {
