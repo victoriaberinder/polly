@@ -1,5 +1,12 @@
 <template>
   <h1>{{ uiLabels.createHeader }}</h1>
+  
+<div action="" method="get">
+  <div class="titleField">
+    <h1 id="text">{{ uiLabels.nameQuiz }}</h1>
+        <input class="input2" type="text" v-model="title" size="50" v-bind:placeholder="uiLabels.name" >
+  </div>
+
   <div class="wrapper">
     <div class="inputfields">
       <div class="word" v-for="key in count" :key="key">
@@ -33,10 +40,12 @@
       </a>
     
 
-    <button class="saveQuizButton1" @click="save">{{uiLabels.saveQuiz}}</button>
+    <button v-bind:disabled="title == ''" class="saveQuizButton1" @click="save">{{uiLabels.saveQuiz}}</button>
   </div>
 
   </div>
+
+</div>
   <div>
     <!-- skapa lyssnare som skickar iväg pageLoaded, som i sin tur returnerar uiLabels (och eventuellt annan typ av data)-->
     <button class="exitbutton" @click="$router.push('/')">Exit</button>
@@ -304,5 +313,38 @@ h1 {
 
   grid-gap: 5%;
   grid-template-columns: 50% 50%;
+}
+
+.titleField {
+  width: 1000px;
+  margin: 40px auto;
+  padding: 10px;
+  border-radius: 30px;
+  background: #ffffff;
+  /*box-shadow: 0px 10px 40px 0px rgba(47, 47, 47, .1);*/
+}
+#text {
+    color: black;
+    font-size: 20px;
+    font-family: 'Comfortaa', cursive;
+    text-align: center;
+ 
+}
+input[class="input2"] {
+    border-radius: 50px;
+    
+    border: 1px solid lightgrey;
+    background-color: white;
+    width: 200px;
+    height: 40px;
+    font-size: 13pt;
+    font-family: 'Comfortaa', cursive;
+    color: black;
+    text-align: center;
+}
+.saveQuizButton1:disabled {
+    background-color: dimgrey;
+    color: linen;
+    opacity: 1;
 }
 </style>

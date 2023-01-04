@@ -38,6 +38,7 @@
             </div>
         </div>
     </body>
+    
 </template>
 
 <script>
@@ -132,6 +133,7 @@ export default {
             console.log(this.correctWords, this.correctTranslations)
             socket.emit("saveMyResult", { quizId: this.quizId, username: this.username, failedWords: this.failedWords, correctWords: this.correctWords, failedTranslations: this.failedTranslations, correctTranslations: this.correctTranslations })
         }
+        
     }
 }
 </script>

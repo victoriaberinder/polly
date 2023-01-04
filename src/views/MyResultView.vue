@@ -33,6 +33,7 @@
     </div>
   </body>
 
+
 </template>
     
 <script>
@@ -171,5 +172,9 @@ h1 {
   font-size: 40px;
   color: #2c3e50;
  
+}
+
+.tryagain{
+  
 }
 </style>
