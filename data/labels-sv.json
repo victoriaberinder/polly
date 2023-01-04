@@ -24,5 +24,7 @@
 	"play": "Spela",
     "edit": "Redigera",
     "delete": "Radera",
-	"createNewQuiz": "Skapa nytt quiz"
+	"createNewQuiz": "Skapa nytt quiz",
+	"nextQuestion": "Nästa fråga",
+	"done": "Klar"
 }

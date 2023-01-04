@@ -1,7 +1,9 @@
 <template>
 
     <body>
+        <div id="timer"></div>
         <div class="wrapper4">
+
             <h1 type="text">{{ uiLabels.flashcard }}</h1>
 
         </div>
@@ -18,19 +20,19 @@
             </div>
         </div>
         <div class="inter">
-            <input type="text" placeholder="answer" class="wrapper5" v-model="cardAnswer"
+            <input type="text" v-bind:placeholder="uiLabels.answer" class="wrapper5" v-model="cardAnswer"
                 v-bind:readonly="cardOne == 'flipped'">
             <div class="wrapper6">
 
-                <button v-if="cardOne != 'flipped'" class="submit" @click="[flipCard()], [getAnswer()]">{{
-                        uiLabels.submit
-                }}</button>
+                <button v-bind:disabled="cardAnswer == ''" v-if="cardOne != 'flipped'" class="submit" @click="[flipCard()], [getAnswer()]">{{
+        uiLabels.submit
+}}</button>
 
-                <button v-else-if="index + 1 == words.length" class="submit" @click="done">
-                    Done
+                <button v-else-if="index + 1 == words.length" class="done" @click="done">
+                    {{uiLabels.done}}
                 </button>
 
-                <button v-else class="nextQuestionButton" @click="nextQuestion"> Next question
+                <button v-else class="nextQuestionButton" @click="nextQuestion"> {{uiLabels.nextQuestion}}
                 </button>
             </div>
             <div>
@@ -43,9 +45,11 @@
 
 <script>
 import io from 'socket.io-client';
+
 const socket = io();
 
 export default {
+
 
     data: function () {
         return {
@@ -65,10 +69,18 @@ export default {
             correctWords: [],
             failedTranslations: [],
             correctTranslations: [],
+            timer: null,
+            sitedId: "",
+            totalSeconds: 0,
 
-            sitedId: ""
+            hour: 0,
+            minute: 0,
+            seconds: 0
 
         }
+    },
+    beforeUnmount() {
+        clearInterval(this.timer)
     },
 
     created: function () {
@@ -98,8 +110,10 @@ export default {
                 this.translations = data.failedTranslations
             })
         }
+        this.showTimer()
 
     },
+
     methods: {
         flipCard: function () {
             (this.cardOne == 'start' ? (this.cardOne = 'flipped') : (this.cardOne = 'start'))
@@ -134,8 +148,31 @@ export default {
             socket.emit("saveMyResult", { quizId: this.quizId, username: this.username, failedWords: this.failedWords, correctWords: this.correctWords, failedTranslations: this.failedTranslations, correctTranslations: this.correctTranslations })
         }
         
+        },
+
+        showTimer() {
+            this.timer = setInterval(() => {
+                this.totalSeconds++
+                console.log(this.totalSeconds)
+
+                var hour = Math.floor(this.totalSeconds / 3600);
+                var minute = Math.floor((this.totalSeconds - hour * 3600) / 60);
+                var seconds = this.totalSeconds - (hour * 3600 + minute * 60);
+                if (hour < 10)
+                    hour = "0" + hour;
+                if (minute < 10)
+                    minute = "0" + minute;
+                if (seconds < 10)
+                    seconds = "0" + seconds;
+
+                document.getElementById("timer").innerHTML = hour + ":" + minute + ":" + seconds;
+            }, 1000)
+        }
+
     }
-}
+
+
+
 </script>
 
 <style>
@@ -144,7 +181,7 @@ body {
 }
 
 .count {
-    color: black;
+    color:  #2c3e05;;
 }
 
 .wrapper5 {
@@ -213,9 +250,34 @@ body {
 
 .submit:hover {
     cursor: pointer;
+    background-color: #27378e;
+}
+
+.submit:disabled {
+    background-color: dimgrey;
+    color: linen;
+    opacity: 1;
+}
+.done {
+    text-align: center;
+    color: white;
+    border: 1px ridge rgb(177, 177, 177);
+    border-radius: 50px;
+    background-color: #56c770;
+    margin-top: 10px;
+    justify-content: center;
+    height: 50px;
+    width: 300px;
+    font-size: 15px;
+    font-family: 'Comfortaa', cursive;
+    
+}
+
+.done:hover {
+    cursor: pointer;
     width: 300px;
     height: 50px;
-    background-color: #56c770;
+    background-color: #2ca248;
 }
 
 .exitbutton {
@@ -243,16 +305,22 @@ body {
 
 .nextQuestionButton {
     text-align: center;
-    color: white;
+    color: #2c3e05;
     border: 1px ridge rgb(177, 177, 177);
     border-radius: 50px;
-    background-color: #3f51b5;
+    background-color:  rgb(255, 227, 141);
     margin-top: 10px;
     justify-content: center;
     height: 50px;
     width: 300px;
     font-size: 15px;
     font-family: 'Comfortaa', cursive;
+}
+
+.nextQuestionButton:hover {
+    cursor:pointer;
+    background-color: rgb(253, 213, 92);
+    
 }
 
 .scene {

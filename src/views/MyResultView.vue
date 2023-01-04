@@ -98,12 +98,9 @@ export default {
 body {
   background-color: #d8ecff;
   font-family: 'Comfortaa', cursive;
-
- 
 }
 
 h1 {
-
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
@@ -136,23 +133,23 @@ h1 {
   float:left;
   flex:1;
   display: inline-block;
-  width: 400px;
+  width: 5vw;
   height: auto;
   background-color: rgb(229, 140, 140);
   border-radius: 10px;
-
+  padding: 2vw;
 }
 
 .correctWords {
   float:left;
   flex:1;
   display:inline-block;
-  width: 400px;
+  width: 5vw;
   height: auto;
   background-color: #a8e58cff;
   border-radius: 10px;
   margin-right: 50px;
-  
+  padding: 2vw;
 }
 .correct{
   margin-top:100px;
@@ -160,18 +157,39 @@ h1 {
 }
 
 .failed{
-  margin-top:200px;
-  margin-bottom: 200px;
+  margin-top: 100px;
+  margin-bottom: 100px;
 }
 
 .wrapperWords {
-
   display: flex;
-  margin-left: 300px;
-  margin-right: 300px;
-  font-size: 40px;
+  margin-left: 100px;
+  margin-right: 100px;
+  font-size: 3vw;
   color: #2c3e50;
- 
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+@media screen and (max-width:50em) {
+  .logo {
+    font-size: 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+
+  .hamburger::before {
+    content: "☰";
+  }
+  .close::before {
+    content: "✕";
+  }
+  .hide {
+    left:-12em;
+  }
 }
 
 .tryagain{
