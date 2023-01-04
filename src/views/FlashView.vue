@@ -1,7 +1,9 @@
 <template>
 
     <body>
+        <div id="timer"></div>
         <div class="wrapper4">
+
             <h1 type="text">{{ uiLabels.flashcard }}</h1>
 
         </div>
@@ -23,8 +25,8 @@
             <div class="wrapper6">
 
                 <button v-bind:disabled="cardAnswer == ''" v-if="cardOne != 'flipped'" class="submit" @click="[flipCard()], [getAnswer()]">{{
-                        uiLabels.submit
-                }}</button>
+        uiLabels.submit
+}}</button>
 
                 <button v-else-if="index + 1 == words.length" class="done" @click="done">
                     {{uiLabels.done}}
@@ -42,9 +44,11 @@
 
 <script>
 import io from 'socket.io-client';
+
 const socket = io();
 
 export default {
+
 
     data: function () {
         return {
@@ -64,10 +68,18 @@ export default {
             correctWords: [],
             failedTranslations: [],
             correctTranslations: [],
+            timer: null,
+            sitedId: "",
+            totalSeconds: 0,
 
-            sitedId: ""
+            hour: 0,
+            minute: 0,
+            seconds: 0
 
         }
+    },
+    beforeUnmount() {
+        clearInterval(this.timer)
     },
 
     created: function () {
@@ -97,8 +109,10 @@ export default {
                 this.translations = data.failedTranslations
             })
         }
+        this.showTimer()
 
     },
+
     methods: {
         flipCard: function () {
             (this.cardOne == 'start' ? (this.cardOne = 'flipped') : (this.cardOne = 'start'))
@@ -131,8 +145,32 @@ export default {
             this.$router.push('/myresult/' + this.lang + '/' + this.quizId + '/' + this.username)
             console.log(this.correctWords, this.correctTranslations)
             socket.emit("saveMyResult", { quizId: this.quizId, username: this.username, failedWords: this.failedWords, correctWords: this.correctWords, failedTranslations: this.failedTranslations, correctTranslations: this.correctTranslations })
-        }
-    }
+        },
+
+        showTimer() {
+            this.timer = setInterval(() => {
+                this.totalSeconds++
+                console.log(this.totalSeconds)
+
+                var hour = Math.floor(this.totalSeconds / 3600);
+                var minute = Math.floor((this.totalSeconds - hour * 3600) / 60);
+                var seconds = this.totalSeconds - (hour * 3600 + minute * 60);
+                if (hour < 10)
+                    hour = "0" + hour;
+                if (minute < 10)
+                    minute = "0" + minute;
+                if (seconds < 10)
+                    seconds = "0" + seconds;
+
+                document.getElementById("timer").innerHTML = hour + ":" + minute + ":" + seconds;
+            }, 1000)
+        },
+
+    },
+
+
+
+
 }
 </script>
 
