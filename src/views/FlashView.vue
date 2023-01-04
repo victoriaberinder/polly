@@ -1,7 +1,9 @@
 <template>
 
     <body>
+        <div id="timer"></div>
         <div class="wrapper4">
+            
             <h1 type="text">{{ uiLabels.flashcard }}</h1>
 
         </div>
@@ -23,7 +25,7 @@
             <div class="wrapper6">
 
                 <button v-if="cardOne != 'flipped'" class="submit" @click="[flipCard()], [getAnswer()]">{{
-                        uiLabels.submit
+                    uiLabels.submit
                 }}</button>
 
                 <button v-else-if="index + 1 == words.length" class="submit" @click="done">
@@ -42,9 +44,11 @@
 
 <script>
 import io from 'socket.io-client';
+
 const socket = io();
 
 export default {
+
 
     data: function () {
         return {
@@ -64,10 +68,14 @@ export default {
             correctWords: [],
             failedTranslations: [],
             correctTranslations: [],
-
-            sitedId: ""
+            timer: null,
+            sitedId: "",
+            totalSeconds: 0
 
         }
+    },
+    beforeUnmount() {
+        clearInterval(this.timer)
     },
 
     created: function () {
@@ -97,8 +105,10 @@ export default {
                 this.translations = data.failedTranslations
             })
         }
+        this.showTimer()
 
     },
+
     methods: {
         flipCard: function () {
             (this.cardOne == 'start' ? (this.cardOne = 'flipped') : (this.cardOne = 'start'))
@@ -131,8 +141,21 @@ export default {
             this.$router.push('/myresult/' + this.lang + '/' + this.quizId + '/' + this.username)
             console.log(this.correctWords, this.correctTranslations)
             socket.emit("saveMyResult", { quizId: this.quizId, username: this.username, failedWords: this.failedWords, correctWords: this.correctWords, failedTranslations: this.failedTranslations, correctTranslations: this.correctTranslations })
-        }
-    }
+        },
+
+        showTimer() {
+            this.timer = setInterval(() => {
+                this.totalSeconds++
+                console.log(this.totalSeconds)
+                document.getElementById("timer").innerHTML = this.totalSeconds;
+            }, 1000)
+        },
+
+    },
+    
+
+
+
 }
 </script>
 
