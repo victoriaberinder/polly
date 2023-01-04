@@ -3,7 +3,7 @@
     <body>
         <div id="timer"></div>
         <div class="wrapper4">
-            
+
             <h1 type="text">{{ uiLabels.flashcard }}</h1>
 
         </div>
@@ -25,8 +25,8 @@
             <div class="wrapper6">
 
                 <button v-if="cardOne != 'flipped'" class="submit" @click="[flipCard()], [getAnswer()]">{{
-                    uiLabels.submit
-                }}</button>
+        uiLabels.submit
+}}</button>
 
                 <button v-else-if="index + 1 == words.length" class="submit" @click="done">
                     Done
@@ -70,7 +70,11 @@ export default {
             correctTranslations: [],
             timer: null,
             sitedId: "",
-            totalSeconds: 0
+            totalSeconds: 0,
+
+            hour: 0,
+            minute: 0,
+            seconds: 0
 
         }
     },
@@ -147,12 +151,23 @@ export default {
             this.timer = setInterval(() => {
                 this.totalSeconds++
                 console.log(this.totalSeconds)
-                document.getElementById("timer").innerHTML = this.totalSeconds;
+
+                var hour = Math.floor(this.totalSeconds / 3600);
+                var minute = Math.floor((this.totalSeconds - hour * 3600) / 60);
+                var seconds = this.totalSeconds - (hour * 3600 + minute * 60);
+                if (hour < 10)
+                    hour = "0" + hour;
+                if (minute < 10)
+                    minute = "0" + minute;
+                if (seconds < 10)
+                    seconds = "0" + seconds;
+
+                document.getElementById("timer").innerHTML = hour + ":" + minute + ":" + seconds;
             }, 1000)
         },
 
     },
-    
+
 
 
 
