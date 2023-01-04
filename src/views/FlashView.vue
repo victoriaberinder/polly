@@ -40,7 +40,6 @@
             </div>
         </div>
     </body>
-    
 </template>
 
 <script>
@@ -146,8 +145,6 @@ export default {
             this.$router.push('/myresult/' + this.lang + '/' + this.quizId + '/' + this.username)
             console.log(this.correctWords, this.correctTranslations)
             socket.emit("saveMyResult", { quizId: this.quizId, username: this.username, failedWords: this.failedWords, correctWords: this.correctWords, failedTranslations: this.failedTranslations, correctTranslations: this.correctTranslations })
-        }
-        
         },
 
         showTimer() {
@@ -167,12 +164,14 @@ export default {
 
                 document.getElementById("timer").innerHTML = hour + ":" + minute + ":" + seconds;
             }, 1000)
-        }
+        },
 
-    }
+    },
 
 
 
+
+}
 </script>
 
 <style>
