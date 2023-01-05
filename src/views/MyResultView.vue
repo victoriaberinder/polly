@@ -172,7 +172,7 @@ h1 {
   padding-right: 10%;
 }
 
-@media screen and (max-width:50em) {
+@media only screen and (max-width: 600px) {
   .logo {
     font-size: 5vw;
     display: flex;
@@ -191,9 +191,5 @@ h1 {
   .hide {
     left:-12em;
   }
-}
-
-.tryagain{
-  
 }
 </style>
