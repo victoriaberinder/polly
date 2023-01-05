@@ -257,7 +257,7 @@ h1 {
 
 .ButtonCreateNew:hover {
   cursor: pointer;
-  background: rgb(51, 143, 228);
+  background: #a8e58cff;
 }
 
 .playbutton:hover {

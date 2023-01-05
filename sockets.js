@@ -21,6 +21,14 @@ function sockets(io, socket, data) {
     socket.emit('quizCreated', data.createQuiz(d.quizId, d.lang));
   });
 
+  socket.on('save', function(d) {
+    data.addTitle(d.q, d.t)
+    console.log("quizes: ", data.getAllQuizes())
+  
+    //io.emit('allQuizes',  { quizes: data.getAllQuizes() })
+    
+  });
+
   socket.on('addQuestion', function(d) {
     data.addQuestion(d.pollId, {q: d.q, a: d.a});
     socket.emit('dataUpdate', data.getAnswers(d.pollId));
@@ -28,7 +36,7 @@ function sockets(io, socket, data) {
 
   socket.on('addWord', function(d) {
    // console.log("QuizID:", d.q, "Words:", d.w, "Translation:", d.t)
-    data.addWord( d.q, d.w, d.t);
+    data.addWord( d.q, d.w, d.t, d.title);
     //socket.emit('dataUpdate', data.getAnswers(d.quizId));
   });
 
@@ -38,13 +46,6 @@ function sockets(io, socket, data) {
     
   });
 
-  socket.on('save', function(d) {
-    data.addTitle(d.q, d.t)
-    console.log("quizes: ", data.getAllQuizes())
-  
-    //io.emit('allQuizes',  { quizes: data.getAllQuizes() })
-    
-  });
 
   socket.on('editQuestion', function(d) {
     data.editQuestion(d.pollId, d.index, {q: d.q, a: d.a});
