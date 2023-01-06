@@ -6,6 +6,7 @@
       <h1 id="text"></h1>
       <input class="input2" type="text" v-model="title" size="50" v-bind:placeholder="uiLabels.name">
     </div>
+<<<<<<< HEAD
 
     <div class="wrapper">
       <div class="inputfields">
@@ -13,6 +14,15 @@
           <input class="input" type="text" v-model="words[key - 1]" size="50" v-bind:placeholder="uiLabels.word"
             :id="key">
 
+=======
+
+    <div class="wrapper">
+      <div class="inputfields">
+        <div class="word" v-for="key in count" :key="key">
+          <input class="input" type="text" v-model="words[key - 1]" size="50" v-bind:placeholder="uiLabels.word"
+            :id="key">
+
+>>>>>>> aad2d671197c3731670879589111b169da74916b
         </div>
       </div>
 
@@ -71,7 +81,12 @@ export default {
       translation: [],
       quiz: {},
       uiLabels: {},
+<<<<<<< HEAD
       title: []
+=======
+      title: "",
+      siteId: ""
+>>>>>>> aad2d671197c3731670879589111b169da74916b
 
     }
   },
@@ -91,6 +106,7 @@ export default {
       this.quiz = data,
       //this.quizId = data.quizId
     )
+<<<<<<< HEAD
     socket.emit("getQuiz", this.quizId);
     socket.on("quiz", (data) => {
       this.quiz = data,
@@ -104,6 +120,24 @@ export default {
       //this.translation = this.quiz.translations,
       //this.words = this.quiz.words
     )
+=======
+    if (this.siteId == 'edit') {
+      socket.emit("getQuiz", this.quizId);
+      socket.on("quiz", (data) => {
+        this.quiz = data
+        this.words = data.words
+        this.translation = data.translations
+        this.title = data.title
+
+        if (data.words.length != 0) {
+          this.count = data.words.length
+        }
+      }
+
+      )
+    }
+
+>>>>>>> aad2d671197c3731670879589111b169da74916b
 
   },
 
@@ -142,6 +176,7 @@ export default {
 
       console.log("ID:", this.siteId)
       if (this.siteId == "new") {
+<<<<<<< HEAD
         this.$router.push('/play/' + this.lang + '/')
         socket.emit("createQuiz", { quizId: this.quizId, lang: this.lang })
       }
@@ -149,6 +184,12 @@ export default {
         this.$router.push('/play/' + this.lang)
       }
       console.log(this.words, this.translation, this.title)
+=======
+        socket.emit("createQuiz", { quizId: this.quizId, lang: this.lang })
+      }
+      console.log(this.words, this.translation, this.title)
+      this.$router.push('/play/' + this.lang)
+>>>>>>> aad2d671197c3731670879589111b169da74916b
       socket.emit("addWord", { q: this.quizId, w: this.words, t: this.translation, title: this.title })
 
     },
@@ -225,18 +266,31 @@ input[type="text"]:focus {
 
 .controls {
   display: grid;
+<<<<<<< HEAD
   grid-gap: 1%;
   width: 70vw;
   padding: 2vh;
   grid-template-columns: 2fr 1fr;
   justify-items: end;
+=======
+  grid-gap: 10px;
+  grid-template-columns: 200px 200px;
+  width: 300px;
+  padding: 20px;
+  margin-left: 55%;
+  margin-right: 10%;
+
+>>>>>>> aad2d671197c3731670879589111b169da74916b
 }
 
 .addSign {
   font-family: 'Comfortaa', cursive;
   width: 20vw;
   height: 40px;
+<<<<<<< HEAD
   font-size: 12pt;
+=======
+>>>>>>> aad2d671197c3731670879589111b169da74916b
   background: rgb(255, 227, 141);
   color: black;
   border: 0;
@@ -301,6 +355,16 @@ h1 {
   background-color: rgb(187, 34, 34);
 }
 
+<<<<<<< HEAD
+=======
+#wrapping {
+  display: inline-block;
+
+  grid-gap: 5%;
+  grid-template-columns: 50% 50%;
+}
+
+>>>>>>> aad2d671197c3731670879589111b169da74916b
 .titleField {
   width: 100%;
   height: auto;
@@ -308,15 +372,37 @@ h1 {
   padding-bottom: 5%;
   border-radius: 30px;
   background: #d8ecff;
+<<<<<<< HEAD
+=======
+  margin-top: 20px;
+  margin-bottom: 20px;
+  /*box-shadow: 0px 10px 40px 0px rgba(47, 47, 47, .1);*/
+}
+
+#text {
+  color: black;
+  font-size: 20px;
+  font-family: 'Comfortaa', cursive;
+  text-align: center;
+
+>>>>>>> aad2d671197c3731670879589111b169da74916b
 }
 
 input[class="input2"] {
   border-radius: 50px;
+<<<<<<< HEAD
+=======
+
+>>>>>>> aad2d671197c3731670879589111b169da74916b
   border: 1px solid lightgrey;
   background-color: white;
   width: 300px;
   height: 40px;
+<<<<<<< HEAD
   font-size: 12pt;
+=======
+  font-size: 13pt;
+>>>>>>> aad2d671197c3731670879589111b169da74916b
   font-family: 'Comfortaa', cursive;
   color: black;
   text-align: center;
@@ -326,15 +412,40 @@ input[class="input2"] {
   background-color: dimgrey;
   color: linen;
   opacity: 1;
+<<<<<<< HEAD
   width: 20vw;
   height: 40px;
   font-size: 12pt;
 }
+=======
+>>>>>>> aad2d671197c3731670879589111b169da74916b
 
 @media only screen and (max-width: 470px) {
   .saveQuizButton1:disabled {
   font-size: 8pt;
 }
+<<<<<<< HEAD
+=======
+
+@media screen and (max-width:1000px) {
+  .wrapper {
+    font-size: 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+
+  .inputfields {
+    font-size: 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20px;
+    margin-right: 10px;
+  }
+>>>>>>> aad2d671197c3731670879589111b169da74916b
 
 .addSign {
   font-size: 8pt;

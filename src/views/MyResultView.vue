@@ -86,10 +86,6 @@ export default {
     })
   },
 
-  methods: {
-
-
-  }
 }
 
 </script>
@@ -132,7 +128,6 @@ h1 {
 .failedWords {
   float:left;
   flex:1;
-  display: inline-block;
   width: 100px;
   height: auto;
   background-color: rgb(229, 140, 140);
@@ -144,7 +139,6 @@ h1 {
 .correctWords {
   float:left;
   flex:1;
-  display:inline-block;
   width: 100px;
   height: auto;
   background-color: #a8e58cff;
@@ -172,7 +166,7 @@ h1 {
   padding-right: 10%;
 }
 
-@media only screen and (max-width: 600px) {
+@media screen and (max-width:50em) {
   .logo {
     font-size: 5vw;
     display: flex;
@@ -192,4 +186,5 @@ h1 {
     left:-12em;
   }
 }
+
 </style>
