@@ -79,7 +79,7 @@ export default {
 
         getAnswer: function () {
             this.showBack = true;
-            if (this.cardAnswer == this.translations[this.index]) {
+            if (this.cardAnswer.toLowerCase().trim() == this.translations[this.index].toLowerCase().trim()) {
                 this.cardOneWord = true
                 this.correctWords.push(this.words[this.index])
                 this.correctTranslations.push(this.translations[this.index])
