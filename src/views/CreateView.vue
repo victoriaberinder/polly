@@ -177,15 +177,15 @@ body {
 
 .saveQuizButton1 {
   font-family: 'Comfortaa', cursive;
-  font-size: 20px;
-  width: 180px;
-  height: 40px;
   background: #a8e58cff;
   color: black;
   border: 0;
   border-color: black;
   padding: 7px;
   border-radius: 15px;
+  width: 20vw;
+  height: 40px;
+  font-size: 12pt;
 
 }
 
@@ -338,6 +338,10 @@ input[class="input2"] {
 }
 
 .addSign {
+  font-size: 8pt;
+}
+
+.saveQuizButton1 {
   font-size: 8pt;
 }
 
