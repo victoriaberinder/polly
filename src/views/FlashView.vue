@@ -3,7 +3,7 @@
     <body>
         <div id="timer"></div>
         <div v-if="showFlashCards">
-            <flash-cards :uiLabels="uiLabels" :words="words" :translations="translations" @clicked="clickedDone">
+            <flash-cards :uiLabels="uiLabels" :words="words" :translations="translations" :lang="lang" :quizId="quizId" @clicked="clickedDone">
             </flash-cards>
         </div>
         <div v-if="!showFlashCards">
@@ -63,12 +63,10 @@ export default {
         this.lang = this.$route.params.lang;
         this.quizId = this.$route.params.id;
         this.username = this.$route.params.username;
-        this.siteId = this.$route.params.siteId;
         socket.emit("pageLoaded", this.lang);
         socket.on("init", (labels) => {
             this.uiLabels = labels
         })
-        console.log("siteId:", this.siteId)
 
         socket.emit("getQuiz", this.quizId);
         socket.on("quiz", (data) => {
@@ -95,7 +93,6 @@ export default {
             }
             this.showFlashCards = false;
             console.log(value)
-
 
         },
 

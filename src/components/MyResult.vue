@@ -5,9 +5,9 @@
             <h1 type="text"> My result</h1>
         </div>
         <div class="wrapperWords">
-            <div class="correctWords">
+            <div v-if="allCorrectWords.length > 0" class="correctWords">
                 <div class="correct">
-                    <div v-for="(word, index) in allCorrectWords" v-bind:key="index">
+                    <div  v-for="(word, index) in allCorrectWords" v-bind:key="index">
                         {{ word }}
                     </div>
                 </div>
@@ -23,7 +23,7 @@
             <button v-if="failedWords.length > 0" class="tryagain" @click="tryAgain">
                 Try again</button>
             <button v-else-if="failedWords.length == 0" class="tryagain"
-                @click="$router.push('/result/' + this.lang + '/' + this.quizId)"> End quiz</button>
+                @click="changeView"> End quiz</button>
         </div>
 
     </body>
@@ -41,6 +41,8 @@ export default {
         failedWords: Object,
         correctWords: Array,
         allCorrectWords: Array,
+        quizId: String,
+        lang: String
 
 
     },
@@ -50,13 +52,10 @@ export default {
             this.$emit('clicked')
 
         },
-    },
-
-    data: function () {
-        return {
-
+        changeView: function(){
+            this.$router.push('/result/' + this.lang + '/' + this.quizId)
         }
-    }
+    },
 
 }
 
