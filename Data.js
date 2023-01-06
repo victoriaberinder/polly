@@ -40,7 +40,7 @@ Data.prototype.createQuiz = function (quizId, lang = "en") {
     quiz.lang = lang;
     quiz.words = [];
     quiz.translations = [];
-    quiz.title = "";
+    quiz.title = [];
     quiz.users = {};
     //quiz.currentQuestion = 0;              
     this.quizes[quizId] = quiz;
@@ -51,6 +51,13 @@ Data.prototype.createQuiz = function (quizId, lang = "en") {
 
 }
 
+Data.prototype.addTitle = function (quizId, title) {
+  const quiz = this.quizes[quizId];
+  if (typeof quiz !== 'undefined') {
+    quiz.title = title;
+  }
+}
+
 Data.prototype.addQuestion = function (pollId, q) {
   const poll = this.polls[pollId];
   if (typeof poll !== 'undefined') {
@@ -58,23 +65,20 @@ Data.prototype.addQuestion = function (pollId, q) {
   }
 }
 
-Data.prototype.addWord = function (quizId, word, translation) {
+Data.prototype.addWord = function (quizId, word, translation, title) {
   const quiz = this.quizes[quizId];
   quiz.words = [];
   quiz.translations = [];
+  quiz.title = [];
   if (typeof quiz !== 'undefined') {
     for (let i = 0; i < word.length; i++) {
       quiz.words.push(word[i]);
       quiz.translations.push(translation[i]);
     }
-  }
-}
 
-Data.prototype.addTitle = function (quizId, title) {
-  const quiz = this.quizes[quizId];
-  if (typeof quiz !== 'undefined') {
     quiz.title = title;
   }
+ 
 }
 
 Data.prototype.getAllQuizes = function () {

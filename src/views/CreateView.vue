@@ -3,7 +3,7 @@
 
 <div action="" method="get">
   <div class="titleField">
-    <h1 id="text">{{ uiLabels.nameQuiz }}</h1>
+    <h1 id="text"></h1>
         <input class="input2" type="text" v-model="title" size="50" v-bind:placeholder="uiLabels.name" >
   </div>
 
@@ -69,11 +69,11 @@ export default {
       translation: [],
       quiz: {},
       uiLabels: {},
+      title:[]
 
     }
   },
-
-
+  
   created: function () {
     this.lang = this.$route.params.lang;
     this.quizId = this.$route.params.id;
@@ -139,14 +139,14 @@ export default {
 
       console.log("ID:", this.siteId)
       if(this.siteId== "new"){
-        this.$router.push('/name/'+this.lang+'/'+this.quizId)
-        socket.emit("createQuiz", {quizId: this.quizId, lang: this.lang })
+        this.$router.push('/play/'+this.lang+'/')
+        socket.emit("createQuiz", {quizId: this.quizId, lang: this.lang})
       }
       else if(this.siteId == "edit"){
         this.$router.push('/play/'+this.lang)
       }
-      console.log(this.words, this.translation)
-      socket.emit("addWord", {q: this.quizId, w: this.words, t: this.translation} )
+      console.log(this.words, this.translation, this.title)
+      socket.emit("addWord", {q: this.quizId, w: this.words, t: this.translation, title: this.title} )
       
     },
 
@@ -318,11 +318,14 @@ h1 {
 }
 
 .titleField {
-  width: 1000px;
+  width: 300px;
+  height: 60px;
   margin: 40px auto;
   padding: 10px;
   border-radius: 30px;
-  background: #ffffff;
+  background: #d8ecff;
+  margin-top: 20px;
+  margin-bottom: 20px;
   /*box-shadow: 0px 10px 40px 0px rgba(47, 47, 47, .1);*/
 }
 #text {
@@ -337,7 +340,7 @@ input[class="input2"] {
     
     border: 1px solid lightgrey;
     background-color: white;
-    width: 200px;
+    width: 300px;
     height: 40px;
     font-size: 13pt;
     font-family: 'Comfortaa', cursive;
