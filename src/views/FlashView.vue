@@ -87,7 +87,6 @@ export default {
                 this.translations = data.failedTranslations
             })
         }
-        
         this.showTimer()
 
     },
@@ -120,7 +119,6 @@ export default {
         showTimer() {
             this.timer = setInterval(() => {
                 this.totalSeconds++
-                console.log(this.totalSeconds)
 
                 var hour = Math.floor(this.totalSeconds / 3600);
                 var minute = Math.floor((this.totalSeconds - hour * 3600) / 60);

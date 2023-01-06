@@ -128,7 +128,6 @@ h1 {
 .failedWords {
   float:left;
   flex:1;
-  display: inline-block;
   width: 100px;
   height: auto;
   background-color: rgb(229, 140, 140);
@@ -140,7 +139,6 @@ h1 {
 .correctWords {
   float:left;
   flex:1;
-  display:inline-block;
   width: 100px;
   height: auto;
   background-color: #a8e58cff;

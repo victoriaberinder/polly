@@ -3,7 +3,7 @@
     <body>
         <h1> My result</h1>
         <div class="wrapperWords">
-            <div v-if="correctWords.length > 0" class="correctWords">
+            <div class="correctWords">
                 <div class="correct">
                     <div v-for="(word, index) in allCorrectWords" v-bind:key="index">
                         {{ word }}
