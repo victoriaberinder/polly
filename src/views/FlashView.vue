@@ -7,8 +7,8 @@
             </flash-cards>
         </div>
         <div v-if="!showFlashCards">
-            <my-result :uiLabels="uiLabels" :failedWords="failedWords" :correctWords="correctWords" :allCorrectWords="allCorrectWords"
-                @clicked="clickedTryAgain"></my-result>
+            <my-result :uiLabels="uiLabels" :failedWords="failedWords" :correctWords="correctWords"
+                :allCorrectWords="allCorrectWords" @clicked="clickedTryAgain"></my-result>
 
         </div>
 
@@ -46,7 +46,6 @@ export default {
             failedTranslations: [],
             correctTranslations: [],
             timer: null,
-            sitedId: "",
             totalSeconds: 0,
             hour: 0,
             minute: 0,
@@ -70,24 +69,16 @@ export default {
             this.uiLabels = labels
         })
         console.log("siteId:", this.siteId)
-        if (this.siteId == "first") {
-            socket.emit("getQuiz", this.quizId);
-            socket.on("quiz", (data) => {
-                this.quiz = data
-                this.words = data.words
-                this.translations = data.translations
 
-            })
-        }
-        if (this.siteId == "again") {
-            socket.emit("getMyResult", { quizId: this.quizId, user: this.username })
-            socket.on("MyResult", (data) => {
-                this.user = data
-                this.words = data.failedWords
-                this.translations = data.failedTranslations
-            })
-        }
-        
+        socket.emit("getQuiz", this.quizId);
+        socket.on("quiz", (data) => {
+            this.quiz = data
+            this.words = data.words
+            this.translations = data.translations
+
+        })
+
+
         this.showTimer()
 
     },
@@ -99,28 +90,27 @@ export default {
             this.failedWords = value.failedWords
             this.correctWords = value.correctWords
             this.failedTranslations = value.failedTranslations
-            for(let i = 0; i<value.correctWords.length; i++){
+            for (let i = 0; i < value.correctWords.length; i++) {
                 this.allCorrectWords.push(value.correctWords[i])
             }
             this.showFlashCards = false;
             console.log(value)
 
-            
+
         },
 
-        clickedTryAgain(){
+        clickedTryAgain() {
             this.words = this.failedWords
             this.translations = this.failedTranslations
             this.showFlashCards = true;
-            console.log("Translation:" ,this.translations, "Words: ", this.words)
-          
+            console.log("Translation:", this.translations, "Words: ", this.words)
+
         },
 
 
         showTimer() {
             this.timer = setInterval(() => {
                 this.totalSeconds++
-                console.log(this.totalSeconds)
 
                 var hour = Math.floor(this.totalSeconds / 3600);
                 var minute = Math.floor((this.totalSeconds - hour * 3600) / 60);

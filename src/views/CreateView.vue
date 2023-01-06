@@ -139,13 +139,10 @@ export default {
 
       console.log("ID:", this.siteId)
       if(this.siteId== "new"){
-        this.$router.push('/play/'+this.lang+'/')
         socket.emit("createQuiz", {quizId: this.quizId, lang: this.lang})
       }
-      else if(this.siteId == "edit"){
-        this.$router.push('/play/'+this.lang)
-      }
       console.log(this.words, this.translation, this.title)
+      this.$router.push('/play/'+this.lang)
       socket.emit("addWord", {q: this.quizId, w: this.words, t: this.translation, title: this.title} )
       
     },
