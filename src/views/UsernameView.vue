@@ -30,7 +30,7 @@ export default {
             uiLabels: {},
             username: "",
             quizId: "",
-            siteId: "first"
+           
         }
     },
 
@@ -50,7 +50,7 @@ export default {
     methods: {
         play: function () {
             
-            this.$router.push('/flash/' + this.lang + '/' + this.quizId + '/' + this.username+"/"+this.siteId)
+            this.$router.push('/flash/' + this.lang + '/' + this.quizId + '/' + this.username)
             socket.emit('makeUser', { q: this.quizId, u: this.username })
             
         }
