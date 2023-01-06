@@ -73,7 +73,7 @@ export default {
 
     }
   },
-  
+
   created: function () {
     this.lang = this.$route.params.lang;
     this.quizId = this.$route.params.id;
@@ -146,7 +146,7 @@ export default {
         this.$router.push('/play/'+this.lang)
       }
       console.log(this.words, this.translation, this.title)
-      socket.emit("addWord", {q: this.quizId, w: this.words, t: this.translation, title: this.title} )
+      socket.emit("saveQuiz", {q: this.quizId, w: this.words, t: this.translation, title: this.title} )
       
     },
 

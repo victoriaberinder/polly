@@ -2,24 +2,24 @@
   <h1>{{ uiLabels.playHeader }}</h1>
 
   <div class="wrapper3">
-      <div v-for="(quiz, key) in quizes" v-bind:key="key">
-        <div class="size">
-          <p id="title">
-            {{ key }} : {{ quiz.title }}
-          </p>
-        </div>
-        <div class="size sizeButtons">
-          <button class="playbutton" @click="$router.push('/username/' + lang + '/' + key)">{{uiLabels.play}}</button>
-          <button class="editbutton" @click="edit(key)">{{uiLabels.edit}}</button>
-          <a @click="remove(key)" title="Remove word">
-            <button class="deletebutton">{{uiLabels.delete}}</button>
-          </a>
-          
-        </div>
-        <hr>
+    <div v-for="(quiz, key) in quizes" v-bind:key="key">
+      <div class="size">
+        <p id="title">
+          {{ key }} : {{ quiz.title }}
+        </p>
       </div>
-      <button class="ButtonCreateNew" @click="create"> {{ uiLabels.createNewQuiz }}</button>
-      
+      <div class="size sizeButtons">
+        <button class="playbutton" @click="$router.push('/username/' + lang + '/' + key)">{{ uiLabels.play }}</button>
+        <button class="editbutton" @click="edit(key)">{{ uiLabels.edit }}</button>
+        <a @click="remove(key)" title="Remove word">
+          <button class="deletebutton">{{ uiLabels.delete }}</button>
+        </a>
+
+      </div>
+      <hr>
+    </div>
+    <button class="ButtonCreateNew" @click="create"> {{ uiLabels.createNewQuiz }}</button>
+
   </div>
 
   <div>
@@ -109,14 +109,14 @@ export default {
         console.log(key + " -> " + this.values[key])
       }
     },
-    create: function() {
-      
-      for(let i=0; i<5; i++){
-        let random= Math.floor(Math.random()*10)
-        this.newQuizId+= random.toString()
+    create: function () {
+
+      for (let i = 0; i < 5; i++) {
+        let random = Math.floor(Math.random() * 10)
+        this.newQuizId += random.toString()
       }
 
-      this.$router.push('/create/'+this.lang+'/new/'+this.newQuizId)
+      this.$router.push('/create/' + this.lang + '/new/' + this.newQuizId)
       console.log(this.newQuizId)
     }
 
@@ -130,7 +130,7 @@ body {
   background-color: #d8ecff;
 }
 
-hr{
+hr {
   margin-top: 2px;
   border-top: 1px solid #d8ecff;
 }
@@ -143,11 +143,13 @@ h1 {
   color: #2c3e50;
   margin-top: 60px;
 }
-#title{
+
+#title {
   text-align: left;
-  font-size: 25px;
+  font-size: 3vw;
   margin-left: 5%;
 }
+
 .size {
   width: 500px;
   height: 60px;
@@ -155,7 +157,7 @@ h1 {
 
 }
 
-.sizeButtons{
+.sizeButtons {
   text-align: right;
 
 }
@@ -207,7 +209,7 @@ h1 {
   border-radius: 10px;
   padding: 7px;
   margin-left: 7px;
-  
+
 }
 
 .editbutton {
@@ -222,7 +224,7 @@ h1 {
   padding: 7px;
   border-radius: 10px;
   margin-left: 7px;
-  
+
 }
 
 .deletebutton {
@@ -237,10 +239,10 @@ h1 {
   border-radius: 10px;
   padding: 7px;
   margin-left: 7px;
-  
+
 }
 
-.ButtonCreateNew{
+.ButtonCreateNew {
   font-family: 'Comfortaa', cursive;
   font-size: 20px;
   width: 200px;
@@ -251,7 +253,7 @@ h1 {
   border-color: black;
   border-radius: 10px;
   padding: 7px;
-  
+
 
 }
 
@@ -276,4 +278,45 @@ h1 {
   background-color: rgb(241, 15, 15);
 }
 
+@media only screen and (max-width: 500px) {
+
+  .wrapper3 {
+    width: 90%;
+    height:95%;
+  }
+
+  .sizeButtons {
+    width: 20%;
+    height: 10%;
+    display: inline-block;
+    margin-left: 50%;
+    margin-top: -15vw;
+    
+   
+    
+  }
+
+  .playbutton {
+    margin: 5%;
+  }
+
+  .editbutton {
+    margin: 5%;
+  }
+
+  .deletebutton {
+    margin: 5%;
+  }
+
+ #title{
+  width: 39%;
+  font-size:30px;
+  margin-left: 1vw;
+ }
+
+ .exitbutton{
+  margin-left:20%;
+ }
+
+}
 </style>
