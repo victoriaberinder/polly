@@ -1,5 +1,6 @@
 <template>
-    <div class="head">
+  <div class="page">
+    <div class="pagehead">
       <img src="https://static.showit.co/400/1yzlYawSRsyajrqRf5NsQg/115216/books1.png">
       Glosor
     </div>
@@ -13,6 +14,7 @@
         </div>
       </div>
     </body>
+  </div>
 </template>
 
 
@@ -61,7 +63,15 @@ export default {
 </script>
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
-.head {
+
+.page {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
+  background-color: #d8ecff;
+}
+.pagehead {
   display: flex;
   font-family: 'Comfortaa', cursive;
   background-color: #d8ecff;
@@ -72,12 +82,11 @@ export default {
   justify-content: center;
   align-items: center;
   align-content: center;
-  margin: 1%;
 }
 
-.head img {
-  width: 70px;
-  height: 70px;
+.pagehead img {
+  width: auto;
+  height: 10vw;
   margin-right: 10px;
 }
 
@@ -124,7 +133,7 @@ body {
   background-size: cover;
   background-position: center;
   filter: invert(1);
-  height: 90vh;
+  height: 100vh;
 }
 
 .buttons:hover {
