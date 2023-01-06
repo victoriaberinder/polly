@@ -193,7 +193,4 @@ h1 {
   }
 }
 
-.tryagain{
-  
-}
 </style>
