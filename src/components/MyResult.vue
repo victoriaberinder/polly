@@ -1,7 +1,9 @@
 <template>
 
     <body>
-        <h1> My result</h1>
+        <div class="wrapper8">
+            <h1 type="text"> My result</h1>
+        </div>
         <div class="wrapperWords">
             <div v-if="correctWords.length > 0" class="correctWords">
                 <div class="correct">
@@ -45,14 +47,14 @@ export default {
 
     methods: {
         tryAgain: function () {
-            this.$emit('clicked') 
-        
+            this.$emit('clicked')
+
         },
     },
 
-    data: function(){
-        return{
-            
+    data: function () {
+        return {
+
         }
     }
 
@@ -67,9 +69,22 @@ body {
 }
 
 h1 {
-    text-align: center;
     color: #2c3e50;
+    font-size: 35px;
+    font-family: 'Comfortaa', cursive;
+    text-align: center;
     margin-top: 60px;
+}
+
+.wrapper8 {
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    text-align: center;
+    height: 50px;
+    width: 300px;
+    font-size: 15px;
+    font-family: 'Comfortaa', cursive;
 }
 
 .exitbutton {
@@ -133,11 +148,34 @@ h1 {
     display: flex;
     margin-left: 10px;
     margin-right: 10px;
+    margin-top:50px;
     font-size: 3vw;
     color: #2c3e50;
     padding-left: 10%;
     padding-right: 10%;
 }
+
+.tryagain {
+    text-align: center;
+    color: white;
+    border: 1px ridge rgb(177, 177, 177);
+    border-radius: 50px;
+    background-color: #3f51b5;
+    margin-top: 10px;
+    justify-content: center;
+    height: 50px;
+    width: 300px;
+    font-size: 15px;
+    font-family: 'Comfortaa', cursive;
+}
+
+.tryagain:hover {
+    cursor: pointer;
+    background-color: #2d3981;
+}
+
+
+
 
 @media screen and (max-width:50em) {
     .logo {

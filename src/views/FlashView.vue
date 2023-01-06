@@ -131,7 +131,8 @@ export default {
                     minute = "0" + minute;
                 if (seconds < 10)
                     seconds = "0" + seconds;
-
+                
+                
                 document.getElementById("timer").innerHTML = hour + ":" + minute + ":" + seconds;
             }, 1000)
         },
@@ -167,4 +168,13 @@ export default {
     height: 2rem;
     background-color: rgb(187, 34, 34);
 }
+
+#timer {
+    font-size: 4vw;
+    float: right;
+    color: #2c3e50;
+    margin-right: 10vw;
+}
+
+
 </style>
