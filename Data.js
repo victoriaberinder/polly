@@ -69,7 +69,6 @@ Data.prototype.addWord = function (quizId, word, translation, title) {
   const quiz = this.quizes[quizId];
   quiz.words = [];
   quiz.translations = [];
-  quiz.title = [];
   if (typeof quiz !== 'undefined') {
     for (let i = 0; i < word.length; i++) {
       quiz.words.push(word[i]);

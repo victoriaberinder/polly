@@ -1,51 +1,53 @@
 <template>
   <h1>{{ uiLabels.createHeader }}</h1>
 
-<div action="" method="get">
-  <div class="titleField">
-    <h1 id="text"></h1>
-        <input class="input2" type="text" v-model="title" size="50" v-bind:placeholder="uiLabels.name" >
-  </div>
-
-  <div class="wrapper">
-    <div class="inputfields">
-      <div class="word" v-for="key in count" :key="key">
-        <input class="input" type="text" v-model="words[key-1]" size="50" v-bind:placeholder="uiLabels.word" :id="key">
-        
-      </div>
+  <div action="" method="get">
+    <div class="titleField">
+      <h1 id="text"></h1>
+      <input class="input2" type="text" v-model="title" size="50" v-bind:placeholder="uiLabels.name">
     </div>
 
-    <div class="inputfields">
-      <div class="translation" v-for="key in count" :key="key">
-        
-        <input class="input" type="text" v-model="translation[key-1]" size="50" v-bind:placeholder="uiLabels.translation" :id="key">
-      </div>
-    </div>
+    <div class="wrapper">
+      <div class="inputfields">
+        <div class="word" v-for="key in count" :key="key">
+          <input class="input" type="text" v-model="words[key - 1]" size="50" v-bind:placeholder="uiLabels.word"
+            :id="key">
 
-    <div class="inputfields">
-      <div v-for="key in count" :key="key">
-        <a id="removeSignBox">
-          <a class="removeSign" @click="remove(key)" title="Remove word">
-            x
-          </a>
-        </a>
-      </div>
-    </div>
-
-    <div class="controls">
-      <a id="add_more_fields" @click="add">
-        <div>
-          <button class="addSign">{{uiLabels.addWord}}</button>
         </div>
-      </a>
-    
+      </div>
 
-    <button v-bind:disabled="title == ''" class="saveQuizButton1" @click="save">{{uiLabels.saveQuiz}}</button>
+      <div class="inputfields">
+        <div class="translation" v-for="key in count" :key="key">
+
+          <input class="input" type="text" v-model="translation[key - 1]" size="50"
+            v-bind:placeholder="uiLabels.translation" :id="key">
+        </div>
+      </div>
+
+      <div class="inputfields">
+        <div v-for="key in count" :key="key">
+          <a id="removeSignBox">
+            <a class="removeSign" @click="remove(key)" title="Remove word">
+              x
+            </a>
+          </a>
+        </div>
+      </div>
+
+      <div class="controls">
+        <a id="add_more_fields" @click="add">
+          <div>
+            <button class="addSign">{{ uiLabels.addWord }}</button>
+          </div>
+        </a>
+
+
+        <button v-bind:disabled="title == ''" class="saveQuizButton1" @click="save">{{ uiLabels.saveQuiz }}</button>
+      </div>
+
+    </div>
+
   </div>
-
-  </div>
-
-</div>
   <div>
     <!-- skapa lyssnare som skickar iväg pageLoaded, som i sin tur returnerar uiLabels (och eventuellt annan typ av data)-->
     <button class="exitbutton" @click="$router.push('/')">Exit</button>
@@ -69,11 +71,12 @@ export default {
       translation: [],
       quiz: {},
       uiLabels: {},
-      title:[]
+      title: "",
+      siteId: ""
 
     }
   },
-  
+
   created: function () {
     this.lang = this.$route.params.lang;
     this.quizId = this.$route.params.id;
@@ -89,34 +92,38 @@ export default {
       this.quiz = data,
       //this.quizId = data.quizId
     )
-    socket.emit("getQuiz", this.quizId);
-    socket.on("quiz", (data) => {
-      this.quiz = data,
-      this.words = data.words
-      this.translation = data.translations
-      if(data.words.length !=0){
-        this.count = data.words.length
-        console.log("hej", data.words)}
+    if (this.siteId == 'edit') {
+      socket.emit("getQuiz", this.quizId);
+      socket.on("quiz", (data) => {
+        this.quiz = data
+        this.words = data.words
+        this.translation = data.translations
+        this.title = data.title
+
+        if (data.words.length != 0) {
+          this.count = data.words.length
+        }
       }
-      //this.translation = this.quiz.translations,
-      //this.words = this.quiz.words
-    )
-    
+
+      )
+    }
+
+
   },
 
-    
-    
+
+
 
   methods: {
-    
+
     //testar att lägga till funktionen createQuiz
     //createQuiz: function () {
-      //socket.emit("createQuiz", {quizId: this.quizId, lang: this.lang })
-      //console.log("quizId:", this.quizId)
+    //socket.emit("createQuiz", {quizId: this.quizId, lang: this.lang })
+    //console.log("quizId:", this.quizId)
     //},
 
     add: function () {
-      if( this.count < 20 && this.words.length == this.count && this.translation.length == this.count){
+      if (this.count < 20 && this.words.length == this.count && this.translation.length == this.count) {
         this.count++;
       }
 
@@ -124,8 +131,8 @@ export default {
     },
     remove: function (key) {
       this.count--;
-      this.words.splice(key-1, 1)
-      this.translation.splice(key-1, 1)
+      this.words.splice(key - 1, 1)
+      this.translation.splice(key - 1, 1)
 
     },
 
@@ -134,20 +141,17 @@ export default {
         console.log(key + " -> " + this.values[key])
       }
     },
-    
-    save:  function (){
+
+    save: function () {
 
       console.log("ID:", this.siteId)
-      if(this.siteId== "new"){
-        this.$router.push('/play/'+this.lang+'/')
-        socket.emit("createQuiz", {quizId: this.quizId, lang: this.lang})
-      }
-      else if(this.siteId == "edit"){
-        this.$router.push('/play/'+this.lang)
+      if (this.siteId == "new") {
+        socket.emit("createQuiz", { quizId: this.quizId, lang: this.lang })
       }
       console.log(this.words, this.translation, this.title)
-      socket.emit("addWord", {q: this.quizId, w: this.words, t: this.translation, title: this.title} )
-      
+      this.$router.push('/play/' + this.lang)
+      socket.emit("addWord", { q: this.quizId, w: this.words, t: this.translation, title: this.title })
+
     },
 
 
@@ -173,16 +177,16 @@ body {
 
 .saveQuizButton1 {
   font-family: 'Comfortaa', cursive;
-  font-size: 20px;
-  width: 180px;
-  height: 40px;
   background: #a8e58cff;
   color: black;
   border: 0;
   border-color: black;
   padding: 7px;
   border-radius: 15px;
-  
+  width: 20vw;
+  height: 40px;
+  font-size: 12pt;
+
 }
 
 .saveQuizButton1:hover {
@@ -191,19 +195,16 @@ body {
 }
 
 .wrapper {
-  width: 1000px;
-  margin: 40px auto;
-  padding: 10px;
   border-radius: 30px;
   background: #ffffff;
-  /*box-shadow: 0px 10px 40px 0px rgba(47, 47, 47, .1);*/
+  margin-right: 10%;
+  margin-left: 10%;
+  display: grid;
+  align-items: center;
+  flex-wrap: wrap;
+  grid-template-columns: 40% 40% 20%;
 }
 
-.inputfields {
-  display: inline-block;
-  flex: 1;
-
-}
 
 input[class="input"] {
   padding: 10px;
@@ -212,9 +213,9 @@ input[class="input"] {
   border-radius: 20px;
   border: 1px solid lightgrey;
   background: none;
-  width: 250px;
+  width: 25vw;
   height: 20px;
-  font-size: 13pt;
+  font-size: 1rem;
   font-family: 'Comfortaa', cursive;
   color: black;
 }
@@ -225,23 +226,21 @@ input[type="text"]:focus {
 
 .controls {
   display: grid;
-  grid-gap: 10px;
-  grid-template-columns: 200px 200px;
-  width: 300px;
-  padding: 20px;
-  margin-left: 55%;
-  margin-right: 10%;
-  
+  grid-gap: 1%;
+  width: 70vw;
+  padding: 2vh;
+  grid-template-columns: 2fr 1fr;
+  justify-items: end;
 }
 
 .addSign {
   font-family: 'Comfortaa', cursive;
-  font-size: 20px;
-  width: 180px;
+  width: 20vw;
   height: 40px;
-  background:rgb(255, 227, 141);
+  font-size: 12pt;
+  background: rgb(255, 227, 141);
   color: black;
-  border:0;
+  border: 0;
   border-color: black;
   border-radius: 15px;
 }
@@ -254,14 +253,15 @@ input[type="text"]:focus {
 #removeSignBox {
   padding: 10px;
   margin: 30px;
-  display: block;
+  display:flex;
   width: 50px;
   height: 20px;
+  align-items: center;
+  padding-right: 5%;
+  padding-left: 5%;
 }
 
 .removeSign {
-  width: 60px;
-  height: 60px;
   color: rgb(235, 76, 76);
   font-size: 50px;
 }
@@ -269,16 +269,6 @@ input[type="text"]:focus {
 .removeSign:hover {
   cursor: pointer;
   font-size: 61px;
-}
-
-
-.controls a i.fa-minus {
-  margin-right: 5px;
-}
-
-a {
-  color: black;
-  text-decoration: none;
 }
 
 h1 {
@@ -295,9 +285,11 @@ h1 {
   margin: 2.5rem;
   color: white;
   background-color: rgb(235, 76, 76);
-  position: absolute;
   bottom: 0;
   left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 15px;
   font-family: 'Comfortaa', cursive;
 }
@@ -310,74 +302,50 @@ h1 {
   background-color: rgb(187, 34, 34);
 }
 
-#wrapping{
-  display: inline-block;
-
-  grid-gap: 5%;
-  grid-template-columns: 50% 50%;
-}
-
 .titleField {
-  width: 300px;
-  height: 60px;
-  margin: 40px auto;
-  padding: 10px;
+  width: 100%;
+  height: auto;
+  padding-top: 1%;
+  padding-bottom: 5%;
   border-radius: 30px;
   background: #d8ecff;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  /*box-shadow: 0px 10px 40px 0px rgba(47, 47, 47, .1);*/
 }
-#text {
-    color: black;
-    font-size: 20px;
-    font-family: 'Comfortaa', cursive;
-    text-align: center;
- 
-}
+
 input[class="input2"] {
-    border-radius: 50px;
-    
-    border: 1px solid lightgrey;
-    background-color: white;
-    width: 300px;
-    height: 40px;
-    font-size: 13pt;
-    font-family: 'Comfortaa', cursive;
-    color: black;
-    text-align: center;
+  border-radius: 50px;
+  border: 1px solid lightgrey;
+  background-color: white;
+  width: 300px;
+  height: 40px;
+  font-size: 12pt;
+  font-family: 'Comfortaa', cursive;
+  color: black;
+  text-align: center;
 }
+
 .saveQuizButton1:disabled {
-    background-color: dimgrey;
-    color: linen;
-    opacity: 1;
+  background-color: dimgrey;
+  color: linen;
+  opacity: 1;
+  width: 20vw;
+  height: 40px;
+  font-size: 12pt;
+}
+
+@media only screen and (max-width: 470px) {
+  .saveQuizButton1:disabled {
+  font-size: 8pt;
+}
+
+.addSign {
+  font-size: 8pt;
+}
+
+.saveQuizButton1 {
+  font-size: 8pt;
+}
 
 }
-@media screen and (max-width:1000px) {
-  .wrapper {
-    font-size: 5vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 50px;
-    margin-right: 50px;
-  }
-  .inputfields {
-    font-size: 5vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 20px;
-    margin-right: 10px;
-  }
 
-  .controls {
-    font-size: 5vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 50px;
-    margin-right: 50px;
-  }
-}
+
 </style>
