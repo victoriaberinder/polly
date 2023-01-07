@@ -3,7 +3,8 @@
     <body>
         <div id="timer"></div>
         <div v-if="showFlashCards">
-            <flash-cards :uiLabels="uiLabels" :words="words" :translations="translations" :lang="lang" :quizId="quizId" @clicked="clickedDone">
+            <flash-cards :uiLabels="uiLabels" :words="words" :translations="translations"
+                @clicked="clickedDone">
             </flash-cards>
         </div>
         <div v-if="!showFlashCards">
@@ -13,7 +14,8 @@
         </div>
 
         <div>
-            <button class="exitbutton" @click="$router.push('/')">Exit</button>
+            <button class="exitbutton"
+                @click="$router.push('/finalresult/' + this.lang + '/' + this.quizId)">Exit</button>
         </div>
     </body>
 </template>
@@ -97,13 +99,18 @@ export default {
         },
 
         clickedTryAgain() {
-            this.words = this.failedWords
-            this.translations = this.failedTranslations
-            this.showFlashCards = true;
-            console.log("Translation:", this.translations, "Words: ", this.words)
+            if (this.failedWords.length == 0) {
+                this.$router.push('/finalresult/' + this.lang + '/' + this.quizId)
+            }
+            else {
+                this.words = this.failedWords
+                this.translations = this.failedTranslations
+                this.showFlashCards = true;
+                console.log("Translation:", this.translations, "Words: ", this.words)
+            }
+
 
         },
-
 
         showTimer() {
             this.timer = setInterval(() => {
@@ -118,8 +125,8 @@ export default {
                     minute = "0" + minute;
                 if (seconds < 10)
                     seconds = "0" + seconds;
-                
-                
+
+
                 document.getElementById("timer").innerHTML = hour + ":" + minute + ":" + seconds;
             }, 1000)
         },
@@ -162,6 +169,4 @@ export default {
     color: #2c3e50;
     margin-right: 10vw;
 }
-
-
 </style>
