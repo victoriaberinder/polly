@@ -86,7 +86,7 @@ export default {
     })
   },
 
-<<<<<<< HEAD
+
   methods: {
     saving: function () {
             this.$router.push('/finalresult/' + this.lang + '/' + this.quizId)
@@ -97,8 +97,7 @@ export default {
 
 
   }
-=======
->>>>>>> deafa8863c8a16f56f3d185ad2e158221b36fa30
+
 }
 
 </script>
