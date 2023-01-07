@@ -1,8 +1,7 @@
 <template>
+    <div class="full"></div>
     <div class="wrapper4">
-
-        <h1 type="text">{{ uiLabels.flashcard }}</h1>
-
+        <div class="text">{{ uiLabels.flashcard }}</div>
     </div>
     <p class="count">{{ index + 1 }} / {{ words.length }}</p>
     <div class="scene sceneCard">
@@ -20,12 +19,8 @@
         <input type="text" v-bind:placeholder="uiLabels.answer" class="wrapper5" v-model="cardAnswer"
             v-bind:readonly="cardOne == 'flipped'">
         <div class="wrapper6">
-
             <button v-bind:disabled="cardAnswer == ''" v-if="cardOne != 'flipped'" class="submit"
-                @click="[flipCard()], [getAnswer()]">{{
-                    uiLabels.submit
-                }}</button>
-
+                @click="[flipCard()], [getAnswer()]">{{ uiLabels.submit }}</button>
             <button v-else-if="index + 1 == words.length" class="done" @click="done">
                 {{ uiLabels.done }}
             </button>
@@ -42,14 +37,14 @@
 export default {
     name: 'FlashCards',
     emits: ['clicked'],
-    props:{
-       uiLabels: Object,
-       words: Array,
-       translations: Array,
+    props: {
+        uiLabels: Object,
+        words: Array,
+        translations: Array,
     },
 
-    data: function (){
-        return{
+    data: function () {
+        return {
             cardOne: "start",
             cardAnswer: "",
             cardOneWord: false,
@@ -57,10 +52,10 @@ export default {
             showBack: false,
             correctWords: [],
             correctTranslations: [],
-            failedWords:[],
-            failedTranslations:[],
-           
-          
+            failedWords: [],
+            failedTranslations: [],
+
+
         }
     },
 
@@ -83,22 +78,22 @@ export default {
                 this.cardOneWord = true
                 this.correctWords.push(this.words[this.index])
                 this.correctTranslations.push(this.translations[this.index])
-                
+
             }
             else {
                 this.cardOneWord = false
                 this.failedWords.push(this.words[this.index])
                 this.failedTranslations.push(this.translations[this.index])
-             
+
             }
         },
         done: function () {
             //this.$router.push('/myresult/' + this.lang + '/' + this.quizId + '/' + this.username)
-           
-            this.$emit('clicked', {failedWords: this.failedWords, correctWords: this.correctWords, failedTranslations: this.failedTranslations, correctTranslations: this.correctTranslations})
+
+            this.$emit('clicked', { failedWords: this.failedWords, correctWords: this.correctWords, failedTranslations: this.failedTranslations, correctTranslations: this.correctTranslations })
         },
 
-        
+
 
     },
 }
@@ -111,27 +106,25 @@ export default {
 
 }
 
+.wrapper4 {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    height: 7vh;
+    width: 25vw;
+    font-size: 15px;
+    font-family: 'Comfortaa', cursive;
+    margin-top: 2%;
+}
+
 .wrapper5 {
     text-align: center;
     color: black;
     border: 1px ridge rgb(177, 177, 177);
     border-radius: 50px;
     background-color: white;
-    margin-top: 10px;
-    justify-content: center;
-    height: 50px;
-    width: 300px;
-    font-size: 15px;
-    font-family: 'Comfortaa', cursive;
-}
-
-.wrapper4 {
-    margin-left: auto;
-    margin-right: auto;
-    justify-content: center;
-    text-align: center;
-    height: 50px;
-    width: 300px;
+    height: 7vh;
+    width: 25vw;
     font-size: 15px;
     font-family: 'Comfortaa', cursive;
 }
@@ -141,23 +134,32 @@ export default {
     margin-right: auto;
     justify-content: center;
     text-align: center;
-    height: 50px;
-    width: 300px;
+    height: 7vh;
+    width: 25vw;
     font-size: 15px;
     font-family: 'Comfortaa', cursive;
 }
 
 .inter {
-    margin: 20px;
-    padding: 20px;
+    display: grid;
+    padding: 1%;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    align-items: end;
+    margin-left: 22%;
+    margin-right: 22%;
 }
 
 .text {
     color: black;
-    font-size: 35px;
+    font-size: 4vw;
     font-family: 'Comfortaa', cursive;
     text-align: center;
-    margin-top: 150px;
+    height: 7vh;
+    width: 25vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -167,10 +169,9 @@ export default {
     border: 1px ridge rgb(177, 177, 177);
     border-radius: 50px;
     background-color: #3f51b5;
-    margin-top: 10px;
     justify-content: center;
-    height: 50px;
-    width: 300px;
+    height: 7vh;
+    width: 25vw;
     font-size: 15px;
     font-family: 'Comfortaa', cursive;
 }
@@ -192,10 +193,8 @@ export default {
     border: 1px ridge rgb(177, 177, 177);
     border-radius: 50px;
     background-color: #56c770;
-    margin-top: 10px;
-    justify-content: center;
-    height: 50px;
-    width: 300px;
+    height: 7vh;
+    width: 25vw;
     font-size: 15px;
     font-family: 'Comfortaa', cursive;
 
@@ -203,8 +202,8 @@ export default {
 
 .done:hover {
     cursor: pointer;
-    width: 300px;
-    height: 50px;
+    height: 7vh;
+    width: 25vw;
     background-color: #2ca248;
 }
 
@@ -215,10 +214,9 @@ export default {
     border: 1px ridge rgb(177, 177, 177);
     border-radius: 50px;
     background-color: rgb(255, 227, 141);
-    margin-top: 10px;
     justify-content: center;
-    height: 50px;
-    width: 300px;
+    height: 7vh;
+    width: 25vw;
     font-size: 15px;
     font-family: 'Comfortaa', cursive;
 }
@@ -234,8 +232,8 @@ export default {
     margin-right: auto;
     justify-content: center;
     border-radius: 50px;
-    width: 800px;
-    height: 500px;
+    width: 55vw;
+    height: 70vh;
 }
 
 .card {
@@ -244,8 +242,8 @@ export default {
     color: white;
     text-align: center;
     font-family: 'Comfortaa', cursive;
-    width: 800px;
-    height: 500px;
+    width: 55vw;
+    height: 70vh;
     transition: transform 1s;
     transform-style: preserve-3d;
     cursor: pointer;
@@ -262,8 +260,8 @@ export default {
     backface-visibility: hidden;
     font-family: 'Comfortaa', cursive;
     font-size: 60px;
-    width: 800px;
-    height: 500px;
+    width: 55vw;
+    height: 70vh;
     background: #3f51b5;
     margin: auto;
     border-radius: 50px;
@@ -293,5 +291,12 @@ export default {
 
 .flip {
     transform: rotateX(180deg);
+}
+
+
+@media only screen and (max-width: 850px) {
+    .text {
+        font-size: 25pt;
+    }
 }
 </style>
