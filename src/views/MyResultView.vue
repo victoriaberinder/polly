@@ -24,7 +24,7 @@
         @click="$router.push('/flash/' + this.lang + '/' + this.quizId + '/' + this.username + '/' + this.siteId)"> Try
         again</button>
       <button v-else-if="failedWords.length == 0" class="tryagain"
-        @click="$router.push('/result/' + this.lang + '/' + this.quizId)"> Show toplist</button>
+        @click="saving"> Show toplist</button>
     </div>
 
     <div>
@@ -87,6 +87,12 @@ export default {
   },
 
   methods: {
+    saving: function () {
+            this.$router.push('/finalresult/' + this.lang + '/' + this.quizId)
+            console.log("username:",this.username)
+            //socket.emit("myTime", { quizId: this.quizId, username: this.username })
+            socket.emit("saveMyResult", { quizId: this.quizId, username: this.username, failedWords: this.failedWords, correctWords: this.correctWords, failedTranslations: this.failedTranslations, correctTranslations: this.correctTranslations })
+        },
 
 
   }
