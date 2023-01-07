@@ -24,10 +24,12 @@ function sockets(io, socket, data) {
   socket.on('save', function(d) {
     data.addTitle(d.q, d.t)
     console.log("quizes: ", data.getAllQuizes())
-  
-    //io.emit('allQuizes',  { quizes: data.getAllQuizes() })
     
   });
+
+  socket.on('joinQuiz', function(quizId){
+    socket.join(quizId)
+  })
 
   socket.on('addQuestion', function(d) {
     data.addQuestion(d.pollId, {q: d.q, a: d.a});
@@ -87,13 +89,8 @@ function sockets(io, socket, data) {
 
   socket.on("saveTime", function(d){
     data.saveTime(d.quizId, d.username, d.totalSeconds)
-    
+    io.to(d.quizId).emit('getResults', data.getQuiz(d.quizId))
   })
-
-  socket.on("saveMyResult", function(d) {
-    data.saveMyResult(d.quizId, d.username, d.failedWords, d.failedTranslations, d.correctWords, d.correctTranslations)
-    console.log("Efter save my result:" , data.getAllQuizes())
-  });
 
   socket.on("makeUser", function(d){
     data.makeUser(d.q, d.u)

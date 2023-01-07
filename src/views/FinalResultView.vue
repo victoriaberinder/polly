@@ -26,12 +26,11 @@ export default {
 
       lang: "",
       quizId: "",
-      count: 1,
-      data: {},
+      quiz: {},
       uiLabels: {},
       newQuizId: "",
-      username: "",
-      user: {}
+      username: '',
+      users: {}
 
     }
   },
@@ -46,9 +45,17 @@ socket.emit("pageLoaded", this.lang);
 socket.on("init", (labels) => {
   this.uiLabels = labels
 })
-socket.emit("getQuiz", this.quizId);
-socket.on("quiz", (data) => {
+// socket.emit("getQuiz", this.quizId);
+// socket.on("quiz", (data) => {
+//   this.quiz = data
+
+// })
+
+socket.emit('joinQuiz', this.quizId)
+socket.on('getResults', (data)=>{
   this.quiz = data
+  this.users = data.users
+  console.log(data.users)
 
 })
 
