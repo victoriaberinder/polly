@@ -1,5 +1,4 @@
 <template>
-    <div class="full"></div>
     <div class="wrapper4">
         <div class="text">{{ uiLabels.flashcard }}</div>
     </div>
