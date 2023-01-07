@@ -41,7 +41,7 @@ created: function () {
 
 this.lang = this.$route.params.lang;
 this.quizId = this.$route.params.id;
-this.username = this.$route.params.username;
+//this.username = this.$route.params.username;
 socket.emit("pageLoaded", this.lang);
 socket.on("init", (labels) => {
   this.uiLabels = labels

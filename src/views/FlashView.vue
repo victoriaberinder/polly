@@ -3,7 +3,11 @@
     <body>
         <div id="timer"></div>
         <div v-if="showFlashCards">
+<<<<<<< HEAD
             <flash-cards :uiLabels="uiLabels" :words="words" :translations="translations" :lang="lang" :quizId="quizId"
+=======
+            <flash-cards :uiLabels="uiLabels" :words="words" :translations="translations"
+>>>>>>> a46518d725fb595a6ae982d603b0c7b62eddc687
                 @clicked="clickedDone">
             </flash-cards>
         </div>
@@ -14,7 +18,8 @@
         </div>
 
         <div>
-            <button class="exitbutton" @click="$router.push('/')">Exit</button>
+            <button class="exitbutton"
+                @click="$router.push('/finalresult/' + this.lang + '/' + this.quizId)">Exit</button>
         </div>
     </body>
 </template>
@@ -98,13 +103,20 @@ export default {
         },
 
         clickedTryAgain() {
-            this.words = this.failedWords
-            this.translations = this.failedTranslations
-            this.showFlashCards = true;
-            console.log("Translation:", this.translations, "Words: ", this.words)
+            if (this.failedWords.length == 0) {
+                socket.emit("saveTime",{quizId: this.quizId, username:this.username, totalSeconds: this.totalSeconds} )
+                this.$router.push('/finalresult/' + this.lang + '/' + this.quizId)
+                
+            }
+            else {
+                this.words = this.failedWords
+                this.translations = this.failedTranslations
+                this.showFlashCards = true;
+                console.log("Translation:", this.translations, "Words: ", this.words)
+            }
+
 
         },
-
 
         showTimer() {
             this.timer = setInterval(() => {

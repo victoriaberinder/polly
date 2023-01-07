@@ -23,7 +23,7 @@
             <button v-if="failedWords.length > 0" class="tryagain" @click="tryAgain">
                 Try again</button>
             <button v-else-if="failedWords.length == 0" class="tryagain"
-                @click="changeView"> End quiz</button>
+                @click="tryAgain"> End quiz</button>
         </div>
 
     </body>
@@ -41,8 +41,7 @@ export default {
         failedWords: Object,
         correctWords: Array,
         allCorrectWords: Array,
-        quizId: String,
-        lang: String
+
 
 
     },
@@ -52,9 +51,7 @@ export default {
             this.$emit('clicked')
 
         },
-        changeView: function(){
-            this.$router.push('/result/' + this.lang + '/' + this.quizId)
-        }
+
     },
 
 }

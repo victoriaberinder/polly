@@ -92,7 +92,7 @@ export default {
             this.$router.push('/finalresult/' + this.lang + '/' + this.quizId)
             console.log("username:",this.username)
             //socket.emit("myTime", { quizId: this.quizId, username: this.username })
-            socket.emit("saveMyResult", { quizId: this.quizId, username: this.username, failedWords: this.failedWords, correctWords: this.correctWords, failedTranslations: this.failedTranslations, correctTranslations: this.correctTranslations })
+            //socket.emit("saveMyResult", { quizId: this.quizId, username: this.username, failedWords: this.failedWords, correctWords: this.correctWords, failedTranslations: this.failedTranslations, correctTranslations: this.correctTranslations })
         },
 
 

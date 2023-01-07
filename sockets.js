@@ -85,6 +85,11 @@ function sockets(io, socket, data) {
     
   });
 
+  socket.on("saveTime", function(d){
+    data.saveTime(d.quizId, d.username, d.totalSeconds)
+    
+  })
+
   socket.on("saveMyResult", function(d) {
     data.saveMyResult(d.quizId, d.username, d.failedWords, d.failedTranslations, d.correctWords, d.correctTranslations)
     console.log("Efter save my result:" , data.getAllQuizes())
