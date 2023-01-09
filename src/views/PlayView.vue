@@ -9,7 +9,7 @@
           </p>
         </div>
         <div class="size sizeButtons">
-          <button class="playbutton" @click="$router.push('/username/' + lang + '/' + key)">{{uiLabels.play}}</button>
+          <button class="playbutton" @click="play(key)">{{uiLabels.play}}</button>
           <button class="editbutton" @click="edit(key)">{{uiLabels.edit}}</button>
           <a @click="remove(key)" title="Remove word">
             <button class="deletebutton">{{uiLabels.delete}}</button>
@@ -80,8 +80,6 @@ export default {
 
   methods: {
 
-
-
     add: function () {
       this.count++;
 
@@ -96,7 +94,6 @@ export default {
         console.log("quizes1:", data)
       }
       )
-
     },
 
     edit: function (key) {
@@ -118,7 +115,13 @@ export default {
 
       this.$router.push('/create/'+this.lang+'/new/'+this.newQuizId)
       console.log(this.newQuizId)
+    },
+
+    play: function(quizId){
+      socket.emit("joinQuiz", quizId);
+      this.$router.push('/username/' + this.lang + '/' + quizId)
     }
+
 
   }
 }

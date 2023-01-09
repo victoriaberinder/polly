@@ -2,9 +2,9 @@
 <template>
 
     <div class="wrapper7" action="" method="get">
-        <h1 id="text">{{ uiLabels.usernameQuiz }}</h1>
-        <input class="usernameInput" type="text" v-model="username" size="50" v-bind:placeholder="uiLabels.username" >
-
+        <h1 id="text">{{ uiLabels.joinQuiz}}</h1>
+        <input class="usernameInput" type="text" v-model="quizId" size="50" v-bind:placeholder="QuizId" >
+        <input class="usernameInput" type="text" v-model="username" size="50" v-bind:placeholder="Username" >
         <div>
             <button v-bind:disabled="username == ''" class="playQuiz" @click="play">{{ uiLabels.playButton }}</button>
         </div>
@@ -28,8 +28,8 @@ export default {
         return {
             lang: "",
             uiLabels: {},
-            username: "",
             quizId: "",
+            username: "",
            
         }
     },
@@ -44,16 +44,14 @@ export default {
         socket.on("dataUpdate", (data) =>
             this.data = data
         )
-        socket.on("pollCreated", (data) =>
-            this.data = data)
+       
     },
     methods: {
         play: function () {
             
-            
-            socket.emit('makeUser', { q: this.quizId, u: this.username })
-            sessionStorage.setItem("host",this.quizId)
             this.$router.push('/flash/' + this.lang + '/' + this.quizId + '/' + this.username)
+            socket.emit('makeUser', { q: this.quizId, u: this.username })
+            socket.emit('joinQuiz', this.quizId)
             
         }
 

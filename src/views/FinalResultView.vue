@@ -13,7 +13,7 @@
     <div v-for="(username, key) in username" v-bind:key="key">
       {{ user[key] }}
     </div>
-
+      <p>{{ data }}</p>
   </div>
 
   <div>
@@ -42,8 +42,7 @@ export default {
 
       lang: "",
       quizId: "",
-      count: 1,
-      data: {},
+      quiz: {},
       uiLabels: {},
       newQuizId: "",
       username: "",
@@ -53,23 +52,30 @@ export default {
   },
 
 
-  created: function () {
+created: function () {
 
-    this.lang = this.$route.params.lang;
-    this.quizId = this.$route.params.id;
-    //this.username = this.$route.params.username;
-    socket.emit("pageLoaded", this.lang);
-    socket.on("init", (labels) => {
-      this.uiLabels = labels
-    })
-    socket.emit("getQuiz", this.quizId);
-    socket.on("quiz", (data) => {
-      this.quiz = data
+this.lang = this.$route.params.lang;
+this.quizId = this.$route.params.id;
+//this.username = this.$route.params.username;
+socket.emit("pageLoaded", this.lang);
+socket.on("init", (labels) => {
+  this.uiLabels = labels
+})
+// socket.emit("getQuiz", this.quizId);
+// socket.on("quiz", (data) => {
+//   this.quiz = data
 
-    })
+// })
 
 
-  },
+socket.on('getResults', (data)=>{
+  this.quiz = data
+  this.users = data.users
+  console.log(data.users)
+
+
+  })
+},
 
   mounted() {
     this.$refs.audio.play();

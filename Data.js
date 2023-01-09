@@ -148,27 +148,10 @@ Data.prototype.saveTime = function (quizId, username, totalSeconds){
   console.log(quiz.users)
 }
 
-Data.prototype.saveMyResult = function (quizId, username, failedWords, failedTranslations, correctWords, correctTranslations) {
-
-  const quiz = this.quizes[quizId];
-  
-  quiz.users[username].failedWords = failedWords;
-  quiz.users[username].failedTranslations = failedTranslations;
-  for (let i = 0; i < correctWords.length; i++) {
-    quiz.users[username].correctWords.push(correctWords[i]);
-    quiz.users[username].correctTranslations.push(correctTranslations[i]);
-  }
-  
-}
-
 Data.prototype.makeUser = function (quizId, username){
   const quiz = this.quizes[quizId];
 
   let user = {};
-  user.correctTranslations = [];
-  user.correctWords = [];
-  user.failedWords = [];
-  user.failedTranslations = [];
   
   this.quizes[quizId].users[username] = user;
 }

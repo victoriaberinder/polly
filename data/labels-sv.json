@@ -27,5 +27,6 @@
 	"createNewQuiz": "Skapa nytt quiz",
 	"nextQuestion": "Nästa fråga",
 	"done": "Klar",
-	"finalResultHeader": "Topplista"
+	"finalResultHeader": "Topplista",
+	"joinQuiz": "Ange quizID"
 }
