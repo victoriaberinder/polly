@@ -258,11 +258,10 @@ export default {
     color: white;
     backface-visibility: hidden;
     font-family: 'Comfortaa', cursive;
-    font-size: 60px;
+    font-size: 2.5vw;
     width: 55vw;
     height: 70vh;
     background: #3f51b5;
-    margin: auto;
     border-radius: 50px;
 }
 
@@ -294,8 +293,8 @@ export default {
 
 
 @media only screen and (max-width: 850px) {
-    .text {
-        font-size: 25pt;
+    .card__face {
+        font-size: 2vw;
     }
 }
 </style>

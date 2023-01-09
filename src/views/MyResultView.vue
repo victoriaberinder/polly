@@ -140,7 +140,7 @@ h1 {
 .failedWords {
   float:left;
   flex:1;
-  width: 100px;
+  width: 7vw;
   height: auto;
   background-color: rgb(229, 140, 140);
   border-radius: 10px;
@@ -151,7 +151,7 @@ h1 {
 .correctWords {
   float:left;
   flex:1;
-  width: 100px;
+  width: 7vw;
   height: auto;
   background-color: #a8e58cff;
   border-radius: 10px;
@@ -159,13 +159,15 @@ h1 {
   margin-right: 5%;
 }
 .correct{
-  margin-top:100px;
-  margin-bottom: 100px;
+  margin-top:7vw;
+  margin-bottom: 7vw;
 }
 
 .failed{
-  margin-top: 100px;
-  margin-bottom: 100px;
+  margin-top: 7vw;
+  margin-bottom: 7vw;
+  margin-right: 7vw;
+  margin-left: 7vw;
 }
 
 .wrapperWords {

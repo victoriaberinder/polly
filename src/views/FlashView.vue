@@ -3,11 +3,7 @@
     <body>
         <div id="timer"></div>
         <div v-if="showFlashCards">
-<<<<<<< HEAD
-            <flash-cards :uiLabels="uiLabels" :words="words" :translations="translations" :lang="lang" :quizId="quizId"
-=======
             <flash-cards :uiLabels="uiLabels" :words="words" :translations="translations"
->>>>>>> a46518d725fb595a6ae982d603b0c7b62eddc687
                 @clicked="clickedDone">
             </flash-cards>
         </div>
