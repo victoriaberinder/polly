@@ -24,7 +24,7 @@
         @click="$router.push('/flash/' + this.lang + '/' + this.quizId + '/' + this.username + '/' + this.siteId)"> Try
         again</button>
       <button v-else-if="failedWords.length == 0" class="tryagain"
-        @click="$router.push('/result/' + this.lang + '/' + this.quizId)"> Show toplist</button>
+        @click="saving"> Show toplist</button>
     </div>
 
     <div>
@@ -86,10 +86,18 @@ export default {
     })
   },
 
+
   methods: {
+    saving: function () {
+            this.$router.push('/finalresult/' + this.lang + '/' + this.quizId)
+            console.log("username:",this.username)
+            //socket.emit("myTime", { quizId: this.quizId, username: this.username })
+            //socket.emit("saveMyResult", { quizId: this.quizId, username: this.username, failedWords: this.failedWords, correctWords: this.correctWords, failedTranslations: this.failedTranslations, correctTranslations: this.correctTranslations })
+        },
 
 
   }
+
 }
 
 </script>
@@ -132,8 +140,7 @@ h1 {
 .failedWords {
   float:left;
   flex:1;
-  display: inline-block;
-  width: 100px;
+  width: 7vw;
   height: auto;
   background-color: rgb(229, 140, 140);
   border-radius: 10px;
@@ -144,8 +151,7 @@ h1 {
 .correctWords {
   float:left;
   flex:1;
-  display:inline-block;
-  width: 100px;
+  width: 7vw;
   height: auto;
   background-color: #a8e58cff;
   border-radius: 10px;
@@ -153,13 +159,15 @@ h1 {
   margin-right: 5%;
 }
 .correct{
-  margin-top:100px;
-  margin-bottom: 100px;
+  margin-top:7vw;
+  margin-bottom: 7vw;
 }
 
 .failed{
-  margin-top: 100px;
-  margin-bottom: 100px;
+  margin-top: 7vw;
+  margin-bottom: 7vw;
+  margin-right: 7vw;
+  margin-left: 7vw;
 }
 
 .wrapperWords {
@@ -172,7 +180,7 @@ h1 {
   padding-right: 10%;
 }
 
-@media only screen and (max-width: 600px) {
+@media screen and (max-width:50em) {
   .logo {
     font-size: 5vw;
     display: flex;
@@ -192,4 +200,5 @@ h1 {
     left:-12em;
   }
 }
+
 </style>

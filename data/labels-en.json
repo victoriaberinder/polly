@@ -26,5 +26,7 @@
     "delete": "Delete",
     "createNewQuiz": "Create new quiz",
     "nextQuestion": "Next question",
-    "done": "Done"
+    "done": "Done",
+    "finalResultHeader": "Top list",
+    "joinQuiz": "Enter quizID"
 }

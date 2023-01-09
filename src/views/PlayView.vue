@@ -9,15 +9,16 @@
         </p>
       </div>
       <div class="size sizeButtons">
-        <button class="playbutton" @click="$router.push('/username/' + lang + '/' + key)">{{ uiLabels.play }}</button>
+        <button class="playbutton" @click="play(key)">{{ uiLabels.play }}</button>
         <button class="editbutton" @click="edit(key)">{{ uiLabels.edit }}</button>
         <a @click="remove(key)" title="Remove word">
           <button class="deletebutton">{{ uiLabels.delete }}</button>
         </a>
 
       </div>
-      <hr>
+
     </div>
+    <hr>
     <button class="ButtonCreateNew" @click="create"> {{ uiLabels.createNewQuiz }}</button>
 
   </div>
@@ -80,8 +81,6 @@ export default {
 
   methods: {
 
-
-
     add: function () {
       this.count++;
 
@@ -96,7 +95,6 @@ export default {
         console.log("quizes1:", data)
       }
       )
-
     },
 
     edit: function (key) {
@@ -118,7 +116,13 @@ export default {
 
       this.$router.push('/create/' + this.lang + '/new/' + this.newQuizId)
       console.log(this.newQuizId)
+    },
+
+    play: function (quizId) {
+      socket.emit("joinQuiz", quizId);
+      this.$router.push('/username/' + this.lang + '/' + quizId)
     }
+
 
   }
 }
@@ -282,7 +286,7 @@ h1 {
 
   .wrapper3 {
     width: 90%;
-    height:95%;
+    height: 95%;
   }
 
   .sizeButtons {
@@ -291,9 +295,9 @@ h1 {
     display: inline-block;
     margin-left: 50%;
     margin-top: -15vw;
-    
-   
-    
+
+
+
   }
 
   .playbutton {
@@ -308,15 +312,15 @@ h1 {
     margin: 5%;
   }
 
- #title{
-  width: 39%;
-  font-size:30px;
-  margin-left: 1vw;
- }
+  #title {
+    width: 39%;
+    font-size: 30px;
+    margin-left: 1vw;
+  }
 
- .exitbutton{
-  margin-left:20%;
- }
+  .exitbutton {
+    margin-left: 20%;
+  }
 
 }
 </style>

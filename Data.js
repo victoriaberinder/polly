@@ -69,7 +69,6 @@ Data.prototype.saveQuiz = function (quizId, word, translation, title) {
   const quiz = this.quizes[quizId];
   quiz.words = [];
   quiz.translations = [];
-  quiz.title = [];
   if (typeof quiz !== 'undefined') {
     for (let i = 0; i < word.length; i++) {
       quiz.words.push(word[i]);
@@ -141,27 +140,17 @@ Data.prototype.deleteQuiz = function (key) {
 
 }
 
-Data.prototype.saveMyResult = function (quizId, username, failedWords, failedTranslations, correctWords, correctTranslations) {
-
+Data.prototype.saveTime = function (quizId, username, totalSeconds){
   const quiz = this.quizes[quizId];
-  
-  quiz.users[username].failedWords = failedWords;
-  quiz.users[username].failedTranslations = failedTranslations;
-  for (let i = 0; i < correctWords.length; i++) {
-    quiz.users[username].correctWords.push(correctWords[i]);
-    quiz.users[username].correctTranslations.push(correctTranslations[i]);
-  }
-  
+
+  quiz.users[username].time = totalSeconds
+  console.log(quiz.users)
 }
 
 Data.prototype.makeUser = function (quizId, username){
   const quiz = this.quizes[quizId];
 
   let user = {};
-  user.correctTranslations = [];
-  user.correctWords = [];
-  user.failedWords = [];
-  user.failedTranslations = [];
   
   this.quizes[quizId].users[username] = user;
 }

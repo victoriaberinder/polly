@@ -21,31 +21,54 @@ function sockets(io, socket, data) {
     socket.emit('quizCreated', data.createQuiz(d.quizId, d.lang));
   });
 
+<<<<<<< HEAD
   //socket.on('save', function(d) {
     //data.addTitle(d.q, d.t)
     //console.log("quizes: ", data.getAllQuizes())
   
     //io.emit('allQuizes',  { quizes: data.getAllQuizes() })
+=======
+  socket.on('save', function(d) {
+    data.addTitle(d.q, d.t)
+    console.log("quizes: ", data.getAllQuizes())
+>>>>>>> 989ccba69dec8598203d75a40e6b3917fb33da5e
     
   //});
+
+
+    socket.on('joinQuiz', function(quizId){
+    socket.join(quizId);
+    console.log(data.getAllQuizes())
+    
+  });
+
+  socket.on('startQuiz', function(quizId){
+    io.to(quizId).emit('newQuiz', data.getQuiz(quizId));
+  });
+
 
   socket.on('addQuestion', function(d) {
     data.addQuestion(d.pollId, {q: d.q, a: d.a});
     socket.emit('dataUpdate', data.getAnswers(d.pollId));
   });
 
+<<<<<<< HEAD
   socket.on('saveQuiz', function(d) {
    // console.log("QuizID:", d.q, "Words:", d.w, "Translation:", d.t)
     data.saveQuiz( d.q, d.w, d.t, d.title);
     //socket.emit('dataUpdate', data.getAnswers(d.quizId));
+=======
+  socket.on('addWord', function(d) {
+    data.addWord( d.q, d.w, d.t, d.title);
+   
+>>>>>>> 989ccba69dec8598203d75a40e6b3917fb33da5e
   });
 
   socket.on('getAllQuizes', function() {
     socket.emit('allQuizes', data.getAllQuizes() );
     //io.emit('allQuizes',  { quizes: data.getAllQuizes() })
-    
+  
   });
-
 
   socket.on('editQuestion', function(d) {
     data.editQuestion(d.pollId, d.index, {q: d.q, a: d.a});
@@ -85,10 +108,10 @@ function sockets(io, socket, data) {
     
   });
 
-  socket.on("saveMyResult", function(d) {
-    data.saveMyResult(d.quizId, d.username, d.failedWords, d.failedTranslations, d.correctWords, d.correctTranslations)
-    console.log("Efter save my result:" , data.getAllQuizes())
-  });
+  socket.on("saveTime", function(d){
+    data.saveTime(d.quizId, d.username, d.totalSeconds)
+    io.to(d.quizId).emit('getResults', data.getQuiz(d.quizId))
+  })
 
   socket.on("makeUser", function(d){
     data.makeUser(d.q, d.u)
