@@ -46,7 +46,6 @@
       </div>
 
     </div>
-
   </div>
   <div>
     <!-- skapa lyssnare som skickar iväg pageLoaded, som i sin tur returnerar uiLabels (och eventuellt annan typ av data)-->
@@ -149,10 +148,11 @@ export default {
         socket.emit("createQuiz", { quizId: this.quizId, lang: this.lang })
       }
       console.log(this.words, this.translation, this.title)
-      this.$router.push('/play/' + this.lang)
+        this.$router.push('/play/' + this.lang)
       socket.emit("addWord", { q: this.quizId, w: this.words, t: this.translation, title: this.title })
 
     },
+    
 
 
   }

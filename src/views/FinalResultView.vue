@@ -5,7 +5,7 @@
     <div v-for="(username, key) in username" v-bind:key="key">
         {{ user[key] }}
     </div>
-      
+      <p>{{ data }}</p>
   </div>
 
   <div>
@@ -51,7 +51,7 @@ socket.on("init", (labels) => {
 
 // })
 
-socket.emit('joinQuiz', this.quizId)
+
 socket.on('getResults', (data)=>{
   this.quiz = data
   this.users = data.users

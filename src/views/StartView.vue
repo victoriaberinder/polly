@@ -8,7 +8,7 @@
     <body>
       <div class="wrapper1 background">
         <button class="buttonCreate" @click="create">{{ uiLabels.createButton }}</button>
-        <button class="buttonPlay" @click="$router.push('/play/' + lang)">{{ uiLabels.playButton }}</button>
+        <button class="buttonPlay" @click="$router.push('/joinquiz/' + lang)">{{ uiLabels.playButton }}</button>
         <div class="language">
           <button class="languagebutton" v-on:click="switchLanguage">{{ uiLabels.changeLanguage }}</button>
         </div>
@@ -55,7 +55,7 @@ export default {
         let random = Math.floor(Math.random() * 10)
         this.quizId += random.toString()
       }
-      this.$router.push('/create/' + this.lang + '/' + this.siteId + '/' + this.quizId)
+      this.$router.push('/play/' + this.lang)
       console.log(this.quizId)
     }
   }

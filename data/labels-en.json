@@ -27,5 +27,6 @@
     "createNewQuiz": "Create new quiz",
     "nextQuestion": "Next question",
     "done": "Done",
-    "finalResultHeader": "Top list"
+    "finalResultHeader": "Top list",
+    "joinQuiz": "Enter quizID"
 }

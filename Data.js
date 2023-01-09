@@ -152,10 +152,6 @@ Data.prototype.makeUser = function (quizId, username){
   const quiz = this.quizes[quizId];
 
   let user = {};
-  user.correctTranslations = [];
-  user.correctWords = [];
-  user.failedWords = [];
-  user.failedTranslations = [];
   
   this.quizes[quizId].users[username] = user;
 }
