@@ -28,5 +28,6 @@
     "nextQuestion": "Next question",
     "done": "Done",
     "finalResultHeader": "Top list",
-    "joinQuiz": "Enter quizID"
+    "joinQuiz": "Join quiz",
+    "quizID": "Quiz ID"
 }
