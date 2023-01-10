@@ -28,5 +28,6 @@
 	"nextQuestion": "Nästa fråga",
 	"done": "Klar",
 	"finalResultHeader": "Topplista",
-	"joinQuiz": "Ange quizID"
+	"joinQuiz": "Gå med i quiz",
+	"quizID": "Quiz ID"
 }
