@@ -10,7 +10,9 @@
         <button class="buttonCreate" @click="create">{{ uiLabels.createButton }}</button>
         <button class="buttonPlay" @click="$router.push('/joinquiz/' + lang)">{{ uiLabels.playButton }}</button>
         <div class="language">
-          <button class="languagebutton" v-on:click="switchLanguage">{{ uiLabels.changeLanguage }}</button>
+          <button class="languagebutton" v-on:click="switchLanguage">
+            {{ uiLabels.changeLanguage }}
+          </button>
         </div>
       </div>
     </body>
