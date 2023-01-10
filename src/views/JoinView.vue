@@ -49,7 +49,6 @@ export default {
     methods: {
         play: function () {           
             this.$router.push('/flash/' + this.lang + '/' + this.quizId + '/' + this.username)
-            socket.emit('makeUser', { q: this.quizId, u: this.username })
             socket.emit('joinQuiz', this.quizId)
             
         }

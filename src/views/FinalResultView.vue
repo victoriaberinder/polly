@@ -15,7 +15,7 @@
     </div>
 
     <div>
-      <button class="exitbutton" @click="$router.push('/')">Exit</button>
+      <button class="exitbutton" @click="exit">Exit</button>
     </div>
   </main>
 
@@ -70,6 +70,12 @@ export default {
       this.users = data.users
       console.log(data.users)
     })
+  },
+
+  methods:{
+    exit: function(){
+      this.$router.push('/')
+    }
   },
 
   mounted() {

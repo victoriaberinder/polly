@@ -118,7 +118,9 @@ export default {
 
     play: function (quizId) {
       socket.emit("joinQuiz", quizId);
+      socket.emit('deleteUsers', quizId)
       this.$router.push('/username/' + this.lang + '/' + quizId)
+
     }
 
 
