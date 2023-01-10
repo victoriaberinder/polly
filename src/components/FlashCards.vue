@@ -101,8 +101,7 @@ export default {
 
 <style>
 .count {
-    color: #2c3e05;
-
+    color: #2c3e50;
 }
 
 .wrapper4 {
@@ -118,7 +117,7 @@ export default {
 
 .wrapper5 {
     text-align: center;
-    color: black;
+    color: #2c3e50;
     border: 1px ridge rgb(177, 177, 177);
     border-radius: 50px;
     background-color: white;
@@ -150,8 +149,8 @@ export default {
 }
 
 .text {
-    color: black;
-    font-size: 4vw;
+    color: #2c3e50;
+    font-size: 5vw;
     font-family: 'Comfortaa', cursive;
     text-align: center;
     height: 7vh;
@@ -209,7 +208,7 @@ export default {
 
 .nextQuestionButton {
     text-align: center;
-    color: #2c3e05;
+    color: #2c3e50;
     border: 1px ridge rgb(177, 177, 177);
     border-radius: 50px;
     background-color: rgb(255, 227, 141);
@@ -258,7 +257,7 @@ export default {
     color: white;
     backface-visibility: hidden;
     font-family: 'Comfortaa', cursive;
-    font-size: 2.5vw;
+    font-size: 4vw;
     width: 55vw;
     height: 70vh;
     background: #3f51b5;
@@ -294,7 +293,7 @@ export default {
 
 @media only screen and (max-width: 850px) {
     .card__face {
-        font-size: 2vw;
+        font-size: 5vw;
     }
 }
 </style>

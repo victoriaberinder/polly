@@ -132,7 +132,7 @@ input[type="text"]:focus {
 }
 
 #text {
-    color: black;
+    color: #2c3e50;
     font-size: 35px;
     font-family: 'Comfortaa', cursive;
     text-align: center;

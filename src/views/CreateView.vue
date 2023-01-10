@@ -271,7 +271,7 @@ input[type="createText"]:focus {
 }
 
 .createH1 {
-  font-family: 'Comfortaa', cursive, bold;
+  font-family: 'Comfortaa', cursive;
   text-align: center;
   color: #2c3e50;
   margin-top: 80px;
