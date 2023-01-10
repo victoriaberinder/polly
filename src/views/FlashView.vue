@@ -2,15 +2,16 @@
 
     <body>
         <div id="timer"></div>
-        <div v-if="!startGame"></div>
-        <div class="waiting"> Waiting for the game to start...</div>
-        <div class="loader">
-            <div class="load">
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
+        <div v-if="!startGame">
+            <div class="waiting"> Waiting for the game to start...</div>
+            <div class="loader">
+                <div class="load">
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                </div>
             </div>
         </div>
         <div v-if="startGame">
@@ -117,6 +118,7 @@ export default {
         clickedTryAgain() {
             if (this.failedWords.length == 0) {
                 socket.emit('makeUser', { q: this.quizId, u: this.username })
+                this.totalSeconds == 0
                 socket.emit("saveTime", { quizId: this.quizId, username: this.username, totalSeconds: this.totalSeconds })
                 this.$router.push('/finalresult/' + this.lang + '/' + this.quizId)
 
