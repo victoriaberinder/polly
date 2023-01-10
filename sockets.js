@@ -105,6 +105,10 @@ function sockets(io, socket, data) {
     data.makeUser(d.q, d.u)
   });
 
+  socket.on('deleteUsers', function(quizId){
+    data.deleteUsers(quizId)
+  }),
+
   socket.on("getMyResult", function(d){
     console.log("User:", data.getMyResult(d.quizId, d.user))
     socket.emit("MyResult", data.getMyResult(d.quizId, d.user))

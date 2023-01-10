@@ -50,8 +50,6 @@ export default {
     methods: {
         play: function () {
             
-            
-            socket.emit('makeUser', { q: this.quizId, u: this.username })
             sessionStorage.setItem("host",this.quizId)
             this.$router.push('/flash/' + this.lang + '/' + this.quizId + '/' + this.username)
             

@@ -105,6 +105,7 @@ export default {
 
         clickedTryAgain() {
             if (this.failedWords.length == 0) {
+                socket.emit('makeUser', { q: this.quizId, u: this.username })
                 socket.emit("saveTime", { quizId: this.quizId, username: this.username, totalSeconds: this.totalSeconds })
                 this.$router.push('/finalresult/' + this.lang + '/' + this.quizId)
 

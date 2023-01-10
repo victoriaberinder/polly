@@ -1,24 +1,24 @@
 <template>
   <h1>{{ uiLabels.playHeader }}</h1>
 
-  <div class="wrapper3">
-    <div v-for="(quiz, key) in quizes" v-bind:key="key">
-      <div class="size">
-        <p id="title">
+  <div class="PlayWrapper3">
+    <div class="allbuttons">
+      <div v-for="(quiz, key) in quizes" v-bind:key="key">
+        <div id="title">
           {{ key }} : {{ quiz.title }}
-        </p>
-      </div>
-      <div class="size sizeButtons">
-        <button class="playbutton" @click="play(key)">{{ uiLabels.play }}</button>
-        <button class="editbutton" @click="edit(key)">{{ uiLabels.edit }}</button>
-        <a @click="remove(key)" title="Remove word">
-          <button class="deletebutton">{{ uiLabels.delete }}</button>
-        </a>
+        </div>
+        <div class="allbuttonsRight">
+          <button class="playbutton" @click="play(key)">{{ uiLabels.play }}</button>
+          <button class="editbutton" @click="edit(key)">{{ uiLabels.edit }}</button>
+          <a @click="remove(key)" title="Remove word">
+            <button class="deletebutton">{{ uiLabels.delete }}</button>
+          </a>
+        </div>
 
-      </div>
 
+        <hr>
+      </div>
     </div>
-    <hr>
     <button class="ButtonCreateNew" @click="create"> {{ uiLabels.createNewQuiz }}</button>
 
   </div>
@@ -118,7 +118,9 @@ export default {
 
     play: function (quizId) {
       socket.emit("joinQuiz", quizId);
+      socket.emit('deleteUsers', quizId)
       this.$router.push('/username/' + this.lang + '/' + quizId)
+
     }
 
 
@@ -133,7 +135,8 @@ body {
 }
 
 hr {
-  margin-top: 2px;
+  margin-top: 2%;
+  margin-bottom: 2%;
   border-top: 1px solid #d8ecff;
 }
 
@@ -148,11 +151,12 @@ h1 {
 
 #title {
   text-align: left;
-  font-size: 3vw;
+  font-size: 2vw;
   margin-left: 5%;
+  margin-top: 5%;
 }
 
-.size {
+/*.size {
   width: 500px;
   height: 60px;
   display: inline-block;
@@ -161,8 +165,7 @@ h1 {
 
 .sizeButtons {
   text-align: right;
-
-}
+}*/
 
 .exitbutton {
   width: 4rem;
@@ -187,8 +190,8 @@ h1 {
   background-color: rgb(187, 34, 34);
 }
 
-.wrapper3 {
-  width: 1000px;
+.PlayWrapper3 {
+  width: 75vw;
   margin: 40px auto;
   padding: 10px;
   border-radius: 30px;
@@ -196,67 +199,78 @@ h1 {
   margin-bottom: 100px;
   font-size: 20px;
   font-family: 'Comfortaa', cursive;
-  /*box-shadow: 0px 10px 40px 0px rgba(47, 47, 47, .1);*/
+}
+
+.allbuttons {
+  display: grid;
+}
+
+.allbuttonsRight {
+  /*display: inline-flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;*/
+  width: 50vw;
+  margin-left: 35%;
+  margin-right: 5%;
+  
 }
 
 .playbutton {
   font-family: 'Comfortaa', cursive;
   font-size: 20px;
-  width: 120px;
-  height: 32px;
+  width: 150px;
+  height: 40px;
   background: #a8e58cff;
   color: black;
   border: 0;
   border-color: black;
   border-radius: 10px;
   padding: 7px;
+  margin-top: 1%;
   margin-left: 7px;
-
 }
 
 .editbutton {
   font-family: 'Comfortaa', cursive;
   font-size: 20px;
-  width: 120px;
-  height: 32px;
+  width: 150px;
+  height: 40px;
   background: rgb(255, 227, 141);
   color: black;
   border: 0;
   border-color: black;
   padding: 7px;
   border-radius: 10px;
+  margin-top: 1%;
   margin-left: 7px;
-
 }
 
 .deletebutton {
   font-family: 'Comfortaa', cursive;
   font-size: 20px;
-  width: 120px;
-  height: 32px;
+  width: 150px;
+  height: 40px;
   background: rgb(235, 76, 76);
   color: white;
   border: 0;
   border-color: black;
   border-radius: 10px;
   padding: 7px;
+  margin-top: 1%;
   margin-left: 7px;
-
 }
 
 .ButtonCreateNew {
   font-family: 'Comfortaa', cursive;
   font-size: 20px;
-  width: 200px;
-  height: 32px;
+  width: 250px;
+  height: 45px;
   background: rgb(108, 169, 227);
   color: rgb(0, 0, 0);
   border: 0;
   border-color: black;
   border-radius: 10px;
   padding: 7px;
-
-
 }
 
 .ButtonCreateNew:hover {
@@ -280,45 +294,11 @@ h1 {
   background-color: rgb(241, 15, 15);
 }
 
-@media only screen and (max-width: 500px) {
-
-  .wrapper3 {
-    width: 90%;
-    height: 95%;
-  }
-
-  .sizeButtons {
-    width: 20%;
-    height: 10%;
-    display: inline-block;
-    margin-left: 50%;
-    margin-top: -15vw;
-
-
-
-  }
-
-  .playbutton {
-    margin: 5%;
-  }
-
-  .editbutton {
-    margin: 5%;
-  }
-
-  .deletebutton {
-    margin: 5%;
-  }
-
+@media only screen and (max-width: 750px) {
   #title {
-    width: 39%;
-    font-size: 30px;
-    margin-left: 1vw;
+    font-size: 25pt;
   }
-
-  .exitbutton {
-    margin-left: 20%;
-  }
-
 }
+
+
 </style>
