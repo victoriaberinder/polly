@@ -8,6 +8,8 @@
             <div class="card__face card__faceFront">{{ words[index] }}</div>
             <div class="card__face"
                 v-bind:class="{ card__faceBackWrong: cardOneWord == false, card__faceBackRight: cardOneWord == true }">
+                <audio ref="audio1" :src="audioUrl1"></audio>
+                <audio ref="audio2" :src="audioUrl2"></audio>
                 <div v-bind:class="{ hideText: showBack == false }">
                     {{ translations[index] }}
                 </div>
@@ -53,8 +55,11 @@ export default {
             correctTranslations: [],
             failedWords: [],
             failedTranslations: [],
-
-
+            audioUrl1: '/audio/Correct.mp3',
+            audioUrl2: '/audio/Failed.mp3',
+            beforeDestroy() {
+                this.$refs.audio.pause()
+            }
         }
     },
 
@@ -77,13 +82,15 @@ export default {
                 this.cardOneWord = true
                 this.correctWords.push(this.words[this.index])
                 this.correctTranslations.push(this.translations[this.index])
-
+                this.audioUrl1 = '/audio/Correct.mp3';
+                this.$refs.audio1.play();
             }
             else {
                 this.cardOneWord = false
                 this.failedWords.push(this.words[this.index])
                 this.failedTranslations.push(this.translations[this.index])
-
+                this.audioUrl2 = '/audio/Failed.mp3';
+                this.$refs.audio2.play();
             }
         },
         done: function () {

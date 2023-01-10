@@ -2,6 +2,17 @@
 
     <body>
         <div id="timer"></div>
+        <div v-if="!startGame"></div>
+        <div class="waiting"> Waiting for the game to start...</div>
+        <div class="loader">
+            <div class="load">
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+            </div>
+        </div>
         <div v-if="startGame">
 
             <div v-if="showFlashCards">
@@ -70,10 +81,10 @@ export default {
         socket.on("init", (labels) => {
             this.uiLabels = labels
         })
-        if(sessionStorage.getItem("host")==this.quizId){
+        if (sessionStorage.getItem("host") == this.quizId) {
             socket.emit('startQuiz', this.quizId)
         }
-        
+
         //socket.emit("getQuiz", this.quizId);
         socket.on("newQuiz", (data) => {
             console.log('Start Game')
@@ -148,6 +159,14 @@ export default {
 </script>
 
 <style>
+.waiting {
+    font-family: 'Comfortaa', cursive;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 150px;
+    font-size: 5vw;
+}
+
 .exitbutton {
     width: 4rem;
     height: 2rem;
@@ -178,6 +197,109 @@ export default {
     float: right;
     color: #2c3e50;
     margin-right: 10vw;
-    
+}
+
+.loader {
+    display: grid;
+    justify-content: space-evenly;
+    margin: 10%;
+}
+
+.load {
+    height: auto;
+    /*justify-content: space-evenly;*/
+    display: flex;
+}
+
+.circle {
+    width: 5em;
+    height: 5em;
+    border-radius: 50%;
+    position: relative;
+    margin-left: 7px;
+    margin-right: 7px;
+}
+
+.circle:nth-child(1) {
+    background-color: #61f0a4;
+    ;
+}
+
+.circle:nth-child(2) {
+    background-color: #ff7da3;
+}
+
+.circle:nth-child(3) {
+    background-color: #7ed9ff;
+}
+
+.circle:nth-child(4) {
+    background-color: #e6a8ff;
+}
+
+.circle:nth-child(5) {
+    background-color: #f7e98e;
+}
+
+.circle::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: form 1.5s ease-out infinite;
+}
+
+.circle:nth-child(1)::before {
+    background-color: #61f0a4;
+}
+
+.circle:nth-child(2)::before {
+    background-color: #ff7da3;
+    animation-delay: 0.2s;
+}
+
+.circle:nth-child(3)::before {
+    background-color: #7ed9ff;
+    animation-delay: 0.4s;
+}
+
+.circle:nth-child(4)::before {
+    background-color: #e6a8ff;
+    animation-delay: 0.6s;
+}
+
+.circle:nth-child(5)::before {
+    background-color: #f7e98e;
+    animation-delay: 0.8s;
+}
+
+
+@keyframes form {
+    0% {
+        transform: scale(1);
+    }
+
+    50%,
+    75% {
+        transform: scale(3);
+    }
+
+    80%,
+    100% {
+        opacity: 0;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .circle {
+        width: 3em;
+        height: 3em;
+    }
+
+    .loader {
+        margin: 20%;
+    }
 }
 </style>

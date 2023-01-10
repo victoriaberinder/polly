@@ -138,36 +138,40 @@ h1 {
 }
 
 .failedWords {
-  float:left;
-  flex:1;
-  width: 7vw;
+  width: 300px;
   height: auto;
-  background-color: rgb(229, 140, 140);
+  background-color: rgb(235, 76, 76);
   border-radius: 10px;
   margin-left: 5%;
   margin-right: 5%;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .correctWords {
-  float:left;
-  flex:1;
   width: 7vw;
   height: auto;
-  background-color: #a8e58cff;
+  background-color: #56c770;
   border-radius: 10px;
   margin-left: 5%;
   margin-right: 5%;
+  max-width: 100%;
+  overflow: hidden;
 }
 .correct{
   margin-top:7vw;
   margin-bottom: 7vw;
+  width: 100%;
+  height: 100%;
+  word-wrap: break-word;
 }
 
 .failed{
   margin-top: 7vw;
   margin-bottom: 7vw;
-  margin-right: 7vw;
-  margin-left: 7vw;
+  width: 100%;
+  height: 100%;
+  word-wrap: break-word;
 }
 
 .wrapperWords {
