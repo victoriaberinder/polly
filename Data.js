@@ -65,7 +65,7 @@ Data.prototype.addQuestion = function (pollId, q) {
   }
 }
 
-Data.prototype.saveQuiz = function (quizId, word, translation, title) {
+Data.prototype.addWord = function (quizId, word, translation, title) {
   const quiz = this.quizes[quizId];
   quiz.words = [];
   quiz.translations = [];
@@ -74,6 +74,7 @@ Data.prototype.saveQuiz = function (quizId, word, translation, title) {
       quiz.words.push(word[i]);
       quiz.translations.push(translation[i]);
     }
+
     quiz.title = title;
   }
  
@@ -160,6 +161,3 @@ Data.prototype.getMyResult = function (quizId, user) {
 }
 
 module.exports = Data;
-
-
-
