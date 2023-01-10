@@ -114,7 +114,7 @@ body {
     flex: 1;
     width: 7vw;
     height: auto;
-    background-color: rgb(229, 140, 140);
+    background-color: rgb(235, 76, 76);
     border-radius: 10px;
     margin-left: 5%;
     margin-right: 5%;
@@ -125,7 +125,7 @@ body {
     flex: 1;
     width: 7vw;
     height: auto;
-    background-color: #a8e58cff;
+    background-color: #56c770;
     border-radius: 10px;
     margin-left: 5%;
     margin-right: 5%;

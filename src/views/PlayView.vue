@@ -151,7 +151,7 @@ h1 {
 
 #title {
   text-align: left;
-  font-size: 3vw;
+  font-size: 2vw;
   margin-left: 5%;
   margin-top: 5%;
 }
@@ -210,15 +210,16 @@ h1 {
   justify-content: flex-end;
   flex-wrap: wrap;*/
   width: 50vw;
-  margin-left: 30%;
+  margin-left: 35%;
   margin-right: 5%;
+  
 }
 
 .playbutton {
   font-family: 'Comfortaa', cursive;
   font-size: 20px;
-  width: 175px;
-  height: 45px;
+  width: 150px;
+  height: 40px;
   background: #a8e58cff;
   color: black;
   border: 0;
@@ -232,8 +233,8 @@ h1 {
 .editbutton {
   font-family: 'Comfortaa', cursive;
   font-size: 20px;
-  width: 175px;
-  height: 45px;
+  width: 150px;
+  height: 40px;
   background: rgb(255, 227, 141);
   color: black;
   border: 0;
@@ -247,8 +248,8 @@ h1 {
 .deletebutton {
   font-family: 'Comfortaa', cursive;
   font-size: 20px;
-  width: 175px;
-  height: 45px;
+  width: 150px;
+  height: 40px;
   background: rgb(235, 76, 76);
   color: white;
   border: 0;

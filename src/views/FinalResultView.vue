@@ -101,7 +101,6 @@ hr {
 
 h1 {
   font-family: 'Comfortaa', cursive;
-  font-size: 60px;
   /* -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; */
   text-align: center;

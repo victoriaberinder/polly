@@ -68,7 +68,6 @@ body {
     width: 400px;
     height: 400px;
     margin: auto;
-
 }
 
 input[class="joinInput"] {

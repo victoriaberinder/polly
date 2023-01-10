@@ -8,6 +8,8 @@
             <div class="card__face card__faceFront">{{ words[index] }}</div>
             <div class="card__face"
                 v-bind:class="{ card__faceBackWrong: cardOneWord == false, card__faceBackRight: cardOneWord == true }">
+                <audio ref="audio1" :src="audioUrl1"></audio>
+                <audio ref="audio2" :src="audioUrl2"></audio>
                 <div v-bind:class="{ hideText: showBack == false }">
                     {{ translations[index] }}
                 </div>
@@ -53,8 +55,11 @@ export default {
             correctTranslations: [],
             failedWords: [],
             failedTranslations: [],
-
-
+            audioUrl1: '/audio/Correct.mp3',
+            audioUrl2: '/audio/Failed.mp3',
+            beforeDestroy() {
+                this.$refs.audio.pause()
+            }
         }
     },
 
@@ -77,13 +82,15 @@ export default {
                 this.cardOneWord = true
                 this.correctWords.push(this.words[this.index])
                 this.correctTranslations.push(this.translations[this.index])
-
+                this.audioUrl1 = '/audio/Correct.mp3';
+                this.$refs.audio1.play();
             }
             else {
                 this.cardOneWord = false
                 this.failedWords.push(this.words[this.index])
                 this.failedTranslations.push(this.translations[this.index])
-
+                this.audioUrl2 = '/audio/Failed.mp3';
+                this.$refs.audio2.play();
             }
         },
         done: function () {
@@ -101,8 +108,7 @@ export default {
 
 <style>
 .count {
-    color: #2c3e05;
-
+    color: #2c3e50;
 }
 
 .wrapper4 {
@@ -118,7 +124,7 @@ export default {
 
 .wrapper5 {
     text-align: center;
-    color: black;
+    color: #2c3e50;
     border: 1px ridge rgb(177, 177, 177);
     border-radius: 50px;
     background-color: white;
@@ -150,8 +156,8 @@ export default {
 }
 
 .text {
-    color: black;
-    font-size: 4vw;
+    color: #2c3e50;
+    font-size: 5vw;
     font-family: 'Comfortaa', cursive;
     text-align: center;
     height: 7vh;
@@ -209,7 +215,7 @@ export default {
 
 .nextQuestionButton {
     text-align: center;
-    color: #2c3e05;
+    color: #2c3e50;
     border: 1px ridge rgb(177, 177, 177);
     border-radius: 50px;
     background-color: rgb(255, 227, 141);
@@ -258,7 +264,7 @@ export default {
     color: white;
     backface-visibility: hidden;
     font-family: 'Comfortaa', cursive;
-    font-size: 2.5vw;
+    font-size: 4vw;
     width: 55vw;
     height: 70vh;
     background: #3f51b5;
@@ -294,7 +300,7 @@ export default {
 
 @media only screen and (max-width: 850px) {
     .card__face {
-        font-size: 2vw;
+        font-size: 5vw;
     }
 }
 </style>
