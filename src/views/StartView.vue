@@ -6,22 +6,12 @@
     </div>
 
     <body>
-<<<<<<< HEAD
-      <div class="wrapper1 background">
-        <button class="buttonCreate" @click="create">{{ uiLabels.createButton }}</button>
-        <button class="buttonPlay" @click="$router.push('/joinquiz/' + lang)">{{ uiLabels.playButton }}</button>
-        <div class="language">
-          <button class="languagebutton" v-on:click="switchLanguage">
-            {{ uiLabels.changeLanguage }}
-          </button>
-=======
       <div class="startWrapper1 startBackground">
         <button class="startButtonCreate" @click="create">{{ uiLabels.createButton }}</button>
         <button class="startButtonPlay" @click="$router.push('/joinquiz/' + lang)">{{ uiLabels.playButton }}</button>
         <div class="startLanguage">
           <img v-if="lang =='en'" src= https://www.nationalflags.shop/WebRoot/vilkasfi01/Shops/2014080403/53E4/A986/7055/D0CD/B15F/0A28/100A/F37A/Flag_of_Sweden_ml.png class = "startPic" v-on:click="switchLanguage">
           <img v-else-if="lang =='sv'" src ="https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/640px-Flag_of_the_United_Kingdom.svg.png" class ="startPic" v-on:click="switchLanguage">
->>>>>>> c7219fb52463261e6d8b59d52688fec63a4a971a
         </div>
       </div>
     </body>
