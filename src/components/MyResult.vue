@@ -2,12 +2,12 @@
 
     <body>
         <div class="wrapper8">
-            <h1 type="text"> My result</h1>
+            <h1 class="myResultHeader" type="text"> {{ uiLabels.myResultHeader }}</h1>
         </div>
         <div class="wrapperWords">
             <div v-if="allCorrectWords.length > 0" class="correctWords">
                 <div class="correct">
-                    <div  v-for="(word, index) in allCorrectWords" v-bind:key="index">
+                    <div v-for="(word, index) in allCorrectWords" v-bind:key="index">
                         {{ word }}
                     </div>
                 </div>
@@ -21,9 +21,8 @@
         </div>
         <div>
             <button v-if="failedWords.length > 0" class="tryagain" @click="tryAgain">
-                Try again</button>
-            <button v-else-if="failedWords.length == 0" class="tryagain"
-                @click="tryAgain"> End quiz</button>
+                {{uiLabels.tryAgain}}</button>
+            <button v-else-if="failedWords.length == 0" class="tryagain" @click="tryAgain"> {{uiLabels.endQuiz}}</button>
         </div>
 
     </body>
@@ -41,7 +40,12 @@ export default {
         failedWords: Object,
         correctWords: Array,
         allCorrectWords: Array,
+        data: function () {
+            return {
+                uiLabels: {}
+            }
 
+        }
 
 
     },
@@ -64,13 +68,7 @@ body {
     font-family: 'Comfortaa', cursive;
 }
 
-h1 {
-    color: #2c3e50;
-    font-size: 35px;
-    font-family: 'Comfortaa', cursive;
-    text-align: center;
-    margin-top: 60px;
-}
+
 
 .wrapper8 {
     margin-left: auto;
@@ -79,8 +77,13 @@ h1 {
     text-align: center;
     height: 50px;
     width: 300px;
-    font-size: 15px;
+    font-size: 25px;
     font-family: 'Comfortaa', cursive;
+    margin-top: 100px;
+    color: #2c3e50;
+    margin-bottom: 5vw;
+    
+    
 }
 
 .exitbutton {
@@ -142,7 +145,7 @@ h1 {
     display: flex;
     margin-left: 10px;
     margin-right: 10px;
-    margin-top:50px;
+    margin-top: 50px;
     font-size: 3vw;
     color: #2c3e50;
     padding-left: 10%;

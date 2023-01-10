@@ -143,7 +143,6 @@ Data.prototype.deleteQuiz = function (key) {
 
 Data.prototype.saveTime = function (quizId, username, totalSeconds){
   const quiz = this.quizes[quizId];
-
   quiz.users[username].time = totalSeconds
   console.log(quiz.users)
 }
