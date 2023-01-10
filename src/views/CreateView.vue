@@ -1,48 +1,49 @@
 <template>
-  <h1>{{ uiLabels.createHeader }}</h1>
+  <div class="createH1">{{ uiLabels.createHeader }}</div>
 
   <div action="" method="get">
-    <div class="titleField">
-      <h1 id="text"></h1>
-      <input class="input2" type="text" v-model="title" size="50" v-bind:placeholder="uiLabels.name">
+    <div class="createTitleField">
+      <input class="createInput2" type="createText" v-model="title" size="50" v-bind:placeholder="uiLabels.name">
     </div>
 
-    <div class="wrapper">
-      <div class="inputfields">
-        <div class="word" v-for="key in count" :key="key">
-          <input class="input" type="text" v-model="words[key - 1]" size="50" v-bind:placeholder="uiLabels.word"
-            :id="key">
+    <div class="createWrapper">
+      <div class="createInputfields">
+        <div class="createWord" v-for="key in count" :key="key">
+          <input class="createInput" type="createText" v-model="words[key - 1]" size="50"
+            v-bind:placeholder="uiLabels.word" :id="key">
 
         </div>
       </div>
 
-      <div class="inputfields">
-        <div class="translation" v-for="key in count" :key="key">
+      <div class="createInputfields">
+        <div class="createTranslation" v-for="key in count" :key="key">
 
-          <input class="input" type="text" v-model="translation[key - 1]" size="50"
+          <input class="createInput" type="createText" v-model="translation[key - 1]" size="50"
             v-bind:placeholder="uiLabels.translation" :id="key">
         </div>
       </div>
 
-      <div class="inputfields">
+      <div class="createInputfields">
         <div v-for="key in count" :key="key">
-          <a id="removeSignBox">
-            <a class="removeSign" @click="remove(key)" title="Remove word">
+          <a id="createRemoveSignBox">
+            <a class="createRemoveSign" @click="remove(key)" title="Remove word">
               x
             </a>
           </a>
         </div>
       </div>
 
-      <div class="controls">
-        <a id="add_more_fields" @click="add">
+      <div class="createControls">
+        <a id="create_add_more_fields" @click="add">
           <div>
-            <button class="addSign">{{ uiLabels.addWord }}</button>
+            <button class="createAddSign">{{ uiLabels.addWord }}</button>
           </div>
         </a>
 
 
-        <button v-bind:disabled="title == ''" class="saveQuizButton1" @click="save">{{ uiLabels.saveQuiz }}</button>
+        <button v-bind:disabled="title == ''" class="createSaveQuizButton1" @click="save">{{
+          uiLabels.saveQuiz
+        }}</button>
       </div>
 
     </div>
@@ -148,11 +149,11 @@ export default {
         socket.emit("createQuiz", { quizId: this.quizId, lang: this.lang })
       }
       console.log(this.words, this.translation, this.title)
-        this.$router.push('/play/' + this.lang)
-        socket.emit("addWord", { q: this.quizId, w: this.words, t: this.translation, title: this.title })
+      this.$router.push('/play/' + this.lang)
+      socket.emit("addWord", { q: this.quizId, w: this.words, t: this.translation, title: this.title })
 
     },
-    
+
 
 
   }
@@ -167,7 +168,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 
 body {
@@ -175,7 +175,7 @@ body {
   color: #fff;
 }
 
-.saveQuizButton1 {
+.createSaveQuizButton1 {
   font-family: 'Comfortaa', cursive;
   background: #a8e58cff;
   color: black;
@@ -186,15 +186,14 @@ body {
   width: 20vw;
   height: 40px;
   font-size: 12pt;
-
 }
 
-.saveQuizButton1:hover {
+.createSaveQuizButton1:hover {
   cursor: pointer;
   background-color: rgb(135, 229, 92);
 }
 
-.wrapper {
+.createWrapper {
   border-radius: 30px;
   background: #ffffff;
   margin-right: 10%;
@@ -206,7 +205,7 @@ body {
 }
 
 
-input[class="input"] {
+input[class="createInput"] {
   padding: 10px;
   margin: 30px;
   display: block;
@@ -220,11 +219,11 @@ input[class="input"] {
   color: black;
 }
 
-input[type="text"]:focus {
+input[type="createText"]:focus {
   outline: none;
 }
 
-.controls {
+.createControls {
   display: grid;
   grid-gap: 1%;
   width: 70vw;
@@ -233,7 +232,7 @@ input[type="text"]:focus {
   justify-items: end;
 }
 
-.addSign {
+.createAddSign {
   font-family: 'Comfortaa', cursive;
   width: 20vw;
   height: 40px;
@@ -245,15 +244,15 @@ input[type="text"]:focus {
   border-radius: 15px;
 }
 
-.addSign:hover {
+.createAddSign:hover {
   cursor: pointer;
   background-color: rgb(253, 213, 92);
 }
 
-#removeSignBox {
+#createRemoveSignBox {
   padding: 10px;
   margin: 30px;
-  display:flex;
+  display: flex;
   width: 50px;
   height: 20px;
   align-items: center;
@@ -261,23 +260,26 @@ input[type="text"]:focus {
   padding-left: 5%;
 }
 
-.removeSign {
+.createRemoveSign {
   color: rgb(235, 76, 76);
   font-size: 50px;
 }
 
-.removeSign:hover {
+.createRemoveSign:hover {
   cursor: pointer;
   font-size: 61px;
 }
 
-h1 {
+.createH1 {
+  font-family: 'Comfortaa', cursive, bold;
   text-align: center;
-  font-size: 48px;
-  color: #232c3d;
+  color: #2c3e50;
+  margin-top: 80px;
+  margin-bottom: 10px;
+  font-size: 70px;
 }
 
-.exitbutton {
+.createExitbutton {
   width: 4rem;
   height: 2rem;
   border-radius: 5px;
@@ -294,6 +296,29 @@ h1 {
   font-family: 'Comfortaa', cursive;
 }
 
+.createExitbutton:hover {
+
+  cursor: pointer;
+  width: 4rem;
+  height: 2rem;
+  background-color: rgb(187, 34, 34);
+}
+
+.exitbutton {
+  width: 4rem;
+  height: 2rem;
+  border-radius: 5px;
+  border-color: rgb(227, 123, 123);
+  margin: 2.5rem;
+  color: white;
+  background-color: rgb(235, 76, 76);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: 15px;
+  font-family: 'Comfortaa', cursive;
+}
+
 .exitbutton:hover {
 
   cursor: pointer;
@@ -302,28 +327,27 @@ h1 {
   background-color: rgb(187, 34, 34);
 }
 
-.titleField {
+.createTitleField {
   width: 100%;
-  height: auto;
-  padding-top: 1%;
-  padding-bottom: 5%;
+  padding-top: 2%;
+  padding-bottom: 2%;
   border-radius: 30px;
   background: #d8ecff;
 }
 
-input[class="input2"] {
+input[class="createInput2"] {
   border-radius: 50px;
   border: 1px solid lightgrey;
   background-color: white;
-  width: 300px;
-  height: 40px;
-  font-size: 12pt;
+  width: 400px;
+  height: 50px;
+  font-size: 20pt;
   font-family: 'Comfortaa', cursive;
   color: black;
   text-align: center;
 }
 
-.saveQuizButton1:disabled {
+.createSaveQuizButton1:disabled {
   background-color: dimgrey;
   color: linen;
   opacity: 1;
@@ -333,19 +357,17 @@ input[class="input2"] {
 }
 
 @media only screen and (max-width: 470px) {
-  .saveQuizButton1:disabled {
-  font-size: 8pt;
+  .createSaveQuizButton1:disabled {
+    font-size: 8pt;
+  }
+
+  .createAddSign {
+    font-size: 8pt;
+  }
+
+  .createSaveQuizButton1 {
+    font-size: 8pt;
+  }
+
 }
-
-.addSign {
-  font-size: 8pt;
-}
-
-.saveQuizButton1 {
-  font-size: 8pt;
-}
-
-}
-
-
 </style>
