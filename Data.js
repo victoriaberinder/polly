@@ -143,7 +143,6 @@ Data.prototype.deleteQuiz = function (key) {
 
 Data.prototype.saveTime = function (quizId, username, totalSeconds){
   const quiz = this.quizes[quizId];
-
   quiz.users[username].time = totalSeconds
   console.log(quiz.users)
 }
@@ -160,4 +159,8 @@ Data.prototype.getMyResult = function (quizId, user) {
   return this.quizes[quizId].users[user]
 }
 
+<<<<<<< HEAD
 module.exports = Data;
+=======
+module.exports = Data;
+>>>>>>> c7219fb52463261e6d8b59d52688fec63a4a971a

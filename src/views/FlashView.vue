@@ -177,5 +177,6 @@ export default {
     float: right;
     color: #2c3e50;
     margin-right: 10vw;
+    
 }
 </style>

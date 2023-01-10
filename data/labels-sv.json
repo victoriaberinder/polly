@@ -28,5 +28,9 @@
 	"nextQuestion": "Nästa fråga",
 	"done": "Klar",
 	"finalResultHeader": "Topplista",
-	"joinQuiz": "Ange quizID"
+	"myResultHeader": "Mitt resultat",
+	"endQuiz": "Avsluta quiz",
+	"tryAgain": "Försök igen",
+	"joinQuiz": "Gå med i quiz",
+	"quizID": "Quiz ID"
 }

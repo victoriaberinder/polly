@@ -1,12 +1,12 @@
 
 <template>
 
-    <div class="wrapper7" action="" method="get">
+    <div class="wrapperJoin7" action="" method="get">
         <h1 id="text">{{ uiLabels.joinQuiz}}</h1>
-        <input class="usernameInput" type="text" v-model="quizId" size="50" v-bind:placeholder="QuizId" >
-        <input class="usernameInput" type="text" v-model="username" size="50" v-bind:placeholder="Username" >
+        <input class="joinInput" type="text" v-model="quizId" size="50" v-bind:placeholder="uiLabels.quizID" >
+        <input class="joinInput" type="text" v-model="username" size="50" v-bind:placeholder="uiLabels.username" >
         <div>
-            <button v-bind:disabled="username == ''" class="playQuiz" @click="play">{{ uiLabels.playButton }}</button>
+            <button v-bind:disabled="username == '' || quizId == ''" class="joinQuiz" @click="play">{{ uiLabels.playButton }}</button>
         </div>
     </div>
 
@@ -47,8 +47,7 @@ export default {
        
     },
     methods: {
-        play: function () {
-            
+        play: function () {           
             this.$router.push('/flash/' + this.lang + '/' + this.quizId + '/' + this.username)
             socket.emit('makeUser', { q: this.quizId, u: this.username })
             socket.emit('joinQuiz', this.quizId)
@@ -66,16 +65,16 @@ body {
     background-color: #d8ecff;
 }
 
-.wrapper7 {
+.wrapperJoin7 {
     width: 400px;
     height: 400px;
     margin: auto;
 
 }
 
-input[class="usernameInput"] {
+input[class="joinInput"] {
     border-radius: 50px;
-    margin: 50px;
+    margin: 5px;
     border: 1px solid lightgrey;
     background-color: white;
     width: 300px;
@@ -90,7 +89,7 @@ input[type="text"]:focus {
     outline: none;
 }
 
-.playQuiz {
+.joinQuiz {
     font-family: 'Comfortaa', cursive;
     font-size: 20px;
     width: 250px;
@@ -99,6 +98,7 @@ input[type="text"]:focus {
     color: white;
     border: 0;
     border-radius: 50px;
+    margin-top: 40px;
 }
 
 .playQuiz:hover {
@@ -130,14 +130,15 @@ input[type="text"]:focus {
 }
 
 #text {
-    color: black;
-    font-size: 35px;
+    color: #2c3e50;
+    font-size: 60px;
     font-family: 'Comfortaa', cursive;
     text-align: center;
     margin-top: 150px;
+    margin-bottom: 50px;
 }
 
-.playQuiz:disabled {
+.joinQuiz:disabled {
     background-color: dimgrey;
     color: linen;
     opacity: 1;
