@@ -213,7 +213,6 @@ export default {
     width: 25vw;
     font-size: 15px;
     font-family: 'Comfortaa', cursive;
-
 }
 
 .done:hover {
@@ -226,10 +225,10 @@ export default {
 
 .nextQuestionButton {
     text-align: center;
-    color: #2c3e50;
+    color: white;
     border: 1px ridge rgb(177, 177, 177);
     border-radius: 50px;
-    background-color: rgb(255, 227, 141);
+    background-color: rgb(195, 99, 225);
     justify-content: center;
     height: 7vh;
     width: 25vw;
@@ -239,8 +238,7 @@ export default {
 
 .nextQuestionButton:hover {
     cursor: pointer;
-    background-color: rgb(253, 213, 92);
-
+    background-color: rgb(196, 67, 235);
 }
 
 .scene {

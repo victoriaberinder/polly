@@ -33,5 +33,7 @@
 	"tryAgain": "Försök igen",
 	"joinQuiz": "Gå med i quiz",
 	"quizID": "Quiz ID",
-	"waiting": "Väntar på att spelet ska starta..."
+	"waiting": "Väntar på att spelet ska starta...",
+	"MyFailedWords": "Inkorrekta ord:",
+    "MyCorrectWords": "Korrekta ord:"
 }

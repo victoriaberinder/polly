@@ -90,9 +90,6 @@ export default {
 </script>
 
 <style>
-body {
-  
-}
 
 hr {
   margin-top: 2px;

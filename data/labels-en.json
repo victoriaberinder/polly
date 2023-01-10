@@ -33,5 +33,7 @@
     "tryAgain": "Try again",
     "joinQuiz": "Join quiz",
     "quizID": "Quiz ID",
-    "waiting": "Waiting for the game to start..."
+    "waiting": "Waiting for the game to start...",
+    "MyFailedWords": "Failed words:",
+    "MyCorrectWords": "Correct words:"
 }

@@ -5,14 +5,14 @@
             <h1 class="myResultHeader" type="text"> {{ uiLabels.myResultHeader }}</h1>
         </div>
         <div class="wrapperWords">
-            <div v-if="allCorrectWords.length > 0" class="correctWords">
+            <div v-if="allCorrectWords.length > 0" class="correctWords"> {{ uiLabels.MyCorrectWords }}
                 <div class="correct">
                     <div v-for="(word, index) in allCorrectWords" v-bind:key="index">
                         {{ word }}
                     </div>
                 </div>
             </div>
-            <div v-if="failedWords.length > 0" class="failedWords">
+            <div v-if="failedWords.length > 0" class="failedWords"> {{ uiLabels.MyFailedWords }}
                 <div class="failed">
                     <div v-for="(word, index) in failedWords" v-bind:key="index">
                         {{ word }} </div>
@@ -82,8 +82,6 @@ body {
     margin-top: 100px;
     color: #2c3e50;
     margin-bottom: 5vw;
-    
-    
 }
 
 .exitbutton {
@@ -116,8 +114,11 @@ body {
     height: auto;
     background-color: rgb(235, 76, 76);
     border-radius: 10px;
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 3%;
+    margin-right: 3%;
+    border-radius: 50px;
+    color: #2c3e50;
+    padding-top: 25px;
 }
 
 .correctWords {
@@ -127,8 +128,11 @@ body {
     height: auto;
     background-color: #56c770;
     border-radius: 10px;
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 3%;
+    margin-right: 3%;
+    border-radius: 50px;
+    color: #2c3e50;
+    padding-top: 25px;
 }
 
 .correct {
@@ -143,13 +147,9 @@ body {
 
 .wrapperWords {
     display: flex;
-    margin-left: 10px;
-    margin-right: 10px;
     margin-top: 50px;
     font-size: 3vw;
     color: #2c3e50;
-    padding-left: 10%;
-    padding-right: 10%;
 }
 
 .tryagain {
@@ -158,7 +158,7 @@ body {
     border: 1px ridge rgb(177, 177, 177);
     border-radius: 50px;
     background-color: #3f51b5;
-    margin-top: 10px;
+    margin-top: 40px;
     justify-content: center;
     height: 50px;
     width: 300px;
