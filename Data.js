@@ -142,7 +142,7 @@ Data.prototype.deleteQuiz = function (key) {
 }
 
 Data.prototype.deleteUsers = function(quizId){
-   this.quizes[quizId].users = {}
+  this.quizes[quizId].users = {}
   console.log('Delete' , this.quizes[quizId].users)
 }
 

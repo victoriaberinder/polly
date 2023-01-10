@@ -71,6 +71,7 @@ export default {
     },
     beforeUnmount() {
         clearInterval(this.timer)
+        
     },
 
     created: function () {

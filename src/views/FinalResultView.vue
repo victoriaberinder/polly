@@ -7,9 +7,10 @@
       <div class="after"></div></div>
     <h1> {{ uiLabels.finalResultHeader }} </h1>
 
-    <div class="wrapper3">
-      <div v-for="(user, key) in users" v-bind:key="key">
-        {{ key }} {{ user.time }}
+    <div class="finalWrapper">
+      <div id="finalText" v-for="(user, key, index) in users" v-bind:key="key">
+        {{ index+1 }} . {{ key }} :  &nbsp; &nbsp; {{ user.time }} s
+     
       </div>
     
     </div>
@@ -40,6 +41,8 @@ export default {
       audioUrl: '/audio/musik.mp3',
       visibility: 'hidden',
       isPlaying: false,
+      topListCounter: 1,
+
       beforeDestroy() {
       this.$refs.audio.pause();
   }
@@ -88,7 +91,7 @@ export default {
 
 <style>
 body {
-  background-color: black;
+  
 }
 
 hr {
@@ -98,6 +101,8 @@ hr {
 
 h1 {
   font-family: 'Comfortaa', cursive;
+  /* -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; */
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
@@ -105,8 +110,8 @@ h1 {
 
 #title {
   text-align: left;
-  font-size: 25px;
   margin-left: 5%;
+
 }
 
 .size {
@@ -144,16 +149,26 @@ h1 {
   background-color: rgb(187, 34, 34);
 }
 
-.wrapper3 {
-  width: 80vw;
+.finalWrapper {
+
+  width: 50vw;
   height: 40vh;
   margin: 3vw auto;
   padding: 1vw;
   border-radius: 30px;
   background: #ffffff;
-  font-size: 20px;
+  font-size: 50px;
   font-family: 'Comfortaa', cursive;
+  color: #2c3e50;
+  text-align: left;
+
   /*box-shadow: 0px 10px 40px 0px rgba(47, 47, 47, .1);*/
+}
+
+#finalText{
+  margin-left: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px
 }
 
 button {
