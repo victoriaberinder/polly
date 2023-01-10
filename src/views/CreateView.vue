@@ -149,7 +149,7 @@ export default {
       }
       console.log(this.words, this.translation, this.title)
         this.$router.push('/play/' + this.lang)
-      socket.emit("addWord", { q: this.quizId, w: this.words, t: this.translation, title: this.title })
+        socket.emit("addWord", { q: this.quizId, w: this.words, t: this.translation, title: this.title })
 
     },
     

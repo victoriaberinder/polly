@@ -161,6 +161,3 @@ Data.prototype.getMyResult = function (quizId, user) {
 }
 
 module.exports = Data;
-
-
-
