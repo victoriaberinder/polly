@@ -106,13 +106,10 @@ h1 {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  font-size: 60px
 }
 
-#title {
-  text-align: left;
-  margin-left: 5%;
 
-}
 
 .size {
   width: 500px;
