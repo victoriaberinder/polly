@@ -21,7 +21,7 @@
 	"playHeader": "Quizbibliotek",
 	"usernameQuiz": "Ange ditt användarnamn",
 	"username": "Användarnamn",
-	"play": "Spela",
+	"play": "Starta",
     "edit": "Redigera",
     "delete": "Radera",
 	"createNewQuiz": "Skapa nytt quiz",
@@ -32,5 +32,6 @@
 	"endQuiz": "Avsluta quiz",
 	"tryAgain": "Försök igen",
 	"joinQuiz": "Gå med i quiz",
-	"quizID": "Quiz ID"
+	"quizID": "Quiz ID",
+	"waiting": "Väntar på att spelet ska starta..."
 }

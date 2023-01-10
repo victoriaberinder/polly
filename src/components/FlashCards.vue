@@ -62,6 +62,20 @@ export default {
             }
         }
     },
+    mounted() {
+        document.addEventListener("keydown", (event) => {
+            if (event.code === "Enter") {
+                if (this.cardOne != 'flipped' && this.cardAnswer != '') {
+                    this.flipCard();
+                    this.getAnswer();
+                } else if (this.index + 1 == this.words.length) {
+                    this.done();
+                } else {
+                    this.nextQuestion();
+                }
+            }
+        });
+    },
 
     methods: {
         flipCard: function () {
@@ -97,11 +111,8 @@ export default {
             //this.$router.push('/myresult/' + this.lang + '/' + this.quizId + '/' + this.username)
 
             this.$emit('clicked', { failedWords: this.failedWords, correctWords: this.correctWords, failedTranslations: this.failedTranslations, correctTranslations: this.correctTranslations })
-        },
-
-
-
-    },
+        }
+    }
 }
 
 </script>
