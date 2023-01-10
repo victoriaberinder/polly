@@ -95,7 +95,10 @@ function sockets(io, socket, data) {
 
   socket.on("saveTime", function(d){
     data.saveTime(d.quizId, d.username, d.totalSeconds)
-    io.to(d.quizId).emit('getResults', data.getQuiz(d.quizId))
+  })
+
+  socket.on("getResults", function(quizId){
+    io.to(quizId).emit('getResults', data.getQuiz(quizId))
   })
 
   socket.on("makeUser", function(d){

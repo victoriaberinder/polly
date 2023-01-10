@@ -1,6 +1,6 @@
 <template>
 
-  <body>
+  <main>
     <audio ref="audio" :src="audioUrl"></audio>
     <div class="pyro">
       <div class="before"></div>
@@ -8,16 +8,16 @@
     <h1> {{ uiLabels.finalResultHeader }} </h1>
 
     <div class="wrapper3">
-      <div v-for="(username, key) in username" v-bind:key="key">
-        {{ user[key] }}
+      <div v-for="(user, key) in users" v-bind:key="key">
+        {{ key }} {{ user.time }}
       </div>
-      <p>{{ data }}</p>
+    
     </div>
 
     <div>
       <button class="exitbutton" @click="$router.push('/')">Exit</button>
     </div>
-  </body>
+  </main>
 
 </template>
   
@@ -36,7 +36,7 @@ export default {
       uiLabels: {},
       newQuizId: "",
       username: "",
-      user: {},
+      users: {},
       audioUrl: '/audio/musik.mp3',
       visibility: 'hidden',
       isPlaying: false,
@@ -51,8 +51,10 @@ export default {
 
     this.lang = this.$route.params.lang;
     this.quizId = this.$route.params.id;
+    socket.emit('joinQuiz', this.quizId)
     //this.username = this.$route.params.username;
     socket.emit("pageLoaded", this.lang);
+    socket.emit('getResults', this.quizId)
     socket.on("init", (labels) => {
       this.uiLabels = labels
     })
