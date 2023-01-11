@@ -4,15 +4,22 @@
     <audio ref="audio" :src="audioUrl"></audio>
     <div class="pyro">
       <div class="before"></div>
-      <div class="after"></div></div>
+      <div class="after"></div>
+    </div>
+
     <h1> {{ uiLabels.finalResultHeader }} </h1>
 
+
     <div class="finalWrapper">
-      <div id="finalText" v-for="(user, key, index) in users" v-bind:key="key">
-        {{ index+1 }} . {{ key }} :  &nbsp; &nbsp; {{ user.time }} s
-     
+      <div class="finalTopList">
+        <div class="finalTextCSS">
+          <div id="finalText" class="user-info" v-for="(user, key, index) in users" v-bind:key="key">
+            <span class="user-index">{{ index + 1 }}.</span> <span class="key-index">{{ key }}: </span> {{ user.time }} s
+
+          </div>
+        </div>
+        <img class="winnerImg" src="/img/award.png">
       </div>
-    
     </div>
 
     <div>
@@ -44,8 +51,8 @@ export default {
       topListCounter: 1,
 
       beforeDestroy() {
-      this.$refs.audio.pause();
-  }
+        this.$refs.audio.pause();
+      }
     }
   },
 
@@ -75,8 +82,8 @@ export default {
     })
   },
 
-  methods:{
-    exit: function(){
+  methods: {
+    exit: function () {
       this.$router.push('/')
     }
   },
@@ -90,9 +97,7 @@ export default {
 </script>
 
 <style>
-body {
-  
-}
+body {}
 
 hr {
   margin-top: 2px;
@@ -106,6 +111,7 @@ h1 {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  font-size: 60px;
 }
 
 #title {
@@ -152,24 +158,65 @@ h1 {
 .finalWrapper {
 
   width: 50vw;
-  height: 40vh;
+  height: auto;
   margin: 3vw auto;
   padding: 1vw;
   border-radius: 30px;
-  background: #ffffff;
+  
   font-size: 50px;
   font-family: 'Comfortaa', cursive;
   color: #2c3e50;
   text-align: left;
+  animation: colorBack 14s linear infinite;
+  background-image: linear-gradient(90deg,#ffc899,#ffcc99,#7ed9ff,#b3e0ff,#67a9ff,#ff99e6,#db73ff,#d5ff99);
+  background-size: 700% 100%;
 
   /*box-shadow: 0px 10px 40px 0px rgba(47, 47, 47, .1);*/
 }
 
-#finalText{
-  margin-left: 40px;
+@keyframes colorBack {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 0%; }
+  
+}
+
+.winnerImg {
+  width: 14%;
+  margin-left: 80%;
+  margin-top: 5%;
+
+}
+
+.finalTopList {
+  display: grid;
+
+}
+
+#finalText {
+  margin-left: 30px;
   margin-top: 10px;
   margin-bottom: 10px
 }
+
+.user-info {
+  font-size: 35px;
+  color: white;
+  font-weight: bold;
+  font-family: 'Comfortaa', cursive;
+}
+
+.user-index {
+  color: white;
+  font-size: 35px;
+  font-weight: bold;
+  font-family: 'Comfortaa', cursive;
+  padding-right: 5%;
+}
+
+.key-index {
+  margin-right: 5%;
+}
+
 
 button {
   background-color: #d1c4e9;
@@ -321,18 +368,60 @@ body {
 }
 
 @keyframes explosion {
-  from {box-shadow: 0 0 white}
+  from {
+    box-shadow: 0 0 white
+  }
 }
 
 @keyframes grav {
-  to {transform: translateY(220px); opacity: 0;}
+  to {
+    transform: translateY(220px);
+    opacity: 0;
+  }
 }
 
 @keyframes pos {
-  0%, 20% { margin: 10% 40%;}
-  21%, 40% {margin: 40% 30%;}
-  41%, 60% {margin: 20% 70%;}
-  61%, 80% {margin: 30% 20%;}
-  81%, 100% {margin: 30% 80%;}
+
+  0%,
+  20% {
+    margin: 10% 40%;
+  }
+
+  21%,
+  40% {
+    margin: 40% 30%;
+  }
+
+  41%,
+  60% {
+    margin: 20% 70%;
+  }
+
+  61%,
+  80% {
+    margin: 30% 20%;
+  }
+
+  81%,
+  100% {
+    margin: 30% 80%;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .user-info {
+    font-size: 15px;
+  }
+
+  .user-index{
+    font-size: 15px;
+  }
+
+.finalWrapper{
+  width: 70vw;
+  height: auto;
+}
+
+
 }
 </style>

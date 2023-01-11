@@ -1,12 +1,12 @@
 <template>
-    <div class="wrapper4">
+    <div class="ourFlashCards">
         <div class="text">{{ uiLabels.flashcard }}</div>
     </div>
     <p class="count">{{ index + 1 }} / {{ words.length }}</p>
     <div class="scene sceneCard">
         <div class="card" v-bind:class="{ flip: cardOne == 'flipped' }">
-            <div class="card__face card__faceFront">{{ words[index] }}</div>
-            <div class="card__face"
+            <div class="cardFlash cardFlashFront">{{ words[index] }}</div>
+            <div class="cardFlash"
                 v-bind:class="{ card__faceBackWrong: cardOneWord == false, card__faceBackRight: cardOneWord == true }">
                 <audio ref="audio1" :src="audioUrl1"></audio>
                 <audio ref="audio2" :src="audioUrl2"></audio>
@@ -122,7 +122,7 @@ export default {
     color: #2c3e50;
 }
 
-.wrapper4 {
+.ourFlashCards {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
@@ -266,9 +266,10 @@ export default {
     margin: auto;
     border-radius: 50px;
     perspective: 1000px;
+    word-break: break-all;
 }
 
-.card__face {
+.cardFlash {
     position: absolute;
     line-height: 450px;
     text-align: center;
@@ -280,9 +281,11 @@ export default {
     height: 70vh;
     background: #3f51b5;
     border-radius: 50px;
+    word-break: break-all;
+    
 }
 
-.card__faceFront {
+.cardFlashFront {
     background: #3f51b5;
 }
 
@@ -310,8 +313,9 @@ export default {
 
 
 @media only screen and (max-width: 850px) {
-    .card__face {
+    .cardFlash {
         font-size: 5vw;
+
     }
 }
 </style>
