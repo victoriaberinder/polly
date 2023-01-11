@@ -21,18 +21,6 @@ Data.prototype.getUILabels = function (lang = "en") {
   return ui;
 }
 
-Data.prototype.createPoll = function (pollId, lang = "en") {
-  if (typeof this.polls[pollId] === "undefined") {
-    let poll = {};
-    poll.lang = lang;
-    poll.questions = [];
-    poll.answers = [];
-    poll.currentQuestion = 0;
-    this.polls[pollId] = poll;
-    console.log("poll created", pollId, poll);
-  }
-  return this.polls[pollId];
-}
 
 Data.prototype.createQuiz = function (quizId, lang = "en") {
   if (typeof this.quizes[quizId] === "undefined") {
@@ -58,12 +46,6 @@ Data.prototype.addTitle = function (quizId, title) {
   }
 }
 
-Data.prototype.addQuestion = function (pollId, q) {
-  const poll = this.polls[pollId];
-  if (typeof poll !== 'undefined') {
-    poll.questions.push(q);
-  }
-}
 
 Data.prototype.addWord = function (quizId, word, translation, title) {
   const quiz = this.quizes[quizId];
@@ -88,12 +70,6 @@ Data.prototype.getQuiz = function (key) {
   return this.quizes[key];
 }
 
-Data.prototype.editQuestion = function (pollId, index, newQuestion) {
-  const poll = this.polls[pollId];
-  if (typeof poll !== 'undefined') {
-    poll.questions[index] = newQuestion;
-  }
-}
 
 Data.prototype.getQuestion = function (pollId, qId = null) {
   const poll = this.polls[pollId];
@@ -105,24 +81,6 @@ Data.prototype.getQuestion = function (pollId, qId = null) {
     return poll.questions[poll.currentQuestion];
   }
   return []
-}
-
-Data.prototype.submitAnswer = function (pollId, answer) {
-  const poll = this.polls[pollId];
-  console.log("answer submitted for ", pollId, answer);
-  if (typeof poll !== 'undefined') {
-    let answers = poll.answers[poll.currentQuestion];
-    if (typeof answers !== 'object') {
-      answers = {};
-      answers[answer] = 1;
-      poll.answers.push(answers);
-    }
-    else if (typeof answers[answer] === 'undefined')
-      answers[answer] = 1;
-    else
-      answers[answer] += 1
-    console.log("answers looks like ", answers, typeof answers);
-  }
 }
 
 Data.prototype.getAnswers = function (pollId) {
@@ -160,8 +118,5 @@ Data.prototype.makeUser = function (quizId, username){
   this.quizes[quizId].users[username] = user;
 }
 
-Data.prototype.getMyResult = function (quizId, user) {
-  return this.quizes[quizId].users[user]
-}
 
 module.exports = Data;
