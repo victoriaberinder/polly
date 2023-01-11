@@ -53,6 +53,12 @@ export default {
     methods: {
         tryAgain: function () {
             this.$emit('clicked')
+            if (this.play == false) {
+                this.$emit('mute', {play: this.play = false})
+            }
+            else {
+                this.$emit('mute', {play: this.play = true})
+            }
 
         },
 

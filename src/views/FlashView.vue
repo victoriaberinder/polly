@@ -6,11 +6,7 @@
             <div class="waiting"> {{ uiLabels.waiting }} </div>
             <div class="loader">
                 <div class="load">
-                    <div class="circle"></div>
-                    <div class="circle"></div>
-                    <div class="circle"></div>
-                    <div class="circle"></div>
-                    <div class="circle"></div>
+                    <div class="shape"></div><div class="shape"></div><div class="shape"></div><div class="shape"></div><div class="shape"></div>
                 </div>
             </div>
         </div>
@@ -27,9 +23,9 @@
             </div>
         </div>
         <footer>
-        <div>
-            <button class="flashExitbutton" @click="$router.push('/')">Exit</button>
-        </div>
+            <div>
+                <button class="flashExitbutton" @click="$router.push('/')">Exit</button>
+            </div>
         </footer>
     </body>
 </template>
@@ -73,7 +69,7 @@ export default {
     },
     beforeUnmount() {
         clearInterval(this.timer)
-        
+
     },
 
     created: function () {
@@ -96,11 +92,7 @@ export default {
             this.words = data.words
             this.translations = data.translations
             this.showTimer()
-
         })
-
-
-
     },
 
     methods: {
@@ -124,7 +116,6 @@ export default {
                 this.totalSeconds == 0
                 socket.emit("saveTime", { quizId: this.quizId, username: this.username, totalSeconds: this.totalSeconds })
                 this.$router.push('/finalresult/' + this.lang + '/' + this.quizId)
-
             }
             else {
                 this.words = this.failedWords
@@ -132,8 +123,6 @@ export default {
                 this.showFlashCards = true;
                 console.log("Translation:", this.translations, "Words: ", this.words)
             }
-
-
         },
 
         showTimer() {
@@ -154,12 +143,7 @@ export default {
                 document.getElementById("timer").innerHTML = hour + ":" + minute + ":" + seconds;
             }, 1000)
         },
-
     },
-
-
-
-
 }
 </script>
 
@@ -173,24 +157,24 @@ export default {
 }
 
 .flashExitbutton {
-  width: 4rem;
-  height: 2rem;
-  border-radius: 5px;
-  border-color: rgb(227, 123, 123);
-  margin-bottom: 2.5rem;
-  color: white;
-  background-color: rgb(235, 76, 76);
-  margin-right: 90%;
-  margin-left: 2%;
-  font-size: 15px;
-  font-family: 'Comfortaa', cursive;
+    width: 4rem;
+    height: 2rem;
+    border-radius: 5px;
+    border-color: rgb(227, 123, 123);
+    margin-bottom: 2.5rem;
+    color: white;
+    background-color: rgb(235, 76, 76);
+    margin-right: 90%;
+    margin-left: 2%;
+    font-size: 15px;
+    font-family: 'Comfortaa', cursive;
 }
 
 .flashExitbutton:hover {
-  cursor: pointer;
-  width: 4rem;
-  height: 2rem;
-  background-color: rgb(187, 34, 34);
+    cursor: pointer;
+    width: 4rem;
+    height: 2rem;
+    background-color: rgb(187, 34, 34);
 }
 
 #timer {
@@ -212,7 +196,7 @@ export default {
     display: flex;
 }
 
-.circle {
+.shape {
     width: 5em;
     height: 5em;
     border-radius: 50%;
@@ -221,62 +205,62 @@ export default {
     margin-right: 7px;
 }
 
-.circle:nth-child(1) {
+.shape:nth-child(1) {
     background-color: #61f0a4;
 }
 
-.circle:nth-child(2) {
+.shape:nth-child(2) {
     background-color: #ff7da3;
 }
 
-.circle:nth-child(3) {
+.shape:nth-child(3) {
     background-color: #7ed9ff;
 }
 
-.circle:nth-child(4) {
+.shape:nth-child(4) {
     background-color: #e6a8ff;
 }
 
-.circle:nth-child(5) {
+.shape:nth-child(5) {
     background-color: #f7e98e;
 }
 
-.circle::before {
+.shape::before {
     content: "";
     width: 100%;
     height: 100%;
     position: absolute;
     border-radius: 50%;
     opacity: 0.5;
-    animation: change 1.5s ease-out infinite;
+    animation: changeShape 1.5s ease-out infinite;
 }
 
-.circle:nth-child(1)::before {
+.shape:nth-child(1)::before {
     background-color: #61f0a4;
 }
 
-.circle:nth-child(2)::before {
+.shape:nth-child(2)::before {
     background-color: #ff7da3;
     animation-delay: 0.2s;
 }
 
-.circle:nth-child(3)::before {
+.shape:nth-child(3)::before {
     background-color: #7ed9ff;
     animation-delay: 0.4s;
 }
 
-.circle:nth-child(4)::before {
+.shape:nth-child(4)::before {
     background-color: #e6a8ff;
     animation-delay: 0.6s;
 }
 
-.circle:nth-child(5)::before {
+.shape:nth-child(5)::before {
     background-color: #f7e98e;
     animation-delay: 0.8s;
 }
 
 
-@keyframes change {
+@keyframes changeShape {
     0% {
         transform: scale(1);
     }
@@ -293,7 +277,7 @@ export default {
 }
 
 @media only screen and (max-width: 650px) {
-    .circle {
+    .shape {
         width: 3em;
         height: 3em;
     }

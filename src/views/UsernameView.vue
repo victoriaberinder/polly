@@ -115,6 +115,7 @@ input[type="text"]:focus {
   color: white;
   background-color: rgb(235, 76, 76);
   margin-right: 90%;
+  
   font-size: 15px;
   font-family: 'Comfortaa', cursive;
 }
