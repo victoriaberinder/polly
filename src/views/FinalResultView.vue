@@ -5,7 +5,7 @@
     <div class="pyro">
       <div class="before"></div>
       <div class="after"></div></div>
-    <h1> {{ uiLabels.finalResultHeader }} </h1>
+    <div class="finalH1"> {{ uiLabels.finalResultHeader }} </div>
 
     <div class="finalWrapper">
       <div id="finalText" v-for="(user, key, index) in users" v-bind:key="key">
@@ -14,10 +14,11 @@
       </div>
     
     </div>
-
+    <footer>
     <div>
       <button class="exitbutton" @click="exit">Exit</button>
     </div>
+    </footer>
   </main>
 
 </template>
@@ -96,13 +97,14 @@ hr {
   border-top: 1px solid #d8ecff;
 }
 
-h1 {
+.finalH1 {
   font-family: 'Comfortaa', cursive;
-  /* -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; */
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 80px;
+  margin-bottom: 10px;
+  font-size: 70px;
+  font-weight: bold;
 }
 
 #title {
@@ -131,15 +133,12 @@ h1 {
   margin: 2.5rem;
   color: white;
   background-color: rgb(235, 76, 76);
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  margin-right: 90%;
   font-size: 15px;
   font-family: 'Comfortaa', cursive;
 }
 
 .exitbutton:hover {
-
   cursor: pointer;
   width: 4rem;
   height: 2rem;

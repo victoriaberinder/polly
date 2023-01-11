@@ -84,29 +84,6 @@ body {
     margin-bottom: 5vw;
 }
 
-.exitbutton {
-    width: 4rem;
-    height: 2rem;
-    border-radius: 5px;
-    border-color: rgb(227, 123, 123);
-    margin: 2.5rem;
-    color: white;
-    background-color: rgb(235, 76, 76);
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    font-size: 15px;
-    font-family: 'Comfortaa', cursive;
-}
-
-.exitbutton:hover {
-
-    cursor: pointer;
-    width: 4rem;
-    height: 2rem;
-    background-color: rgb(187, 34, 34);
-}
-
 .failedWords {
     float: left;
     flex: 1;
@@ -117,7 +94,7 @@ body {
     margin-left: 3%;
     margin-right: 3%;
     border-radius: 50px;
-    color: #2c3e50;
+    color: white;
     padding-top: 25px;
 }
 
@@ -131,7 +108,7 @@ body {
     margin-left: 3%;
     margin-right: 3%;
     border-radius: 50px;
-    color: #2c3e50;
+    color: white;
     padding-top: 25px;
 }
 
@@ -180,20 +157,6 @@ body {
         display: flex;
         align-items: center;
         justify-content: center;
-    }
-
-
-
-    .hamburger::before {
-        content: "☰";
-    }
-
-    .close::before {
-        content: "✕";
-    }
-
-    .hide {
-        left: -12em;
     }
 }
 </style>

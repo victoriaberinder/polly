@@ -1,5 +1,9 @@
 <template>
     <div class="wrapper4">
+        <div class="mute">
+            <button v-if="play" @click="mute()" style="border: none; background-color: transparent;"> <img src="/img/mute.png"> </button>
+            <button v-else-if="!play" @click="mute()" style="border: none; background-color: transparent;"> <img src="/img/unmute.png"> </button>
+        </div>
         <div class="text">{{ uiLabels.flashcard }}</div>
     </div>
     <p class="count">{{ index + 1 }} / {{ words.length }}</p>
@@ -55,6 +59,7 @@ export default {
             correctTranslations: [],
             failedWords: [],
             failedTranslations: [],
+            play: true,
             audioUrl1: '/audio/Correct.mp3',
             audioUrl2: '/audio/Failed.mp3',
             beforeDestroy() {
@@ -96,21 +101,33 @@ export default {
                 this.cardOneWord = true
                 this.correctWords.push(this.words[this.index])
                 this.correctTranslations.push(this.translations[this.index])
-                this.audioUrl1 = '/audio/Correct.mp3';
-                this.$refs.audio1.play();
+                if (this.play == true) {
+                    this.$refs.audio1.play();
+                }
             }
             else {
                 this.cardOneWord = false
                 this.failedWords.push(this.words[this.index])
                 this.failedTranslations.push(this.translations[this.index])
-                this.audioUrl2 = '/audio/Failed.mp3';
-                this.$refs.audio2.play();
+                if (this.play == true) {
+                    this.$refs.audio2.play();
+                }
             }
         },
+
         done: function () {
             //this.$router.push('/myresult/' + this.lang + '/' + this.quizId + '/' + this.username)
 
             this.$emit('clicked', { failedWords: this.failedWords, correctWords: this.correctWords, failedTranslations: this.failedTranslations, correctTranslations: this.correctTranslations })
+        },
+
+        mute: function () {
+            if (this.play == true) {
+                this.play = false
+            }
+            else {
+                this.play = true
+            }
         }
     }
 }
@@ -120,6 +137,22 @@ export default {
 <style>
 .count {
     color: #2c3e50;
+}
+
+.mute {
+    position: absolute;
+    margin-left: -35%;
+    margin-top: 0.5%;
+}
+
+.mute img {
+    height: 40px;
+    width: 40px;
+}
+
+.mute img:hover {
+    filter: drop-shadow(0px 0px 10px #0084ff);
+    transform: scale(1.1);
 }
 
 .wrapper4 {
@@ -246,8 +279,8 @@ export default {
     margin-right: auto;
     justify-content: center;
     border-radius: 50px;
-    width: 55vw;
-    height: 70vh;
+    width: 50vw;
+    height: 65vh;
 }
 
 .card {
@@ -256,8 +289,8 @@ export default {
     color: white;
     text-align: center;
     font-family: 'Comfortaa', cursive;
-    width: 55vw;
-    height: 70vh;
+    width: 50vw;
+    height: 65vh;
     transition: transform 1s;
     transform-style: preserve-3d;
     cursor: pointer;
@@ -274,8 +307,8 @@ export default {
     backface-visibility: hidden;
     font-family: 'Comfortaa', cursive;
     font-size: 4vw;
-    width: 55vw;
-    height: 70vh;
+    width: 50vw;
+    height: 65vh;
     background: #3f51b5;
     border-radius: 50px;
 }

@@ -107,26 +107,23 @@ input[type="text"]:focus {
 }
 
 .exitbutton {
-    width: 4rem;
-    height: 2rem;
-    border-radius: 5px;
-    border-color: rgb(227, 123, 123);
-    margin: 2.5rem;
-    color: white;
-    background-color: rgb(235, 76, 76);
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    font-size: 15px;
-    font-family: 'Comfortaa', cursive;
+  width: 4rem;
+  height: 2rem;
+  border-radius: 5px;
+  border-color: rgb(227, 123, 123);
+  margin: 2.5rem;
+  color: white;
+  background-color: rgb(235, 76, 76);
+  margin-right: 90%;
+  font-size: 15px;
+  font-family: 'Comfortaa', cursive;
 }
 
 .exitbutton:hover {
-
-    cursor: pointer;
-    width: 4rem;
-    height: 2rem;
-    background-color: rgb(187, 34, 34);
+  cursor: pointer;
+  width: 4rem;
+  height: 2rem;
+  background-color: rgb(187, 34, 34);
 }
 
 #text {
