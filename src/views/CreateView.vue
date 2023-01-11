@@ -277,6 +277,7 @@ input[type="createText"]:focus {
   margin-top: 80px;
   margin-bottom: 10px;
   font-size: 70px;
+  font-weight: bold;
 }
 
 .createExitbutton {

@@ -90,9 +90,6 @@ export default {
 </script>
 
 <style>
-body {
-  
-}
 
 hr {
   margin-top: 2px;
@@ -252,6 +249,7 @@ body {
     -20px -380px #7dff80,
     100px -10px #ff80d1,
     20px 30px #f299ff,
+    300px 30px #ffcc99,
 
     /* FLER POS*/
 

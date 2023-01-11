@@ -62,6 +62,20 @@ export default {
             }
         }
     },
+    mounted() {
+        document.addEventListener("keydown", (event) => {
+            if (event.code === "Enter") {
+                if (this.cardOne != 'flipped' && this.cardAnswer != '') {
+                    this.flipCard();
+                    this.getAnswer();
+                } else if (this.index + 1 == this.words.length) {
+                    this.done();
+                } else {
+                    this.nextQuestion();
+                }
+            }
+        });
+    },
 
     methods: {
         flipCard: function () {
@@ -97,11 +111,8 @@ export default {
             //this.$router.push('/myresult/' + this.lang + '/' + this.quizId + '/' + this.username)
 
             this.$emit('clicked', { failedWords: this.failedWords, correctWords: this.correctWords, failedTranslations: this.failedTranslations, correctTranslations: this.correctTranslations })
-        },
-
-
-
-    },
+        }
+    }
 }
 
 </script>
@@ -202,7 +213,6 @@ export default {
     width: 25vw;
     font-size: 15px;
     font-family: 'Comfortaa', cursive;
-
 }
 
 .done:hover {
@@ -215,10 +225,10 @@ export default {
 
 .nextQuestionButton {
     text-align: center;
-    color: #2c3e50;
+    color: white;
     border: 1px ridge rgb(177, 177, 177);
     border-radius: 50px;
-    background-color: rgb(255, 227, 141);
+    background-color: rgb(195, 99, 225);
     justify-content: center;
     height: 7vh;
     width: 25vw;
@@ -228,8 +238,7 @@ export default {
 
 .nextQuestionButton:hover {
     cursor: pointer;
-    background-color: rgb(253, 213, 92);
-
+    background-color: rgb(196, 67, 235);
 }
 
 .scene {

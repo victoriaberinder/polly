@@ -3,7 +3,7 @@
     <body>
         <div id="timer"></div>
         <div v-if="!startGame">
-            <div class="waiting"> Waiting for the game to start...</div>
+            <div class="waiting"> {{ uiLabels.waiting }} </div>
             <div class="loader">
                 <div class="load">
                     <div class="circle"></div>
@@ -225,7 +225,6 @@ export default {
 
 .circle:nth-child(1) {
     background-color: #61f0a4;
-    ;
 }
 
 .circle:nth-child(2) {
@@ -251,7 +250,7 @@ export default {
     position: absolute;
     border-radius: 50%;
     opacity: 0.5;
-    animation: form 1.5s ease-out infinite;
+    animation: change 1.5s ease-out infinite;
 }
 
 .circle:nth-child(1)::before {
@@ -279,7 +278,7 @@ export default {
 }
 
 
-@keyframes form {
+@keyframes change {
     0% {
         transform: scale(1);
     }
