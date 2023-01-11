@@ -1,8 +1,10 @@
 <template>
   <div class="startPage">
     <div class="startPagehead">
-      <img src="https://static.showit.co/400/1yzlYawSRsyajrqRf5NsQg/115216/books1.png">
-      Glosor
+      <img src="/img/lip.png">
+      <!--https://static.showit.co/400/1yzlYawSRsyajrqRf5NsQg/115216/books1.png">-->
+      
+      Flipgloss
     </div>
 
     <body>
@@ -88,8 +90,10 @@ export default {
 
 .startPagehead img {
   width: auto;
-  height: 10vw;
-  margin-right: 10px;
+  height: 12vw;
+  margin-right: 4%;
+  transform: rotate(45deg);
+  opacity: 0.7;
 }
 
 .startLanguage {

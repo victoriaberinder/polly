@@ -1,15 +1,11 @@
 {
-	"sales-pitch": "Svar. Helt. Enkelt.",
-	"invite": "Bjud in deltagare med den här länken:",
-	"createPoll": "Skapa röstning",
-	"participatePoll": "Delta i röstning",
 	"question": "Fråga",
 	"changeLanguage": "Change to English",
 	"createButton": "SKAPA",
 	"playButton": "SPELA",
 	"createHeader": "Skapa ditt quiz",
-	"word": "Ord",
-    "translation": "Översättning",
+	"word": "ord",
+    "translation": "översättning",
     "addWord": "Lägg till ord",
     "removeWord": "Ta bort ord",
     "saveQuiz":  "Spara quiz",
@@ -33,5 +29,7 @@
 	"tryAgain": "Försök igen",
 	"joinQuiz": "Gå med i quiz",
 	"quizID": "Quiz ID",
-	"waiting": "Väntar på att spelet ska starta..."
+	"waiting": "Väntar på att spelet ska starta...",
+	"MyFailedWords": "Inkorrekta ord:",
+    "MyCorrectWords": "Korrekta ord:"
 }

@@ -4,10 +4,8 @@
     <audio ref="audio" :src="audioUrl"></audio>
     <div class="pyro">
       <div class="before"></div>
-      <div class="after"></div>
-    </div>
-
-    <h1> {{ uiLabels.finalResultHeader }} </h1>
+      <div class="after"></div></div>
+    <div class="finalH1"> {{ uiLabels.finalResultHeader }} </div>
 
 
     <div class="finalWrapper">
@@ -21,10 +19,11 @@
         <img class="winnerImg" src="/img/award.png">
       </div>
     </div>
-
+    <footer>
     <div>
       <button class="exitbutton" @click="exit">Exit</button>
     </div>
+    </footer>
   </main>
 
 </template>
@@ -97,28 +96,23 @@ export default {
 </script>
 
 <style>
-body {}
 
 hr {
   margin-top: 2px;
   border-top: 1px solid #d8ecff;
 }
 
-h1 {
+.finalH1 {
   font-family: 'Comfortaa', cursive;
-  /* -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; */
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
-  font-size: 60px;
+  margin-top: 80px;
+  margin-bottom: 10px;
+  font-size: 70px;
+  font-weight: bold;
 }
 
-#title {
-  text-align: left;
-  margin-left: 5%;
 
-}
 
 .size {
   width: 500px;
@@ -140,15 +134,12 @@ h1 {
   margin: 2.5rem;
   color: white;
   background-color: rgb(235, 76, 76);
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  margin-right: 90%;
   font-size: 15px;
   font-family: 'Comfortaa', cursive;
 }
 
 .exitbutton:hover {
-
   cursor: pointer;
   width: 4rem;
   height: 2rem;

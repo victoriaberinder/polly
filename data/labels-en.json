@@ -1,15 +1,12 @@
 {
-    "sales-pitch": "Simply. Great. Polling.",
-    "invite": "Invite participants with this link:",
-    "createPoll": "Create poll",
-    "participatePoll": "Participate in poll",
+
     "question": "Question",
     "changeLanguage": "Byt till svenska",
     "createButton": "CREATE",
     "playButton": "PLAY",
     "createHeader": "Create your quiz",
-    "word": "Word",
-    "translation": "Translation",
+    "word": "word",
+    "translation": "translation",
     "addWord": "Add word",
     "removeWord": "Remove Word",
     "saveQuiz":  "Save quiz",
@@ -33,5 +30,7 @@
     "tryAgain": "Try again",
     "joinQuiz": "Join quiz",
     "quizID": "Quiz ID",
-    "waiting": "Waiting for the game to start..."
+    "waiting": "Waiting for the game to start...",
+    "MyFailedWords": "Failed words:",
+    "MyCorrectWords": "Correct words:"
 }

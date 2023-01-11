@@ -22,11 +22,12 @@
     <button class="ButtonCreateNew" @click="create"> {{ uiLabels.createNewQuiz }}</button>
 
   </div>
-
-  <div>
-    <!-- skapa lyssnare som skickar iväg pageLoaded, som i sin tur returnerar uiLabels (och eventuellt annan typ av data)-->
-    <button class="exitbutton" @click="$router.push('/')">Exit</button>
-  </div>
+  <footer>
+    <div>
+      <!-- skapa lyssnare som skickar iväg pageLoaded, som i sin tur returnerar uiLabels (och eventuellt annan typ av data)-->
+      <button class="exitbutton" @click="$router.push('/')">Exit</button>
+    </div>
+  </footer>
 
 </template>
   
@@ -175,15 +176,12 @@ h1 {
   margin: 2.5rem;
   color: white;
   background-color: rgb(235, 76, 76);
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  margin-right: 90%;
   font-size: 15px;
   font-family: 'Comfortaa', cursive;
 }
 
 .exitbutton:hover {
-
   cursor: pointer;
   width: 4rem;
   height: 2rem;
@@ -212,7 +210,7 @@ h1 {
   width: 50vw;
   margin-left: 35%;
   margin-right: 5%;
-  
+
 }
 
 .playbutton {
@@ -299,6 +297,4 @@ h1 {
     font-size: 25pt;
   }
 }
-
-
 </style>
