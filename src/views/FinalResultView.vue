@@ -13,8 +13,7 @@
       <div class="finalTopList">
         <div class="finalTextCSS">
           <div id="finalText" class="user-info" v-for="(user, key, index) in users" v-bind:key="key">
-            <span class="user-index">{{ index + 1 }}.</span> <span class="key-index">{{ key }}: </span> {{ user.time }}
-            s
+            <span class="user-index">{{ index + 1 }}.</span> <span class="key-index">{{ key }}: </span> {{ user.time }} s
 
           </div>
         </div>
@@ -154,27 +153,21 @@ hr {
   margin: 3vw auto;
   padding: 1vw;
   border-radius: 30px;
-
   font-size: 50px;
   font-family: 'Comfortaa', cursive;
   color: #2c3e50;
   text-align: left;
   animation: colorBack 14s linear infinite;
-  background-image: linear-gradient(90deg, #ffc899, #ffcc99, #7ed9ff, #b3e0ff, #67a9ff, #ff99e6, #db73ff, #d5ff99);
+  background-image: linear-gradient(90deg,#ffc899,#ffcc99,#7ed9ff,#b3e0ff,#67a9ff,#ff99e6,#db73ff,#d5ff99);
   background-size: 700% 100%;
 
   /*box-shadow: 0px 10px 40px 0px rgba(47, 47, 47, .1);*/
 }
 
 @keyframes colorBack {
-  0% {
-    background-position: 0% 0%;
-  }
-
-  100% {
-    background-position: 100% 0%;
-  }
-
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 0%; }
+  
 }
 
 .winnerImg {
@@ -257,7 +250,9 @@ body {
 }
 
 @keyframes explosion {
-  from {box-shadow: 0 0 white}
+  from {
+    box-shadow: 0 0 white
+  }
 }
 @keyframes grav {
   to {transform: translateY(220px);opacity: 0;}
