@@ -70,30 +70,6 @@ Data.prototype.getQuiz = function (key) {
   return this.quizes[key];
 }
 
-
-Data.prototype.getQuestion = function (pollId, qId = null) {
-  const poll = this.polls[pollId];
-
-  if (typeof poll !== 'undefined') {
-    if (qId !== null) {
-      poll.currentQuestion = qId;
-    }
-    return poll.questions[poll.currentQuestion];
-  }
-  return []
-}
-
-Data.prototype.getAnswers = function (pollId) {
-  const poll = this.polls[pollId];
-  if (typeof poll !== 'undefined') {
-    const answers = poll.answers[poll.currentQuestion];
-    if (typeof poll.questions[poll.currentQuestion] !== 'undefined') {
-      return { q: poll.questions[poll.currentQuestion].q, a: answers };
-    }
-  }
-  return {}
-}
-
 Data.prototype.deleteQuiz = function (key) {
   delete this.quizes[key];
 
@@ -111,10 +87,8 @@ Data.prototype.saveTime = function (quizId, username, totalSeconds){
 }
 
 Data.prototype.makeUser = function (quizId, username){
-  const quiz = this.quizes[quizId];
 
   let user = {};
-  
   this.quizes[quizId].users[username] = user;
 }
 
