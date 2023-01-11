@@ -107,11 +107,7 @@ hr {
   font-weight: bold;
 }
 
-#title {
-  text-align: left;
-  margin-left: 5%;
 
-}
 
 .size {
   width: 500px;
